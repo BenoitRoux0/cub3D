@@ -20,11 +20,11 @@ Other features, such as wall collision, jump and such were optional.
 ## 🛠️ Implementation
 Creating the CUB3D game engine asked us to work on the following components:
 
-    Map parsing: Read and interpret the map file that defines the maze layout, textures, and other properties.
-    Raycasting: Cast rays to calculate distances to walls and objects in the player's view, creating the 3D-like effect.
-    Texturing: Apply textures to walls and other surfaces based on the raycasting results.
-    Player movement: Implement controls for player movement, rotation.
-    Graphic rendering: Set up a window and render the scene using the Minilibx. graphical library
+- Map parsing: Read and interpret the map file that defines the maze layout, textures, and other properties.
+- Raycasting: Cast rays to calculate distances to walls and objects in the player's view, creating the 3D-like effect.
+- Texturing: Apply textures to walls and other surfaces based on the raycasting results.
+- Player movement: Implement controls for player movement, rotation.
+- Graphic rendering: Set up a window and render the scene using the MinilibX graphical library
 
 ## 💽 Usage
 To compile the program, run the following command:

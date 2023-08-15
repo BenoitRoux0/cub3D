@@ -20,23 +20,23 @@ Other features, such as wall collision, jump and such were optional.
 ## 🛠️ Implementation
 Creating the CUB3D game engine asked us to work on the following components:
 
-    Map parsing: Read and interpret the map file that defines the maze layout, textures, and other properties.
-    Raycasting: Cast rays to calculate distances to walls and objects in the player's view, creating the 3D-like effect.
-    Texturing: Apply textures to walls and other surfaces based on the raycasting results.
-    Player movement: Implement controls for player movement, rotation.
-    Graphic rendering: Set up a window and render the scene using the Minilibx. graphical library
+- Map parsing: Read and interpret the map file that defines the maze layout, textures, and other properties.
+- Raycasting: Cast rays to calculate distances to walls and objects in the player's view, creating the 3D-like effect.
+- Texturing: Apply textures to walls and other surfaces based on the raycasting results.
+- Player movement: Implement controls for player movement, rotation.
+- Graphic rendering: Set up a window and render the scene using the MinilibX graphical library
 
 ## 💽 Usage
 To compile the program, run the following command:
 ```shell
 make
 ```
-It will compile the program and create an executable called "CUB3D".<br>
+It will compile the program and create an executable called "cub3D".<br>
 
 
 To run the program, simply execute the created executable:
 ```shell
-./CUB3D path_to_map.ber
+./cub3D path_to_map.ber
 ```
 ##  ⚠️ Warning
 This project is a part of the 42-Cursus curriculum and is intended for educational purposes. If you are a current student of 42, we strongly advise you not to copy this project or submit it as your own work, as it goes against the school's academic integrity policy. We will not be responsible for any misuse of the project or academic penalties that may arise from it. However, you are welcome to use this project as a reference or for learning purposes.

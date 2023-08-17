@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "mlx.h"
+# include "libft.h"
 # include "mlx_int.h"
 # include "types.h"
 # include "render.h"

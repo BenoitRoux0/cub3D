@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 09:10:47 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/17 22:49:52 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <printf.h>
 # include "mlx.h"
 # include "libft.h"
 # include "mlx_int.h"

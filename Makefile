@@ -15,7 +15,7 @@ NAME =	cub3D
 SRCS =	main.c hooks.c
 INCS =	incs/cub.h
 
-include	srcs/render/sources.mk
+include	srcs/render/sources.mk	srcs/drawing/drawing.mk
 
 SRCS :=	$(addprefix srcs/, $(SRCS))
 

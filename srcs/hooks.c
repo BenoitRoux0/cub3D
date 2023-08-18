@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 10:08:39 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/18 18:11:26 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,12 @@ int	on_key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		on_destroy(data);
+	key_press_player(keycode, data);
+	return (0);
+}
+
+int	on_key_released(int keycode, t_data *data)
+{
+	key_released_player(keycode, data);
 	return (0);
 }

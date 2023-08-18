@@ -16,6 +16,7 @@ SRCS =	main.c hooks.c
 INCS =	incs/cub.h incs/defines.h
 
 include	srcs/render/sources.mk
+include srcs/img/sources.mk
 
 SRCS :=	$(addprefix srcs/, $(SRCS))
 

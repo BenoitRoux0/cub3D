@@ -13,7 +13,7 @@
 NAME =	cub3D
 
 SRCS =	main.c hooks.c
-INCS =	incs/cub.h
+INCS =	incs/cub.h incs/defines.h
 
 include	srcs/render/sources.mk
 

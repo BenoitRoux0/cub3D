@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 23:44:22 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/15 20:23:38 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 # include "render.h"
 # include "hooks.h"
 # include "player.h"
+# include "parsing.h"
+# include "draw.h"
 
 #endif

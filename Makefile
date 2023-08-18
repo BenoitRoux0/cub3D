@@ -17,6 +17,7 @@ INCS =	incs/cub.h incs/defines.h
 
 include	srcs/render/sources.mk
 include srcs/img/sources.mk
+include srcs/player/sources.mk
 
 SRCS :=	$(addprefix srcs/, $(SRCS))
 

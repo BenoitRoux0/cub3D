@@ -12,10 +12,10 @@
 
 #include "cub.h"
 
-static void			my_mlx_pixel_put(t_mlx_img *data, int x, int y, uint32_t c);
-static t_mlx_img	*new_mlx_img(void *mlx, int width, int heigth);
+static void			my_mlx_pixel_put(t_master_img *data, int x, int y, uint32_t c);
+static t_master_img	*new_mlx_img(void *mlx, int width, int heigth);
 
-void	img_to_mlx_img(void *mlx, t_mlx_img **dst, t_uint_img *src)
+void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img *src)
 {
 	int	i;
 	int	j;
@@ -41,19 +41,19 @@ void	img_to_mlx_img(void *mlx, t_mlx_img **dst, t_uint_img *src)
 	}
 }
 
-static void	my_mlx_pixel_put(t_mlx_img *img, int x, int y, uint32_t c)
+static void	my_mlx_pixel_put(t_master_img *img, int x, int y, uint32_t c)
 {
 	char	*addr;
 
-	addr = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	addr = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
 	*(uint32_t *) addr = c;
 }
 
-static t_mlx_img	*new_mlx_img(void *mlx, int width, int heigth)
+static t_master_img	*new_mlx_img(void *mlx, int width, int heigth)
 {
-	t_mlx_img	*img;
+	t_master_img	*img;
 
-	img = ft_calloc(1, sizeof(t_mlx_img));
+	img = ft_calloc(1, sizeof(t_master_img));
 	if (!img)
 		return (NULL);
 	img->content = mlx_new_image(mlx, width, heigth);
@@ -63,7 +63,7 @@ static t_mlx_img	*new_mlx_img(void *mlx, int width, int heigth)
 	img->height = heigth;
 	img->addr = mlx_get_data_addr(\
 				img->content, \
-				&(img->bpp), \
+				&(img->bits_per_pixel), \
 				&(img->line_len), \
 				&(img->endian));
 	return (img);

@@ -41,12 +41,12 @@ void	mlx_img_to_img(t_uint_img **dst, t_mlx_img *src)
 static uint32_t	my_mlx_get_pixel(void *img, int x, int y)
 {
 	char		*addr;
-	int			bpp;
+	int			bits_per_pixel;
 	int			line_len;
 	int			endian;
 	uint32_t	color;
 
-	addr = mlx_get_data_addr(img, &bpp, &line_len, &endian);
-	color = *((uint32_t *)(addr + (y * line_len + x * (bpp / 8))));
+	addr = mlx_get_data_addr(img, &bits_per_pixel, &line_len, &endian);
+	color = *((uint32_t *)(addr + (y * line_len + x * (bits_per_pixel / 8))));
 	return (color);
 }

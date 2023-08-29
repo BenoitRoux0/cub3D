@@ -18,5 +18,6 @@
 
 int	on_destroy(t_data *data);
 int on_key_press(int keycode, t_data *data);
+int	on_key_released(int keycode, t_data *data);
 
 #endif

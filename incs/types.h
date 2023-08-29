@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 09:10:39 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:11:16 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 
 # include "cub.h"
 
-enum
+enum e_dir
 {
-	NORTH,
-	SOUTH,
 	EAST,
-	WEST
+	SOUTH,
+	WEST,
+	NORTH,
 };
 
 typedef struct s_master_img	t_master_img;
 
 typedef struct s_map
 {
-	char	**content;
-	t_img	walls_text[4];
+	char		**content;
+	int			size[2];
+	t_uint_img	walls_text[4];
 }	t_map;
 
 typedef struct s_player
 {
-	float	pos[2];
+	double 	pos[2];
+	double	mov[2];
+	double	angle_mov;
 	double	angle;
 	float	fov;
 }	t_player;
@@ -54,14 +57,21 @@ typedef struct s_line
 
 struct s_master_img
 {
-	void	*img_ptr;
+	void	*content;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
 	int		height;
+	int		width;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
 };
+
+typedef struct s_ray
+{
+	double	inter[2];
+	double	dist;
+	int		wall;
+}	t_ray;
 
 typedef struct s_data
 {
@@ -69,5 +79,8 @@ typedef struct s_data
 	void			*win;
 	t_master_img	master_img;
 	t_map			map;
+	t_player		player;
+	t_ray			rays[WIN_WIDTH];
 }	t_data;
+
 #endif

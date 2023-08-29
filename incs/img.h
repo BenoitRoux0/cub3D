@@ -6,12 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:59:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 23:47:48 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:12:54 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMG_H
 # define IMG_H
+
+typedef struct s_master_img t_master_img;
 
 /** @struct s_color
  * @brief a struct to store color in four ints instead of one
@@ -86,7 +88,7 @@ typedef struct s_mlx_img
 	char	*addr;
 	int		height;
 	int		width;
-	int		bpp;
+	int		bits_per_pixel;
 	int		line_len;
 	int		endian;
 }	t_mlx_img;
@@ -154,7 +156,7 @@ void	clear_mlx_img(void *mlx_ptr, t_mlx_img *img);
  *
  * @author beroux
  */
-void	img_to_mlx_img(void *mlx, t_mlx_img **dst, t_uint_img*src);
+void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img*src);
 
 /** @fn void    mlx_img_to_img(t_uint_img**dst, t_mlx_img *src)
  * @brief copy a t_mlx_img in a t_img

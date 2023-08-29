@@ -30,7 +30,9 @@ LIBFT =		libft/libft.a
 %.o:		%.c $(INCS)
 			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
 
-all:		$(NAME)
+all:
+		git submodule update --init --recursive
+		make $(NAME)
 
 $(NAME):	$(OBJS) $(MLX) $(LIBFT)
 			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -Ilibft/includes -lXext -lX11 -lm -lz

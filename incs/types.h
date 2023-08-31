@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/21 16:11:16 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/30 19:16:27 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_ray
 {
 	double	inter[2];
 	double	dist;
-	int		wall;
+	int		hit;
 }	t_ray;
 
 typedef struct s_data

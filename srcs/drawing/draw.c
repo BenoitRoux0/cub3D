@@ -34,7 +34,7 @@ void	nlx_pixel_put(t_master_img	*img, int to_put[2], int color)
 {
 	char	*dst;
 
-	dst = img->addr + (to_put[1] * img->line_length
+	dst = img->addr + (to_put[1] * img->line_len
 			+ to_put[0] * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

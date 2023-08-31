@@ -25,13 +25,16 @@ CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 
+LIBFT =		libft/libft.a
+
 %.o:		%.c $(INCS)
-			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux
+			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
 
-all:		$(NAME)
+all:
+		make $(NAME)
 
-$(NAME):	$(OBJS) $(MLX)
-			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -lXext -lX11 -lm -lz
+$(NAME):	$(OBJS) $(MLX) $(LIBFT)
+			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -Ilibft/includes -lXext -lX11 -lm -lz
 
 clean:
 			$(RM) $(OBJS)
@@ -45,5 +48,8 @@ re:			fclean
 
 $(MLX):
 			$(MAKE) -C minilibx-linux
+
+$(LIBFT):
+			$(MAKE) -C libft
 
 .PHONY:		all clean fclean re

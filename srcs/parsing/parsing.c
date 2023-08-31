@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/08/18 11:20:05 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:36:00 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ bool	unvalid_extension(char *map)
 {
 	int	i;
 
-	i = ft_strlen(map);
-	if (map[i - 1] != 'b' || map[i - 2] != 'u'
-		|| map[i - 3] != 'c' || map[i - 4] != '.')
+	i = ft_strlen(map) - 4;
+	if (ft_strncmp(&map[i], ".cub", 4) != 0)
 		return (true);
 	return (false);
 }

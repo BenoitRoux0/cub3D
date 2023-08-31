@@ -15,7 +15,7 @@ NAME =	cub3D
 SRCS =	main.c hooks.c
 INCS =	incs/cub.h
 
-include	srcs/render/sources.mk
+include	srcs/render/sources.mk srcs/parsing/sources.mk
 
 SRCS :=	$(addprefix srcs/, $(SRCS))
 
@@ -30,8 +30,7 @@ LIBFT =		libft/libft.a
 %.o:		%.c $(INCS)
 			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
 
-all:
-		make $(NAME)
+all:		$(NAME)
 
 $(NAME):	$(OBJS) $(MLX) $(LIBFT)
 			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -Ilibft/includes -lXext -lX11 -lm -lz

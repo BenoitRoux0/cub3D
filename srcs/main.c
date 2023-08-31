@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		parsing_result;
 
+	ft_memset(&data, 0, sizeof(t_data));
 	parsing_result = parsing(argc, argv, &data);
 	if (parsing_result != 0)
 		return (parsing_result);

@@ -20,12 +20,12 @@ int	parsing(int argc, char **argv, t_data *data)
 	int	fd;
 
 	if (argc != 2)
-		return (printf(ERR_ARGC), ERC_ARGC);
+		return (printf(ERM_ARGC), ERC_ARGC);
 	if (unvalid_extension(argv[1]))
-		return (printf(ERR_EXTENSION), ERC_EXTENSION);
+		return (printf(ERM_EXTENSION), ERC_EXTENSION);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf(ERR_ACCESS"%s\n", argv[1]), ERC_ACCESS);
+		return (printf(ERM_ACCESS"%s\n", argv[1]), ERC_ACCESS);
 	(void)data;
 //	if (get_texture(fd, data) == EXIT_FAILURE)
 //		return (ERC_TEXTURE);

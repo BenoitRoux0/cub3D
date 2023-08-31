@@ -20,16 +20,16 @@ int	parsing(int argc, char **argv, t_data *data);
 
 
 //-------Error Message-------//
-# define ERR_ARGC "cub3D: Usage: ./cub3D <map.cub>\n"
+# define ERM_ARGC "cub3D: Usage: ./cub3D <map.cub>\n"
 # define ERC_ARGC 101
-# define ERR_EXTENSION "cub3D: Error: wrong map file extension,\
+# define ERM_EXTENSION "cub3D: Error: wrong map file extension,\
 	expected <.cub>\n"
 # define ERC_EXTENSION 102
-# define ERR_ACCESS "cub3D: Error: can't access map file: "
+# define ERM_ACCESS "cub3D: Error: can't access map file: "
 # define ERC_ACCESS 103
-# define ERR_TEXTURE_NORTH "cub3D: Error: can't access texture for north"
-# define ERR_TEXTURE_SOUTH "cub3D: Error: can't access texture for south"
-# define ERR_TEXTURE_EAST "cub3D: Error: can't access texture for east"
-# define ERR_TEXTURE_WEST "cub3D: Error: can't access texture for west"
+# define ERM_TEXTURE_NORTH "cub3D: Error: can't access texture for north"
+# define ERM_TEXTURE_SOUTH "cub3D: Error: can't access texture for south"
+# define ERM_TEXTURE_EAST "cub3D: Error: can't access texture for east"
+# define ERM_TEXTURE_WEST "cub3D: Error: can't access texture for west"
 # define ERC_TEXTURE 104
 #endif

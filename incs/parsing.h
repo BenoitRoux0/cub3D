@@ -17,6 +17,7 @@
 
 
 int	parsing(int argc, char **argv, t_data *data);
+int	get_texture(int fd, t_data *data);
 
 
 //-------Error Message-------//

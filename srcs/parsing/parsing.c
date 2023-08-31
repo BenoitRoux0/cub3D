@@ -27,8 +27,8 @@ int	parsing(int argc, char **argv, t_data *data)
 	if (fd == -1)
 		return (printf(ERM_ACCESS"%s\n", argv[1]), ERC_ACCESS);
 	(void)data;
-//	if (get_texture(fd, data) == EXIT_FAILURE)
-//		return (ERC_TEXTURE);
+	if (get_texture(fd, data) == EXIT_FAILURE)
+		return (ERC_TEXTURE);
 	//TODO: get map, get player
 	return (0);
 }

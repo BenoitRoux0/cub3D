@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <printf.h>
 # include "mlx.h"
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include "mlx_int.h"
 # include "types.h"
 # include "render.h"

@@ -6,43 +6,45 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/01 13:13:11 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:12:32 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 void	flush_newline(char *array[4]);
-int		get_textures_lines(int fd, char *textures_line[4]);
+int		get_textures_infos(int fd, char *textures_line[4], int color[2][3]);
 void	free_textures_line(char *textures_line[4]);
 int		open_texture(t_data *data, char *textures_line[4]);
 
 int	get_textures(int fd, t_data *data, char *map_path)
 {
-	char	*texture_line[4];
+	char	*textures_line[4];
+	int		color[2][3];
 	int		open_textures_code;
 
-	if (get_textures_lines(fd, texture_line) == EXIT_FAILURE)
-		return (free_textures_line(texture_line),
+	ft_memset(textures_line, 0, sizeof(char *) * 4);
+
+	if (get_textures_infos(fd, textures_line, NULL) == EXIT_FAILURE)
+		return (free_textures_line(textures_line),
 			ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE"\n"), ERC_MISS_TEXTURE);
 	close(fd);
-	flush_newline(texture_line);
-	open_textures_code = open_texture(data, texture_line);
+	flush_newline(textures_line);
+	open_textures_code = open_texture(data, textures_line);
 	if (open_textures_code != EXIT_SUCCESS)
-		return (free_textures_line(texture_line), ERC_TEXTURE);
-	free_textures_line(texture_line);
+		return (free_textures_line(textures_line), ERC_TEXTURE);
+	free_textures_line(textures_line);
 	(void)map_path;
 	return (EXIT_SUCCESS);
 }
 
 //TODO: Il peut y avoir autant d'espece que voulu entre la cle et le  contenue (mais pas de newline);
-int	get_textures_lines(int fd, char *textures_line[4])
+int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 {
 	int		c_line;
 	char	*buff;
 
 	c_line = -1;
-	ft_memset(textures_line, 0, sizeof(char *) * 4);
 	while (++c_line < 4)
 	{
 		buff = get_next_line(fd);
@@ -56,6 +58,8 @@ int	get_textures_lines(int fd, char *textures_line[4])
 			textures_line[WEST] = ft_strdup(&buff[3]);
 		else if (ft_strncmp(buff, "EA", 2) == 0)
 			textures_line[EAST] = ft_strdup(&buff[3]);
+		else if (ft_strncmp(buff, "F", 1) || ft_strncmp(buff, "C", 1))
+			get_colors(buff, color);
 		else
 			c_line--;
 		free(buff);

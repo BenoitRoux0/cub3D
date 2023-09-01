@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/08/18 11:19:48 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:34:08 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 
 int	parsing(int argc, char **argv, t_data *data);
-int	get_texture(int fd, t_data *data);
+int	get_textures(int fd, t_data *data, char *map_path);
 
 
 //-------Error Message-------//
@@ -33,4 +33,6 @@ int	get_texture(int fd, t_data *data);
 # define ERM_TEXTURE_EAST "cub3D: Error: can't access texture for east"
 # define ERM_TEXTURE_WEST "cub3D: Error: can't access texture for west"
 # define ERC_TEXTURE 104
+# define ERM_MISS_TEXTURE "cub3D: Error: missing texture path"
+# define ERC_MISS_TEXTURE 105
 #endif

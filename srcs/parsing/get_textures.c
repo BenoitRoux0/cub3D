@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/01 12:37:52 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:13:11 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,27 @@
 void	flush_newline(char *array[4]);
 int		get_textures_lines(int fd, char *textures_line[4]);
 void	free_textures_line(char *textures_line[4]);
+int		open_texture(t_data *data, char *textures_line[4]);
 
 int	get_textures(int fd, t_data *data, char *map_path)
 {
 	char	*texture_line[4];
+	int		open_textures_code;
 
 	if (get_textures_lines(fd, texture_line) == EXIT_FAILURE)
 		return (free_textures_line(texture_line),
-			ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE), ERC_MISS_TEXTURE);
+			ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE"\n"), ERC_MISS_TEXTURE);
 	close(fd);
 	flush_newline(texture_line);
-	fd = open(map_path, O_RDONLY);
-	(void)data;
+	open_textures_code = open_texture(data, texture_line);
+	if (open_textures_code != EXIT_SUCCESS)
+		return (free_textures_line(texture_line), ERC_TEXTURE);
+	free_textures_line(texture_line);
+	(void)map_path;
 	return (EXIT_SUCCESS);
 }
 
+//TODO: Il peut y avoir autant d'espece que voulu entre la cle et le  contenue (mais pas de newline);
 int	get_textures_lines(int fd, char *textures_line[4])
 {
 	int		c_line;
@@ -81,4 +87,33 @@ void	free_textures_line(char *textures_line[4])
 		if (textures_line[i])
 			free(textures_line[i]);
 	}
+}
+
+int	open_texture(t_data *data, char *textures_line[4])
+{
+	data->map.walls_text[NORTH].image
+		= mlx_xpm_file_to_image(data->mlx,
+			textures_line[NORTH], &data->map.walls_text[NORTH].width,
+			&data->map.walls_text[NORTH].height);
+	if (!data->map.walls_text[NORTH].image)
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_NORTH"\n"), ERC_TEXTURE);
+	data->map.walls_text[SOUTH].image
+		= mlx_xpm_file_to_image(data->mlx,
+			textures_line[SOUTH], &data->map.walls_text[SOUTH].width,
+			&data->map.walls_text[SOUTH].height);
+	if (!data->map.walls_text[SOUTH].image)
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH"\n"), ERC_TEXTURE);
+	data->map.walls_text[EAST].image
+		= mlx_xpm_file_to_image(data->mlx,
+			textures_line[EAST], &data->map.walls_text[EAST].width,
+			&data->map.walls_text[EAST].height);
+	if (!data->map.walls_text[EAST].image)
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST"\n"), ERC_TEXTURE);
+	data->map.walls_text[WEST].image
+		= mlx_xpm_file_to_image(data->mlx,
+			textures_line[WEST], &data->map.walls_text[WEST].width,
+			&data->map.walls_text[WEST].height);
+	if (!data->map.walls_text[WEST].image)
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST"\n"), ERC_TEXTURE);
+	return (EXIT_SUCCESS);
 }

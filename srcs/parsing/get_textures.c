@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/01 11:35:35 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:37:52 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	flush_newline(char *array[4]);
 int		get_textures_lines(int fd, char *textures_line[4]);
+void	free_textures_line(char *textures_line[4]);
 
 int	get_textures(int fd, t_data *data, char *map_path)
 {
 	char	*texture_line[4];
 
 	if (get_textures_lines(fd, texture_line) == EXIT_FAILURE)
-		return (ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE), ERC_MISS_TEXTURE);
+		return (free_textures_line(texture_line),
+			ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE), ERC_MISS_TEXTURE);
 	close(fd);
 	flush_newline(texture_line);
 	fd = open(map_path, O_RDONLY);
@@ -34,6 +36,7 @@ int	get_textures_lines(int fd, char *textures_line[4])
 	char	*buff;
 
 	c_line = -1;
+	ft_memset(textures_line, 0, sizeof(char *) * 4);
 	while (++c_line < 4)
 	{
 		buff = get_next_line(fd);
@@ -65,5 +68,17 @@ void	flush_newline(char *array[4])
 	{
 		if (array[i][ft_strlen(array[i]) - 1] == '\n')
 			array[i][ft_strlen(array[i]) - 1] = '\0';
+	}
+}
+
+void	free_textures_line(char *textures_line[4])
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		if (textures_line[i])
+			free(textures_line[i]);
 	}
 }

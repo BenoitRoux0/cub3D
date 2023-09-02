@@ -12,7 +12,6 @@
 
 #include "cub.h"
 
-//TODO: moove the call to "open_texture" here, so we can parse without initialising the mlx
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -24,7 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	parsing_result = parsing(argc, argv, &data);
 	if (parsing_result != 0)
-		return (mlx_destroy_display(data.mlx), parsing_result);
+		return (free(data.mlx), parsing_result);
 	data.win = mlx_new_window(data.mlx, 200, 200, "cub3D");
 	if (!data.win)
 		return (2);

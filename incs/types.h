@@ -40,8 +40,7 @@ typedef struct s_map
 {
 	char	**content;
 	t_img	walls_text[4];
-	int		floor[3];
-	int		ceiling[3];
+	int		colors[2][3];
 }	t_map;
 
 typedef struct s_data

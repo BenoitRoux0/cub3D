@@ -25,6 +25,8 @@ CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 
+
+
 LIBFT =		libft/libft.a
 
 %.o:		%.c $(INCS)

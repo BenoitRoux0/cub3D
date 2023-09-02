@@ -13,22 +13,22 @@
 #include "cub.h"
 
 bool	unvalid_extension(char *map);
-int		get_texture(int fd, t_data *data);
+int		get_textures_and_colors(int fd, t_data *data, char *map_path);
 
 int	parsing(int argc, char **argv, t_data *data)
 {
 	int	fd;
 
 	if (argc != 2)
-		return (printf(ERR_ARGC), ERC_ARGC);
+		return (printf(ERM_ARGC), ERC_ARGC);
 	if (unvalid_extension(argv[1]))
-		return (printf(ERR_EXTENSION), ERC_EXTENSION);
+		return (printf(ERM_EXTENSION), ERC_EXTENSION);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf(ERR_ACCESS"%s\n", argv[1]), ERC_ACCESS);
+		return (printf(ERM_ACCESS"%s\n", argv[1]), ERC_ACCESS);
 	(void)data;
-//	if (get_texture(fd, data) == EXIT_FAILURE)
-//		return (ERC_TEXTURE);
+	if (get_textures_and_colors(fd, data, argv[1]) != EXIT_SUCCESS)
+		return (ERC_TEXTURE);
 	//TODO: get map, get player
 	return (0);
 }

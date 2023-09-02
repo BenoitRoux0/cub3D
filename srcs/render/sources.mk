@@ -1,4 +1,3 @@
-SRCS +=	render/render.c	\
-		parsing/parsing.c parsing/file_check.c
+SRCS +=	render/render.c
 
 INCS +=	incs/render.h

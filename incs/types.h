@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 09:10:39 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/01 16:12:32 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,24 @@ enum
 	WEST
 };
 
+enum
+{
+	R,
+	V,
+	B
+};
+
+enum
+{
+	FLOOR,
+	CEILING
+};
+
 typedef struct s_map
 {
 	char	**content;
 	t_img	walls_text[4];
+	int		colors[2][3];
 }	t_map;
 
 typedef struct s_data

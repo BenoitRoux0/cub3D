@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/08/15 09:11:58 by beroux           ###   ########.fr        #
+#    Updated: 2023/09/01 13:15:50 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,15 @@ OBJS =	$(SRCS:.c=.o)
 CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
+LIBFT =		libft/libft.a
 
 %.o:		%.c $(INCS)
-			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux
+			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) $(MLX)
-			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -lXext -lX11 -lm -lz
+$(NAME):	$(OBJS) $(MLX) $(LIBFT)
+			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -lXext -Ilibft/includes -lX11 -lm -lz
 
 clean:
 			$(RM) $(OBJS)
@@ -48,5 +49,8 @@ re:			fclean
 
 $(MLX):
 			$(MAKE) -C minilibx-linux
+
+$(LIBFT):
+			$(MAKE) -C libft
 
 .PHONY:		all clean fclean re

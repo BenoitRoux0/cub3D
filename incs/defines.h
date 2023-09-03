@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/19 02:39:30 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/03 02:47:26 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
-# define CELL_SIZE 16
+# define CELL_SIZE 64
 # define INTER_LIM 512
 
 # define PLAYER_SPEED 3

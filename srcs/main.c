@@ -6,16 +6,16 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/29 18:06:48 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:51:44 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-#include "img.h"
 
-static int	draw_map(t_map map, t_uint_img *dst);
-static int	draw_player(t_player *player, t_uint_img *dst);
+//static int	draw_map(t_map map, t_uint_img *dst);
+//static int	draw_player(t_player *player, t_uint_img *dst);
 static int	loop_hook(t_data *data);
+void	draw_wall_part(int pos, t_ray ray, t_uint_img *dst);
 
 int	main(void)
 {
@@ -31,7 +31,7 @@ int	main(void)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	data.win = mlx_new_window(data.mlx, 200, 200, "cub3D");
+	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
 		return (2);
 	data.map.content = (char **) map;
@@ -56,15 +56,12 @@ int	loop_hook(t_data *data)
 	update_player(data);
 	raycast(data);
 	dst = init_img(WIN_WIDTH, WIN_HEIGHT);
-	draw_map(data->map, dst);
-	draw_player(&data->player, dst);
+//	draw_map(data->map, dst);
+//	draw_player(&data->player, dst);
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		if (data->rays[i].inter[0] < WIN_WIDTH && data->rays[i].inter[1] < WIN_HEIGHT && data->rays[i].inter[0] > 0 && data->rays[i].inter[1] > 0)
-		{
-			dst->content[(int) data->rays[i].inter[1]][(int) data->rays[i].inter[0]] = color_to_uint32_t((t_color) {255, 0, 255, 0});
-		}
+		draw_wall_part(i, data->rays[i], dst);
 		i++;
 	}
 	img_to_mlx_img(data->mlx, &to_put, dst);
@@ -72,6 +69,7 @@ int	loop_hook(t_data *data)
 	clear_img(dst);
 	return (0);
 }
+/*
 
 int draw_map(t_map map, t_uint_img *dst)
 {
@@ -93,6 +91,8 @@ int draw_map(t_map map, t_uint_img *dst)
 	}
 	return (0);
 }
+*/
+/*
 
 int draw_player(t_player *player, t_uint_img *dst)
 {
@@ -113,4 +113,20 @@ int draw_player(t_player *player, t_uint_img *dst)
 	}
 	return (0);
 }
+*/
 
+void	draw_wall_part(int pos, t_ray ray, t_uint_img *dst)
+{
+	int	wall_height;
+	int i;
+
+	wall_height = CELL_SIZE * WIN_HEIGHT / ray.dist;
+	i = WIN_HEIGHT / 2 - wall_height / 2;
+	if (i < 0)
+		i = 0;
+	while (i < wall_height && i < dst->height)
+	{
+		dst->content[i][pos] = color_to_uint32_t((t_color) {255, 0, 255, 0});
+		i++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/30 19:16:27 by beroux           ###   ########.fr       */
+/*   Updated: 2023/08/15 09:10:39 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,25 @@ enum e_dir
 	NORTH,
 };
 
-typedef struct s_master_img	t_master_img;
+enum
+{
+	R,
+	V,
+	B
+};
+
+enum
+{
+	FLOOR,
+	CEILING
+};
 
 typedef struct s_map
 {
 	char		**content;
 	int			size[2];
 	t_uint_img	walls_text[4];
+	int			colors[2][3];
 }	t_map;
 
 typedef struct s_player

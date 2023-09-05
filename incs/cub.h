@@ -13,17 +13,28 @@
 #ifndef CUB_H
 # define CUB_H
 
+//-----------------INCLUDES-----------------//
+
+//########### SYSTEM LIB HEADERS ##########//
+
 # include <math.h>
 # include <stdint.h>
-# include "defines.h"
-# include "libft.h"
-# include "img.h"
-# include "types.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <printf.h>
+# include <X11/X.h>
+
+//########### USER LIB HEADERS ##########//
+
 # include "mlx.h"
 # include "mlx_int.h"
+# include "libft.h"
+
+//########### PROJECT SPECIFICS HEADERS ##########//
+
+# include "defines.h"
+# include "img.h"
+# include "types.h"
 # include "types.h"
 # include "render.h"
 # include "hooks.h"

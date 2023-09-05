@@ -15,7 +15,8 @@
 
 # include "cub.h"
 
+// -----------------FUNCTION-----------------//
 int	render(t_data *data);
-int raycast(t_data *data);
+int	raycast(t_data *data);
 
 #endif

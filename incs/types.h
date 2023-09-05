@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 09:10:39 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:37:47 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_ray
 {
 	double	inter[2];
 	double	dist;
-	int		hit;
+	bool	hit;
 }	t_ray;
 
 typedef struct s_data
@@ -90,6 +90,7 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	t_master_img	master_img;
+	t_uint_img		*img;
 	t_map			map;
 	t_player		player;
 	t_ray			rays[WIN_WIDTH];

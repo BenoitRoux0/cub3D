@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 03:24:38 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/15 15:19:05 by beroux           ###   ########.fr       */
+/*   Created: 2023/08/19 00:00:22 by beroux            #+#    #+#             */
+/*   Updated: 2023/08/19 00:05:41 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# include "cub.h"
-
-int	render(t_data *data);
-int raycast(t_data *data);
+t_player	init_player(enum e_dir dir, int pos[2]);
+int			key_press_player(int key_code, t_data *data);
+int			key_released_player(int key_code, t_data *data);
+int			update_player(t_data *data);
 
 #endif

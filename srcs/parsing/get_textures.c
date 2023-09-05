@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/02 14:21:46 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/03 04:39:53 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,25 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 
 int	open_texture(t_data *data, char *textures_line[4])
 {
-	data->map.walls_text[NORTH].image
-		= mlx_xpm_file_to_image(data->mlx,
-			textures_line[NORTH], &data->map.walls_text[NORTH].width,
-			&data->map.walls_text[NORTH].height);
-	if (!data->map.walls_text[NORTH].image)
+	data->map.walls_text[NORTH]
+		= ft_xpm_to_img(data->mlx,
+			textures_line[NORTH]);
+	if (!data->map.walls_text[NORTH].content)
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_NORTH"\n"), ERC_TEXTURE);
-	data->map.walls_text[SOUTH].image
-		= mlx_xpm_file_to_image(data->mlx,
-			textures_line[SOUTH], &data->map.walls_text[SOUTH].width,
-			&data->map.walls_text[SOUTH].height);
-	if (!data->map.walls_text[SOUTH].image)
+	data->map.walls_text[SOUTH]
+		= ft_xpm_to_img(data->mlx,
+			textures_line[SOUTH]);
+	if (!data->map.walls_text[SOUTH].content)
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH"\n"), ERC_TEXTURE);
-	data->map.walls_text[EAST].image
-		= mlx_xpm_file_to_image(data->mlx,
-			textures_line[EAST], &data->map.walls_text[EAST].width,
-			&data->map.walls_text[EAST].height);
-	if (!data->map.walls_text[EAST].image)
+	data->map.walls_text[EAST]
+		= ft_xpm_to_img(data->mlx,
+			textures_line[EAST]);
+	if (!data->map.walls_text[EAST].content)
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST"\n"), ERC_TEXTURE);
-	data->map.walls_text[WEST].image
-		= mlx_xpm_file_to_image(data->mlx,
-			textures_line[WEST], &data->map.walls_text[WEST].width,
-			&data->map.walls_text[WEST].height);
-	if (!data->map.walls_text[WEST].image)
+	data->map.walls_text[WEST]
+		= ft_xpm_to_img(data->mlx,
+			textures_line[WEST]);
+	if (!data->map.walls_text[WEST].content)
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST"\n"), ERC_TEXTURE);
 	return (EXIT_SUCCESS);
 }

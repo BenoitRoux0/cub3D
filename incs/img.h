@@ -13,7 +13,8 @@
 #ifndef IMG_H
 # define IMG_H
 
-typedef struct s_master_img t_master_img;
+//-----------------STRUCT-----------------//
+typedef struct s_master_img	t_master_img;
 
 /** @struct s_color
  * @brief A struct to store color in four ints instead of one
@@ -73,11 +74,13 @@ typedef struct s_mlx_img
 typedef struct s_tileset
 {
 	t_uint_img	***content;
-	int 		height;
-	int			 width;
+	int			height;
+	int			width;
 }	t_tileset;
 
-/** @fn t_uint_img  *init_img(int width, int height)
+//-----------------FUNCTION-----------------//
+/**
+ * @fn t_uint_img  *init_img(int width, int height)
  * @brief create a new image empty with given dimensions
  *
  * @param width the width of new image
@@ -95,7 +98,7 @@ t_uint_img	*init_img(int width, int height);
  *
  * @author beroux
  */
-void	clear_img(t_uint_img *img);
+void		clear_img(t_uint_img *img);
 
 /** @fn void    clear_mlx_img(void *mlx_ptr, t_mlx_img *img)
  * @brief free all t_mlx_img content
@@ -105,7 +108,7 @@ void	clear_img(t_uint_img *img);
  *
  * @author beroux
  */
-void	clear_mlx_img(void *mlx_ptr, t_mlx_img *img);
+void		clear_mlx_img(void *mlx_ptr, t_mlx_img *img);
 
 /** @fn void    img_to_mlx_img(void *mlx, t_mlx_img **dst, t_uint_img*src)
  * @brief copy a t_mlx_img in a t_img
@@ -116,7 +119,7 @@ void	clear_mlx_img(void *mlx_ptr, t_mlx_img *img);
  *
  * @author beroux
  */
-void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img*src);
+void		img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img*src);
 
 /** @fn void    mlx_img_to_img(t_uint_img**dst, t_mlx_img *src)
  * @brief copy a t_mlx_img in a t_img
@@ -126,7 +129,7 @@ void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img*src);
  *
  * @author beroux
  */
-void	mlx_img_to_img(t_uint_img**dst, t_mlx_img *src);
+void		mlx_img_to_img(t_uint_img**dst, t_mlx_img *src);
 
 /** @fn t_uint_img  *ft_xpm_to_img(void *mlx_ptr, char *path)
  * @brief  open an xpm file
@@ -139,7 +142,9 @@ void	mlx_img_to_img(t_uint_img**dst, t_mlx_img *src);
  */
 t_uint_img	*ft_xpm_to_img(void *mlx_ptr, char *path);
 
-/** @fn t_uint_img  *ft_sub_img(t_uint_img*img, int pos[2], int width, int height)
+/**
+ * @name ft_sub_img
+ * @fn t_img* ft_sub_img(t_img*img, int pos[2], int width, int height)
  * @brief exctract a new image of given position and size from another image
  *
  * @param img the source image
@@ -234,7 +239,7 @@ uint32_t	mix_colors(uint32_t bg, uint32_t fg);
  *
  * @author beroux
  */
-t_uint_img		*img_dup(t_uint_img *src);
+t_uint_img	*img_dup(t_uint_img *src);
 
 /** @fn void    flip_horizontaly(t_uint_img*img)
  * @brief function to filp horizontaly an image

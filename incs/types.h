@@ -15,6 +15,7 @@
 
 # include "cub.h"
 
+//-----------------ENUM-----------------//
 enum e_dir
 {
 	EAST,
@@ -23,10 +24,10 @@ enum e_dir
 	NORTH,
 };
 
-enum
+enum e_color
 {
 	R,
-	V,
+	G,
 	B
 };
 
@@ -36,6 +37,7 @@ enum
 	CEILING
 };
 
+//-----------------STRUCT-----------------//
 typedef struct s_map
 {
 	char		**content;
@@ -46,7 +48,7 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double 	pos[2];
+	double	pos[2];
 	double	mov[2];
 	double	angle_mov;
 	double	angle;

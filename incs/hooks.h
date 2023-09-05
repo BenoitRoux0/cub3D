@@ -14,10 +14,10 @@
 # define HOOKS_H
 
 # include "cub.h"
-# include <X11/X.h>
 
+//-----------------FUNCTION-----------------//
 int	on_destroy(t_data *data);
-int on_key_press(int keycode, t_data *data);
+int	on_key_press(int keycode, t_data *data);
 int	on_key_released(int keycode, t_data *data);
 
 #endif

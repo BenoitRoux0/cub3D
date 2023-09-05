@@ -15,6 +15,7 @@
 
 # include "cub.h"
 
+//-----------------FUNCTION-----------------//
 t_line	create_line(int start[2], int end[2]);
 void	nlx_pixel_put(t_master_img	*img, int to_put[2], int color);
 void	nlx_draw_line(t_master_img *img, t_line *to_draw, int color);
@@ -24,6 +25,7 @@ void	draw_low_slope(int start[2],
 void	draw_high_slope(int start[2],
 			t_line params, t_master_img *img);
 
+//-------Colors-------//
 # define COLOR_WHITE 0x00FFFFFF
 # define COLOR_BLUE 0x000000FF
 # define COLOR_SEA_BLUE 0x00003D60

@@ -13,6 +13,7 @@
 #ifndef PLAYER_H
 # define PLAYER_H
 
+// -----------------FUNCTION-----------------//
 t_player	init_player(enum e_dir dir, int pos[2]);
 int			key_press_player(int key_code, t_data *data);
 int			key_released_player(int key_code, t_data *data);

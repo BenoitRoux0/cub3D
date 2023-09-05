@@ -15,10 +15,9 @@
 
 # include "cub.h"
 
-
+//-----------------FUNCTION-----------------//
 int		parsing(int argc, char **argv, t_data *data);
 int		get_textures_and_colors(int fd, t_data *data, char *map_path);
-
 
 void	flush_newline(char *array[4]);
 void	free_textures_line(char *textures_line[4]);
@@ -27,7 +26,7 @@ void	get_textures_line(char *buff, char *line_array[4], int *data_got);
 
 int		get_color(char *buff, int color[2][3], int *data_got);
 
-//-------Error Message-------//
+//-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "cub3D: Usage: ./cub3D <map.cub>\n"
 # define ERC_ARGC 101
 # define ERM_EXTENSION "cub3D: Error: wrong map file extension,\

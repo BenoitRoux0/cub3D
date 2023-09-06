@@ -16,22 +16,20 @@ int		get_textures_infos(int fd, char *textures_line[4], int color[2][3]);
 int		open_texture(t_data *data, char *textures_line[4]);
 
 //TODO: Improve error code propagation
-int	get_textures_and_colors(int fd, t_data *data, char *map_path)
+int	get_textures_and_colors(int fd, t_data *data)
 {
 	char	*textures_line[4];
-	int		open_textures_code;
+	int		error_code;
 
 	ft_memset(textures_line, 0, sizeof(char *) * 4);
-	if (get_textures_infos(fd, textures_line, data->map.colors) != EXIT_SUCCESS)
-		return (free_textures_line(textures_line),
-			ft_dprintf(STDERR_FILENO, ERM_MISS_TEXTURE"\n"), ERC_MISS_TEXTURE);
-	close(fd);
+	error_code = get_textures_infos(fd, textures_line, data->map.colors);
+	if (error_code != EXIT_SUCCESS)
+		return (free_textures_line(textures_line), error_code);
 	flush_newline(textures_line);
-	open_textures_code = open_texture(data, textures_line);
-	if (open_textures_code != EXIT_SUCCESS)
+	error_code = open_texture(data, textures_line);
+	if (error_code != EXIT_SUCCESS)
 		return (free_textures_line(textures_line), ERC_TEXTURE);
 	free_textures_line(textures_line);
-	(void)map_path;
 	return (EXIT_SUCCESS);
 }
 
@@ -56,11 +54,13 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 			if (get_color_code != EXIT_SUCCESS)
 				return (free(buff), get_color_code);
 		}
+		else if (buff[0] != '\n')
+			break ;
 		free(buff);
 	}
-	(void)color;
+	free(buff);
 	if (data_got != 6)
-		return (EXIT_FAILURE);
+		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);
 }
 

@@ -140,7 +140,7 @@ void		mlx_img_to_img(t_uint_img**dst, t_mlx_img *src);
  *
  * @author beroux
  */
-t_uint_img	ft_xpm_to_img(void *mlx_ptr, char *path);
+t_uint_img	*ft_xpm_to_img(void *mlx_ptr, char *path);
 
 /**
  * @name ft_sub_img

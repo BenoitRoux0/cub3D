@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/03 04:39:53 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/06 16:14:16 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int		get_textures_infos(int fd, char *textures_line[4], int color[2][3]);
 int		open_texture(t_data *data, char *textures_line[4]);
+int		get_line_info(char *buff, int *data_got,
+			char *textures_line[4], int color[2][3]);
 
-//TODO: Improve error code propagation
 int	get_textures_and_colors(int fd, t_data *data)
 {
 	char	*textures_line[4];
@@ -37,7 +38,6 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 {
 	char	*buff;
 	int		data_got;
-	int		get_color_code;
 
 	data_got = 0;
 	while (data_got < 6)
@@ -45,14 +45,11 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 		buff = get_next_line(fd);
 		if (!buff)
 			break ;
-		if (ft_strncmp(buff, "NO", 2) == 0 || ft_strncmp(buff, "SO", 2) == 0
-			|| ft_strncmp(buff, "WE", 2) == 0 || ft_strncmp(buff, "EA", 2) == 0)
-			get_textures_line(buff, textures_line, &data_got);
-		else if (buff[0] == 'F' || buff[0] == 'C')
+		if (ft_isalpha(buff[0]))
 		{
-			get_color_code = get_color(buff, color, &data_got);
-			if (get_color_code != EXIT_SUCCESS)
-				return (free(buff), get_color_code);
+			get_line_info(buff, &data_got, textures_line, color);
+			if (data_got > 100)
+				return (data_got);
 		}
 		else if (buff[0] != '\n')
 		{
@@ -61,7 +58,6 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 		}
 		free(buff);
 	}
-
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);
@@ -89,5 +85,22 @@ int	open_texture(t_data *data, char *textures_line[4])
 			textures_line[WEST]);
 	if (!data->map.walls_text[WEST].content)
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST"\n"), ERC_TEXTURE);
+	return (EXIT_SUCCESS);
+}
+
+int	get_line_info(char *buff, int *data_got,
+			char *textures_line[4], int color[2][3])
+{
+	int	code;
+
+	if (ft_strncmp(buff, "NO", 2) == 0 || ft_strncmp(buff, "SO", 2) == 0
+		|| ft_strncmp(buff, "WE", 2) == 0 || ft_strncmp(buff, "EA", 2) == 0)
+		get_textures_line(buff, textures_line, data_got);
+	else if (buff[0] == 'F' || buff[0] == 'C')
+	{
+		code = get_color(buff, color, data_got);
+		if (code != EXIT_SUCCESS)
+			return (free(buff), *data_got = code, code);
+	}
 	return (EXIT_SUCCESS);
 }

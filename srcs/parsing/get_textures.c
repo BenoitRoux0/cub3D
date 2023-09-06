@@ -55,10 +55,13 @@ int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 				return (free(buff), get_color_code);
 		}
 		else if (buff[0] != '\n')
+		{
+			free(buff);
 			break ;
+		}
 		free(buff);
 	}
-	free(buff);
+
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);

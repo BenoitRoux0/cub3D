@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/03 04:39:53 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/05 16:49:24 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,22 @@ int	open_texture(t_data *data, char *textures_line[4])
 	data->map.walls_text[NORTH]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[NORTH]);
-	if (!data->map.walls_text[NORTH].content)
+	if (!data->map.walls_text[NORTH])
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_NORTH"\n"), ERC_TEXTURE);
 	data->map.walls_text[SOUTH]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[SOUTH]);
-	if (!data->map.walls_text[SOUTH].content)
+	if (!data->map.walls_text[SOUTH])
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH"\n"), ERC_TEXTURE);
 	data->map.walls_text[EAST]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[EAST]);
-	if (!data->map.walls_text[EAST].content)
+	if (!data->map.walls_text[EAST])
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST"\n"), ERC_TEXTURE);
 	data->map.walls_text[WEST]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[WEST]);
-	if (!data->map.walls_text[WEST].content)
+	if (!data->map.walls_text[WEST])
 		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST"\n"), ERC_TEXTURE);
 	return (EXIT_SUCCESS);
 }

@@ -42,7 +42,7 @@ typedef struct s_map
 {
 	char		**content;
 	int			size[2];
-	t_uint_img	walls_text[4];
+	t_uint_img	*walls_text[4];
 	int			colors[2][3];
 }	t_map;
 
@@ -95,7 +95,7 @@ typedef struct s_data
 	t_uint_img		*img;
 	t_map			map;
 	t_player		player;
-	t_ray			rays[WIN_WIDTH];
+	t_ray 			rays[WIN_WIDTH];
 }	t_data;
 
 #endif

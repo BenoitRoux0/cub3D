@@ -36,13 +36,15 @@ int		get_color(char *buff, int color[2][3], int *data_got);
 # define ERC_ACCESS 103
 # define ERM_TEXTURE_NORTH "\033[1;31mcub3D: Error: can't access \
 texture for north\033[0m"
-# define ERM_TEXTURE_SOUTH "\033[1;31mcub3D: Error: can't access texture for south\033[0m"
+# define ERM_TEXTURE_SOUTH "\033[1;31mcub3D: Error: can't access \
+texture for south\033[0m"
 # define ERM_TEXTURE_EAST "\033[1;31mcub3D: Error: can't access \
 texture for east\033[0m"
 # define ERM_TEXTURE_WEST "\033[1;31mcub3D: Error: can't access \
 texture for west\033[0m"
 # define ERC_TEXTURE 104
-# define ERM_NB_INFO "\033[1;31mcub3D: Error: wrong number of info in provided file\033[0m"
+# define ERM_NB_INFO "\033[1;31mcub3D: Error: wrong number \
+of info in provided file\033[0m"
 # define ERC_NB_INFO 105
 # define ERM_ARRAY_BIGGER "\033[1;31mcub3D: Error: to many info on line \033[0m"
 # define ERC_ARRAY_BIGGER 106

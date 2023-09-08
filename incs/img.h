@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:59:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/03 04:33:31 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/08 17:45:09 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void		mlx_img_to_img(t_uint_img**dst, t_mlx_img *src);
  *
  * @author beroux
  */
-t_uint_img	ft_xpm_to_img(void *mlx_ptr, char *path);
+t_uint_img	*ft_xpm_to_img(void *mlx_ptr, char *path);
 
 /**
  * @name ft_sub_img

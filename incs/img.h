@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:59:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/08/19 03:12:54 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/03 04:33:31 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_tileset
 t_uint_img	*init_img(int width, int height);
 
 /** @fn void    clear_img(t_uint_img*img)
- * @brief free all t_uint_imgcontent
+ * @brief free all t_uint_img content
  *
  * @param img the image to clear
  *

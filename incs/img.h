@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:59:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/08 17:45:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/08 17:53:21 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,5 +260,7 @@ void		flip_horizontaly(t_uint_img*img);
  * @author beroux
  */
 void		flip_verticaly(t_uint_img*img);
+
+void		clear_img(t_uint_img *img);
 
 #endif

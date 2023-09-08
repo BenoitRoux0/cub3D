@@ -21,7 +21,7 @@ SRCS :=	$(addprefix srcs/, $(SRCS))
 
 OBJS =	$(SRCS:.c=.o)
 
-CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/06 16:14:16 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:40:09 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_textures_and_colors(int fd, t_data *data)
 	error_code = get_textures_infos(fd, textures_line, data->map.colors);
 	if (error_code != EXIT_SUCCESS)
 		return (free_textures_line(textures_line), error_code);
-	flush_newline(textures_line);
+	flush_newline(textures_line, 4);
 	error_code = open_texture(data, textures_line);
 	if (error_code != EXIT_SUCCESS)
 		return (free_textures_line(textures_line), error_code);

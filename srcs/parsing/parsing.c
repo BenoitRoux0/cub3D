@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/08/31 14:36:00 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:52:26 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	parsing(int argc, char **argv, t_data *data)
 	error_code = get_textures_and_colors(fd, data);
 	if (error_code != EXIT_SUCCESS)
 		return (error_code);
-//	error_code = get_map(fd, data);
-//	if (error_code != EXIT_SUCCESS)
-//		return (error_code);
+	error_code = get_map(fd, data);
+	if (error_code != EXIT_SUCCESS)
+		return (error_code);
 	//TODO: get player
 	return (0);
 }

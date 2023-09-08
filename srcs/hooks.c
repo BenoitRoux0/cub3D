@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/04 20:36:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/08 16:58:05 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	on_destroy(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	ft_free_array((void **)data->map.content);
 	data->mlx = NULL;
 	exit (0);
 }

@@ -29,7 +29,7 @@ int	get_textures_and_colors(int fd, t_data *data)
 	flush_newline(textures_line);
 	error_code = open_texture(data, textures_line);
 	if (error_code != EXIT_SUCCESS)
-		return (free_textures_line(textures_line), ERC_TEXTURE);
+		return (free_textures_line(textures_line), error_code);
 	free_textures_line(textures_line);
 	return (EXIT_SUCCESS);
 }

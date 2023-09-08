@@ -18,6 +18,7 @@ int		get_textures_and_colors(int fd, t_data *data);
 int	parsing(int argc, char **argv, t_data *data)
 {
 	int	fd;
+	int	error_code;
 
 	if (argc != 2)
 		return (printf(ERM_ARGC), ERC_ARGC);
@@ -25,11 +26,15 @@ int	parsing(int argc, char **argv, t_data *data)
 		return (printf(ERM_EXTENSION), ERC_EXTENSION);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf(ERM_ACCESS"%s\n", argv[1]), ERC_ACCESS);
+		return (printf(ERM_ACCESS"%s\033[0m\n", argv[1]), ERC_ACCESS);
 	(void)data;
-	if (get_textures_and_colors(fd, data) != EXIT_SUCCESS)
-		return (ERC_TEXTURE);
-	//TODO: get map, get player
+	error_code = get_textures_and_colors(fd, data);
+	if (error_code != EXIT_SUCCESS)
+		return (error_code);
+//	error_code = get_map(fd, data);
+//	if (error_code != EXIT_SUCCESS)
+//		return (error_code);
+	//TODO: get player
 	return (0);
 }
 

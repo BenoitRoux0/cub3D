@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:22:11 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/02 16:06:37 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:41:39 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	get_color(char *buff, int color[2][3], int *data_got)
 
 	first_split = ft_split(buff, ' ');
 	if (ft_array_length((void **)first_split) != 2)
-		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER "%s\n",
+		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER "%s\033[0m\n",
 				first_split[0]), ft_free_split(first_split), ERC_ARRAY_BIGGER);
 	value_split = ft_split(first_split[1], ',');
 	if (ft_array_length((void **)value_split) != 3)
-		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER "%s\n",
+		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER "%s\033[0m\n",
 				first_split[0]), ft_free_split(first_split),
 			ft_free_split(value_split), ERC_ARRAY_BIGGER);
 	if (first_split[0][0] == 'C')

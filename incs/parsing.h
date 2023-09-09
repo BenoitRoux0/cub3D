@@ -28,6 +28,8 @@ int		get_color(char *buff, int color[2][3], int *data_got);
 
 int		get_map(int fd, t_data *data);
 
+int		check_map_and_player(t_data *data);
+
 //-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"
 # define ERC_ARGC 101

@@ -95,7 +95,7 @@ typedef struct s_data
 	t_uint_img		*img;
 	t_map			map;
 	t_player		player;
-	t_ray 			rays[WIN_WIDTH];
+	t_ray			rays[WIN_WIDTH];
 }	t_data;
 
 #endif

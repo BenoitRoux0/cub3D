@@ -34,7 +34,9 @@ int	parsing(int argc, char **argv, t_data *data)
 	error_code = get_map(fd, data);
 	if (error_code != EXIT_SUCCESS)
 		return (error_code);
-	//TODO: get player
+	error_code = check_map_and_player(data);
+	if (error_code)
+		return (error_code);
 	return (0);
 }
 

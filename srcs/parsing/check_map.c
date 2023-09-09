@@ -11,3 +11,19 @@
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	check_enclosed_map(t_map *map);
+int	check_player(t_map *map, t_player *player);
+
+int	check_map_and_player(t_data *data)
+{
+	int	err_code;
+
+	err_code = check_enclosed_map(&data->map);
+	if (err_code)
+		return (err_code);
+	err_code = check_player(&data->map, &data->player);
+	if (err_code)
+		return (err_code);
+	return (EXIT_SUCCESS);
+}

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/09 18:00:53 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:20:19 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	get_map(int fd, t_data *data)
 	flush_newline(data->map.content, 0);
 	if (buff)
 		free(buff);
+	close(fd);
 	get_map_size(data->map.content, data->map.size);
 	return (EXIT_SUCCESS);
 }

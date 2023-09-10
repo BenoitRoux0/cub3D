@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/08 17:01:07 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/09 19:01:28 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,13 @@ of info in provided file\033[0m"
 # define ERM_NO_MAP  "\033[1;31mcub3D: Error: No map found \
 in provided file\033[0m"
 # define ERC_NO_MAP 108
+# define ERM_UNCLOSED "\033[1;31mcub3D: Error: Unclosed map\033[0m"
+# define ERC_UNCLOSED 109
+# define ERM_UNEXPECTED "\033[1;31mcub3D: Error: Unexpected character at "
+# define ERC_UNEXPECTED 110
+# define ERM_PLAYER "\033[1;31mcub3D: Error: Multiple player \
+in provided file\033[0m"
+# define ERC_PLAYER 111
+# define ERM_NO_PLAYER "\033[1;31mcub3D: Error: Player position not found\033[0m"
+# define ERC_NO_PLAYER 112
 #endif

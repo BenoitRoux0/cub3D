@@ -18,25 +18,19 @@ int		get_textures_and_colors(int fd, t_data *data);
 int	parsing(int argc, char **argv, t_data *data)
 {
 	int	fd;
-	int	error_code;
 
 	if (argc != 2)
-		return (printf(ERM_ARGC), ERC_ARGC);
+		return (printf(ERM_ARGC), parse_error_quit(data, ERC_ARGC));
 	if (unvalid_extension(argv[1]))
-		return (printf(ERM_EXTENSION), ERC_EXTENSION);
+		return (printf(ERM_EXTENSION), parse_error_quit(data, ERC_EXTENSION));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf(ERM_ACCESS"%s\033[0m\n", argv[1]), ERC_ACCESS);
+		return (printf(ERM_ACCESS"%s\033[0m\n", argv[1]),
+			parse_error_quit(data, ERC_ACCESS));
 	(void)data;
-	error_code = get_textures_and_colors(fd, data);
-	if (error_code != EXIT_SUCCESS)
-		return (error_code);
-	error_code = get_map(fd, data);
-	if (error_code != EXIT_SUCCESS)
-		return (error_code);
-	error_code = check_map_and_player(data);
-	if (error_code)
-		return (error_code);
+	get_textures_and_colors(fd, data);
+	get_map(fd, data);
+	check_map_and_player(data);
 	return (0);
 }
 

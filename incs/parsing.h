@@ -58,7 +58,7 @@ of info in provided file\033[0m"
 # define ERM_OOR_VALUE "\033[1;31mcub3D: Error: color value out of range\033[0m"
 # define ERC_OOR_VALUE 107
 # define ERM_NO_MAP  "\033[1;31mcub3D: Error: No map found \
-in provided file\033[0m"
+in provided file\033[0m\n"
 # define ERC_NO_MAP 108
 # define ERM_UNCLOSED "\033[1;31mcub3D: Error: Unclosed map\033[0m"
 # define ERC_UNCLOSED 109

@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <printf.h>
+# include <errno.h>
 # include <X11/X.h>
 
 //########### USER LIB HEADERS ##########//

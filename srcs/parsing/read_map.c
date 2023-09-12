@@ -22,11 +22,11 @@ int	get_map(int fd, t_data *data)
 
 	buff = get_next_line(fd);
 	r_code = skip_newline(fd, &buff);
-	if (r_code != EXIT_SUCCESS)
-		return (r_code);
+	if (r_code)
+		return (parse_error_quit(data, r_code));
 	data->map.content = ft_calloc(2, sizeof (char *));
 	if (!data->map.content)
-		return (-1);
+		parse_error_quit(data, errno);
 	data->map.content[0] = ft_strdup(buff);
 	free(buff);
 	buff = get_next_line(fd);
@@ -52,7 +52,7 @@ int	skip_newline(int fd, char **buff)
 		*buff = get_next_line(fd);
 	}
 	if (!(*buff))
-		return (ft_dprintf(STDERR_FILENO, ERM_NO_MAP, 108));
+		return (close(fd), ft_dprintf(STDERR_FILENO, ERM_NO_MAP, ERC_NO_MAP));
 	return (EXIT_SUCCESS);
 }
 

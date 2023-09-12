@@ -18,6 +18,7 @@
 //-----------------FUNCTION-----------------//
 int		parsing(int argc, char **argv, t_data *data);
 int		get_textures_and_colors(int fd, t_data *data);
+int		parse_error_quit(t_data *data, int r);
 
 void	flush_newline(char **array, int array_length);
 void	free_textures_line(char *textures_line[4]);

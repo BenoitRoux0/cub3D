@@ -49,3 +49,23 @@ bool	unvalid_extension(char *map)
 		return (true);
 	return (false);
 }
+
+int	parse_error_quit(t_data *data, int r)
+{
+	int	i;
+
+	i = -1;
+	if (data->win && data->mlx)
+		mlx_destroy_window(data->mlx, data->win);
+	data->win = NULL;
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	ft_free_array((void **)data->map.content);
+	while (++i < 4)
+		clear_img(data->map.walls_text[i]);
+	data->mlx = NULL;
+	exit (r);
+}

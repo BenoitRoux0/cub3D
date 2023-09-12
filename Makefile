@@ -15,17 +15,13 @@ NAME =	cub3D
 SRCS =	main.c hooks.c
 INCS =	incs/cub.h
 
-include	srcs/render/sources.mk	\
-		srcs/img/sources.mk		\
-		srcs/player/sources.mk	\
-		srcs/drawing/drawing.mk	\
-		srcs/parsing/sources.mk	\
+include	srcs/render/sources.mk	srcs/img/sources.mk	srcs/player/sources.mk	srcs/drawing/drawing.mk	srcs/parsing/sources.mk
 
 SRCS :=	$(addprefix srcs/, $(SRCS))
 
 OBJS =	$(SRCS:.c=.o)
 
-CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

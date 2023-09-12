@@ -1,3 +1,4 @@
 *.o
 .idea
 cub3D
+/test.txt

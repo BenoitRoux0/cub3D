@@ -68,7 +68,7 @@ void	get_map_size(char **map, t_vec_2i *size)
 	{
 		last_x_len = ft_strlen(map[y]);
 		if (last_x_len > size->x)
-			size->x= last_x_len;
+			size->x = last_x_len;
 		y++;
 	}
 }

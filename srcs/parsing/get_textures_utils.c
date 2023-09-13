@@ -6,18 +6,20 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:11:36 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/02 14:11:36 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:39:41 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	flush_newline(char *array[4])
+void	flush_newline(char **array, int array_length)
 {
 	int	i;
 
 	i = -1;
-	while (++i < 4)
+	if (!array_length)
+		array_length = ft_array_length((void **)array);
+	while (++i < array_length)
 	{
 		if (array[i][ft_strlen(array[i]) - 1] == '\n')
 			array[i][ft_strlen(array[i]) - 1] = '\0';

@@ -18,5 +18,8 @@
 // -----------------FUNCTION-----------------//
 int	render(t_data *data);
 int	raycast(t_data *data);
+int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map);
+int	ray_collide_vert(double vector[2], t_ray *ray, t_map map);
+
 
 #endif

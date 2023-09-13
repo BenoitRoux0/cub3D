@@ -13,8 +13,12 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 720
+# endif
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 480
+# endif
 
 # define ANTI_ALIASING 0
 # define NB_RAYS (WIN_WIDTH << ANTI_ALIASING)

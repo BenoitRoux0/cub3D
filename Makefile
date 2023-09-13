@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/09/05 14:40:12 by beroux           ###   ########.fr        #
+#    Updated: 2023/09/13 18:00:16 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,25 @@ SRCS :=	$(addprefix srcs/, $(SRCS))
 
 OBJS =	$(SRCS:.c=.o)
 
-CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -O2 #-fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
 
+ifeq ($(shell command -v xrandr 2> /dev/null),)
+    WIN_WIDTH = 800
+    WIN_HEIGHT = 600
+else
+    WIN_WIDTH := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f1 | head -n 1}
+    WIN_HEIGHT := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
+endif
+
 %.o:		%.c $(INCS)
-			$(CC) $(CFLAGS) -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
+			$(CC) $(CFLAGS) -DWIN_WIDTH=${WIN_WIDTH} -DWIN_HEIGHT=${WIN_HEIGHT} -c $< -o $@ -Iincs -Iminilibx-linux -Ilibft/includes
 
 all:		$(NAME)
+			@echo "win width:" ${WIN_WIDTH}
+			@echo "win height:" ${WIN_HEIGHT}
 
 $(NAME):	$(OBJS) $(MLX) $(LIBFT)
 			$(CC) $(CFLAGS) -o $@ $^ -Iincs -Iminilibx-linux -lXext -Ilibft/includes -lX11 -lm -lz

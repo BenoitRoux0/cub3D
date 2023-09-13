@@ -48,6 +48,8 @@ static void	draw_wall_slice(int pos, t_ray r, t_uint_img *dst, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
+	if (!r.hit)
+		return ;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
 		src_x = ((int) r.inter[1] % CELL_SIZE) % tex->width;
 	else

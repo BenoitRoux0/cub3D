@@ -29,14 +29,14 @@ int	raycast(t_data *data)
 	i = 0;
 	current_angle = data->player.angle - (data->player.fov / 2);
 	current_angle = fmod((fmod(current_angle, 360) + 360), 360);
-	while (i < NB_RAYS)
+	while (i < WIN_WIDTH)
 	{
 		cast_vert(data->player.pos, current_angle, &ray_vert, data->map);
 		cast_horiz(data->player.pos, current_angle, &ray_horiz, data->map);
 		data->rays[i] = select_ray(ray_horiz, ray_vert);
 		data->rays[i].dist *= \
 						cos((data->player.angle - current_angle) * M_PI_4 / 45);
-		current_angle += data->player.fov / NB_RAYS;
+		current_angle += data->player.fov / WIN_WIDTH;
 		current_angle = fmod((fmod(current_angle, 360) + 360), 360);
 		i++;
 	}

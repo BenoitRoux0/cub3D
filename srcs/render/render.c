@@ -13,7 +13,6 @@
 #include "cub.h"
 
 static void		draw_wall_slice(int p, t_ray r, t_uint_img *d, t_uint_img *tex);
-static t_ray	average_ray(t_ray *rays);
 
 int	render(t_data *data)
 {
@@ -24,7 +23,7 @@ int	render(t_data *data)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		ray = average_ray(&data->rays[i]);
+		ray = data->rays[i];
 		if (fmod(ray.inter[0], CELL_SIZE) == 0 && \
 			data->player.pos[0] - ray.inter[0] > 0)
 			draw_wall_slice(i, ray, data->img, data->map.walls_text[WEST]);
@@ -48,13 +47,11 @@ static void	draw_wall_slice(int pos, t_ray r, t_uint_img *dst, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
-	if (!r.hit)
-		return ;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
 		src_x = ((int) r.inter[1] % CELL_SIZE) % tex->width;
 	else
 		src_x = ((int) r.inter[0] % CELL_SIZE) % tex->width;
-	if (src_x < 0)
+	if (src_x < 0 || !r.hit)
 		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
 	i = WIN_HEIGHT / 2 - slice_height / 2;
@@ -70,25 +67,4 @@ static void	draw_wall_slice(int pos, t_ray r, t_uint_img *dst, t_uint_img *tex)
 		src_pos += (double) tex->height / (double) slice_height;
 		i++;
 	}
-}
-
-static t_ray	average_ray(t_ray *rays)
-{
-	int		i;
-	t_ray	ray;
-
-	i = 0;
-	ft_bzero(&ray, sizeof(t_ray));
-	while (i < (1 << ANTI_ALIASING))
-	{
-		ray.inter[0] += rays[i].inter[0];
-		ray.inter[1] += rays[i].inter[1];
-		ray.dist += rays[i].dist;
-		ray.hit |= rays[i].hit;
-		i++;
-	}
-	ray.inter[0] /= (1 << ANTI_ALIASING);
-	ray.inter[1] /= (1 << ANTI_ALIASING);
-	ray.dist /= (1 << ANTI_ALIASING);
-	return (ray);
 }

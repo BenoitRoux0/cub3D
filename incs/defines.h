@@ -20,9 +20,6 @@
 #  define WIN_HEIGHT 480
 # endif
 
-# define ANTI_ALIASING 0
-# define NB_RAYS (WIN_WIDTH << ANTI_ALIASING)
-
 # define CELL_SIZE 64
 # define INTER_LIM 512
 

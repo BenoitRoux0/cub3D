@@ -14,10 +14,10 @@
 # define DEFINES_H
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 100
+#  define WIN_WIDTH 720
 # endif
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 100
+#  define WIN_HEIGHT 480
 # endif
 
 # define ANTI_ALIASING 0

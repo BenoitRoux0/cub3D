@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/04 21:32:43 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:02:42 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ static int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map)
 
 	to_check[1] = (int) ray->inter[1] / CELL_SIZE - (vector[1] < 0);
 	to_check[0] = (int) (ray->inter[0]) / CELL_SIZE;
-	if (to_check[0] < 0 || to_check[0] >= map.size[0] || \
-		to_check[1] < 0 || to_check[1] >= map.size[1])
+	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
+		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);
 	if (map.content[to_check[1]][to_check[0]] == '1')
 		return (ray->hit = 1, 1);
@@ -128,8 +128,8 @@ static int	ray_collide_vert(double vector[2], t_ray *ray, t_map map)
 
 	to_check[0] = (int) ray->inter[0] / CELL_SIZE - (vector[0] < 0);
 	to_check[1] = (int) ((ray->inter[1]) / CELL_SIZE);
-	if (to_check[0] < 0 || to_check[0] >= map.size[0] || \
-		to_check[1] < 0 || to_check[1] >= map.size[1])
+	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
+		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);
 	if (map.content[to_check[1]][to_check[0]] == '1')
 		return (ray->hit = 1, 1);

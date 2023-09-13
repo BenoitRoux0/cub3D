@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/08 16:40:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:49:07 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	get_textures_and_colors(int fd, t_data *data)
 		return (free_textures_line(textures_line), parse_error_quit(data,
 				error_code));
 	free_textures_line(textures_line);
+	flip_horizontaly(data->map.walls_text[SOUTH]);
+	flip_horizontaly(data->map.walls_text[WEST]);
 	return (EXIT_SUCCESS);
 }
 
@@ -71,22 +73,23 @@ int	open_texture(t_data *data, char *textures_line[4])
 		= ft_xpm_to_img(data->mlx,
 			textures_line[NORTH]);
 	if (!data->map.walls_text[NORTH])
-		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_NORTH"\n"), ERC_TEXTURE);
+		return (ft_dprintf(STDERR_FILENO,
+				ERM_TEXTURE_NORTH), ERC_TEXTURE);
 	data->map.walls_text[SOUTH]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[SOUTH]);
 	if (!data->map.walls_text[SOUTH])
-		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH"\n"), ERC_TEXTURE);
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH), ERC_TEXTURE);
 	data->map.walls_text[EAST]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[EAST]);
 	if (!data->map.walls_text[EAST])
-		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST"\n"), ERC_TEXTURE);
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST), ERC_TEXTURE);
 	data->map.walls_text[WEST]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[WEST]);
 	if (!data->map.walls_text[WEST])
-		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST"\n"), ERC_TEXTURE);
+		return (ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST), ERC_TEXTURE);
 	return (EXIT_SUCCESS);
 }
 

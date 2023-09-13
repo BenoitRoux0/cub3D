@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/08 14:52:26 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:08:24 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	parsing(int argc, char **argv, t_data *data)
 	int	fd;
 
 	if (argc != 2)
-		return (printf(ERM_ARGC), parse_error_quit(data, ERC_ARGC));
+		return (ft_dprintf(2, ERM_ARGC), parse_error_quit(data, ERC_ARGC));
 	if (unvalid_extension(argv[1]))
-		return (printf(ERM_EXTENSION), parse_error_quit(data, ERC_EXTENSION));
+		return (ft_dprintf(2, ERM_EXTENSION), parse_error_quit(data, ERC_EXTENSION));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf(ERM_ACCESS"%s\033[0m\n", argv[1]),
+		return (ft_dprintf(2, ERM_ACCESS, argv[1]),
 			parse_error_quit(data, ERC_ACCESS));
 	(void)data;
 	get_textures_and_colors(fd, data);

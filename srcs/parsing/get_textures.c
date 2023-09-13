@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/08 16:40:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:49:07 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	get_textures_and_colors(int fd, t_data *data)
 		return (free_textures_line(textures_line), parse_error_quit(data,
 				error_code));
 	free_textures_line(textures_line);
+	flip_horizontaly(data->map.walls_text[SOUTH]);
+	flip_horizontaly(data->map.walls_text[WEST]);
 	return (EXIT_SUCCESS);
 }
 

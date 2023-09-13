@@ -14,7 +14,7 @@
 # define PLAYER_H
 
 // -----------------FUNCTION-----------------//
-t_player	init_player(enum e_dir dir, int pos[2]);
+t_player	init_player(enum e_dir dir, t_vec_2i pos);
 int			key_press_player(int key_code, t_data *data);
 int			key_released_player(int key_code, t_data *data);
 int			update_player(t_data *data);

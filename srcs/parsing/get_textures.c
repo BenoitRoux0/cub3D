@@ -24,12 +24,14 @@ int	get_textures_and_colors(int fd, t_data *data)
 
 	ft_memset(textures_line, 0, sizeof(char *) * 4);
 	error_code = get_textures_infos(fd, textures_line, data->map.colors);
-	if (error_code != EXIT_SUCCESS)
-		return (free_textures_line(textures_line), error_code);
+	if (error_code)
+		return (free_textures_line(textures_line), parse_error_quit(data,
+				error_code));
 	flush_newline(textures_line, 4);
 	error_code = open_texture(data, textures_line);
-	if (error_code != EXIT_SUCCESS)
-		return (free_textures_line(textures_line), error_code);
+	if (error_code)
+		return (free_textures_line(textures_line), parse_error_quit(data,
+				error_code));
 	free_textures_line(textures_line);
 	return (EXIT_SUCCESS);
 }

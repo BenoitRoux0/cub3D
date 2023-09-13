@@ -12,13 +12,13 @@
 
 #include "cub.h"
 
-t_player	init_player(enum e_dir dir, int pos[2])
+t_player	init_player(enum e_dir dir, t_vec_2i pos)
 {
 	t_player	player;
 
 	player.angle = dir * 90;
-	player.pos[0] = (float) pos[0] * CELL_SIZE + (float) CELL_SIZE / 2;
-	player.pos[1] = (float) pos[1] * CELL_SIZE + (float) CELL_SIZE / 2;
+	player.pos[0] = (float) pos.x * CELL_SIZE + (float) CELL_SIZE / 2;
+	player.pos[1] = (float) pos.y * CELL_SIZE + (float) CELL_SIZE / 2;
 	player.mov[0] = 0;
 	player.mov[1] = 0;
 	player.angle_mov = 0;

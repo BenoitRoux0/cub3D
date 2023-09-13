@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/05 14:37:47 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:01:11 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ enum
 };
 
 //-----------------STRUCT-----------------//
+typedef struct s_vec_2i
+{
+	int	x;
+	int	y;
+}	t_vec_2i;
+
 typedef struct s_map
 {
 	char		**content;
-	int			size[2];
+	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
 	int			colors[2][3];
 }	t_map;
@@ -95,7 +101,7 @@ typedef struct s_data
 	t_uint_img		*img;
 	t_map			map;
 	t_player		player;
-	t_ray 			rays[WIN_WIDTH];
+	t_ray			rays[WIN_WIDTH];
 }	t_data;
 
 #endif

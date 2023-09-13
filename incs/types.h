@@ -97,7 +97,7 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
-	t_master_img	master_img;
+	t_master_img	*master_img;
 	t_uint_img		*img;
 	t_map			map;
 	t_player		player;

@@ -74,8 +74,10 @@ static void	draw_map(t_data *data)
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			if (i / 16 < data->map.size.y && j / 16 < data->map.size.x && data->map.content[i / 16][j / 16] == '1')
-				data->img->content[i][j] = color_to_uint32_t((t_color) {255, 0, 0, 255});
+			if (i / 16 < data->map.size.y && j / 16 < data->map.size.x && \
+							data->map.content[i / 16][j / 16] == '1')
+				data->img->content[i][j] = \
+								color_to_uint32_t((t_color){255, 0, 0, 255});
 			j++;
 		}
 		i++;
@@ -93,8 +95,10 @@ static void	draw_player(t_data *data)
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			if (pow(i - data->player.pos[1] / 4, 2) + pow(j - data->player.pos[0] / 4, 2) < 25)
-				data->img->content[i][j] = color_to_uint32_t((t_color) {255, 255, 0, 0});
+			if (pow(i - data->player.pos[1] / 4, 2) + \
+				pow(j - data->player.pos[0] / 4, 2) < 25)
+				data->img->content[i][j] = \
+								color_to_uint32_t((t_color){255, 255, 0, 0});
 			j++;
 		}
 		i++;

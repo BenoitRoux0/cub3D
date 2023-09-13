@@ -13,13 +13,16 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+
+# define ANTI_ALIASING 0
+# define NB_RAYS (WIN_WIDTH << ANTI_ALIASING)
 
 # define CELL_SIZE 64
 # define INTER_LIM 512
 
 # define PLAYER_SPEED 3
-# define PLAYER_FOV 100
+# define PLAYER_FOV 60
 
 #endif

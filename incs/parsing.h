@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/14 16:06:35 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/09 19:01:28 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_textures_line(char *textures_line[4]);
 void	get_line_no_whitespace(char *buff, char **line, int *data_got);
 void	get_textures_line(char *buff, char *line_array[4], int *data_got);
 
-int	get_color(char *buff, uint32_t color[2], int *data_got);
+int		get_color(char *buff, int color[2][3], int *data_got);
 
 int		get_map(int fd, t_data *data);
 

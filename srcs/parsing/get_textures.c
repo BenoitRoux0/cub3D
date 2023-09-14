@@ -12,10 +12,10 @@
 
 #include "cub.h"
 
-int		get_textures_infos(int fd, char *textures_line[4], uint32_t color[2]);
+int		get_textures_infos(int fd, char *textures_line[4], int color[2][3]);
 int		open_texture(t_data *data, char *textures_line[4]);
 int		get_line_info(char *buff, int *data_got,
-			char *textures_line[4], uint32_t color[2]);
+			char *textures_line[4], int color[2][3]);
 
 int	get_textures_and_colors(int fd, t_data *data)
 {
@@ -38,7 +38,7 @@ int	get_textures_and_colors(int fd, t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
+int	get_textures_infos(int fd, char *textures_line[4], int color[2][3])
 {
 	char	*buff;
 	int		data_got;
@@ -94,7 +94,7 @@ int	open_texture(t_data *data, char *textures_line[4])
 }
 
 int	get_line_info(char *buff, int *data_got,
-			char *textures_line[4], uint32_t color[2])
+			char *textures_line[4], int color[2][3])
 {
 	int	code;
 

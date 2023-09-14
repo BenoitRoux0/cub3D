@@ -64,9 +64,10 @@ bool	player_char(char c)
 		return (false);
 }
 
-void set_player(bool *found, t_player *player, t_vec_2i cur, char orientation)
+void	set_player(bool *found, t_player *player,
+			t_vec_2i cur, char orientation)
 {
-	enum	e_dir dir;
+	enum e_dir	dir;
 
 	*found = true;
 	dir = NORTH;

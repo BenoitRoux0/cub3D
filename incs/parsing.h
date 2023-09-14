@@ -37,35 +37,36 @@ int		check_player(t_map *map, t_player *player);
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"
 # define ERC_ARGC 101
 # define ERM_EXTENSION "\033[1;31mcub3D: Error: wrong map file extension,\
-	expected <.cub>\n\033[0m"
+	expected <.cub>\033[0m\n"
 # define ERC_EXTENSION 102
-# define ERM_ACCESS "\033[1;31mcub3D: Error: can't access map file: "
+# define ERM_ACCESS "\033[1;31mcub3D: Error: can't access map file: %s\033[0m\n"
 # define ERC_ACCESS 103
 # define ERM_TEXTURE_NORTH "\033[1;31mcub3D: Error: can't access \
-texture for north\033[0m"
+texture for north\033[0m\n"
 # define ERM_TEXTURE_SOUTH "\033[1;31mcub3D: Error: can't access \
-texture for south\033[0m"
+texture for south\033[0m\n"
 # define ERM_TEXTURE_EAST "\033[1;31mcub3D: Error: can't access \
-texture for east\033[0m"
+texture for east\033[0m\n"
 # define ERM_TEXTURE_WEST "\033[1;31mcub3D: Error: can't access \
-texture for west\033[0m"
+texture for west\033[0m\n"
 # define ERC_TEXTURE 104
 # define ERM_NB_INFO "\033[1;31mcub3D: Error: wrong number \
-of info in provided file\033[0m"
+of info in provided file\033[0m\n"
 # define ERC_NB_INFO 105
-# define ERM_ARRAY_BIGGER "\033[1;31mcub3D: Error: to many info on line "
+# define ERM_ARRAY_BIGGER "\033[1;31mcub3D: Error: \
+to many info on line %c\033[0m\n"
 # define ERC_ARRAY_BIGGER 106
-# define ERM_OOR_VALUE "\033[1;31mcub3D: Error: color value out of range\033[0m"
+# define ERM_OOR_VALUE "\033[1;31mcub3D: Error: color value out of range\033[0m\n"
 # define ERC_OOR_VALUE 107
 # define ERM_NO_MAP  "\033[1;31mcub3D: Error: No map found \
 in provided file\033[0m\n"
 # define ERC_NO_MAP 108
-# define ERM_UNCLOSED "\033[1;31mcub3D: Error: Unclosed map\033[0m"
+# define ERM_UNCLOSED "\033[1;31mcub3D: Error: Unclosed map\033[0m\n"
 # define ERC_UNCLOSED 109
 # define ERM_UNEXPECTED "\033[1;31mcub3D: Error: Unexpected character at "
 # define ERC_UNEXPECTED 110
 # define ERM_PLAYER "\033[1;31mcub3D: Error: Multiple player \
-in provided file\033[0m"
+in provided file\033[0m\n"
 # define ERC_PLAYER 111
 # define ERM_NO_PLAYER "\033[1;31mcub3D: Error: Player position not found\033[0m"
 # define ERC_NO_PLAYER 112

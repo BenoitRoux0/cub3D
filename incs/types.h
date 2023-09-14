@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/11 17:01:11 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:02:52 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_map
 	char		**content;
 	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
-	int			colors[2][3];
+	uint32_t	colors[2];
 }	t_map;
 
 typedef struct s_player

@@ -1,9 +1,9 @@
-SRCS +=	parsing/parsing.c				\
-		parsing/get_textures.c			\
-		parsing/get_textures_utils.c	\
-		parsing/get_color.c				\
-		parsing/read_map.c				\
-		parsing/check_map.c				\
-		parsing/parse_player.c
+SRCS +=	parsing/parsing_bonus.c				\
+		parsing/get_textures_bonus.c			\
+		parsing/get_textures_utils_bonus.c	\
+		parsing/get_color_bonus.c				\
+		parsing/read_map_bonus.c				\
+		parsing/check_map_bonus.c				\
+		parsing/parse_player_bonus.c
 
-INCS +=	incs/parsing.h
+INCS +=	incs/parsing_bonus.h

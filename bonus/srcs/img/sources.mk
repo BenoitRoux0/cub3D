@@ -1,12 +1,12 @@
-SRCS +=	img/img.c \
-		img/uint32_t_color_convs.c \
-		img/img_dup.c \
-		img/mlx_img_to_img.c \
-		img/ft_xpm_to_img.c \
-		img/rewrite_img.c \
-		img/mix_colors.c \
-		img/ft_sub_img.c \
-		img/put_img_in_img.c \
-		img/flip_img.c \
-		img/tileset.c \
-		img/img_to_mlx_img.c
+SRCS +=	img/img_bonus.c \
+		img/uint32_t_color_convs_bonus.c \
+		img/img_dup_bonus.c \
+		img/mlx_img_to_img_bonus.c \
+		img/ft_xpm_to_img_bonus.c \
+		img/rewrite_img_bonus.c \
+		img/mix_colors_bonus.c \
+		img/ft_sub_img_bonus.c \
+		img/put_img_in_img_bonus.c \
+		img/flip_img_bonus.c \
+		img/tileset_bonus.c \
+		img/img_to_mlx_img_bonus.c

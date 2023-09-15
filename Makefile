@@ -60,7 +60,7 @@ $(NAME):	$(OBJS) $(MLX) $(LIBFT)
 
 clean:
 			$(RM) $(OBJS)
-			@if [ $(IS_BONUS) -eq 0 ]; then $(MAKE) clean IS_BONUS=1 ; fi
+			@if [ $IS_BONUS -eq 0]; then $(MAKE) clean IS_BONUS=1 ; fi
 			$(MAKE) -C libft clean
 
 fclean:		clean

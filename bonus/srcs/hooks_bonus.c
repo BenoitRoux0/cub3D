@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/11 17:01:58 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:25:19 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int	on_destroy(t_data *data)
 
 int	on_key_press(int keycode, t_data *data)
 {
+	if (keycode == XK_r)
+		{
+			data->mouse_listen = false;
+			mlx_mouse_show(data->mlx, data->win);
+			mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		}
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	key_press_player(keycode, data);
@@ -53,5 +59,19 @@ int	on_loop(t_data *data)
 	render(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	return (0);
+}
+
+int	on_mouse(int button, int x, int y, t_data *data)
+{
+	if (button == 1)
+	{
+		data->mouse_listen = true;
+		mlx_mouse_hide(data->mlx, data->win);
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		printf("Mouse listen\n");
+	}
+	(void)x;
+	(void)y;
 	return (0);
 }

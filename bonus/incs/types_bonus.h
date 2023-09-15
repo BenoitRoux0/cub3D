@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 15:47:42 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:45:43 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
+	bool			mouse_listen;
 	t_master_img	*master_img;
 	t_uint_img		*img;
 	t_map			map;

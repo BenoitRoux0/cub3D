@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/11 17:01:58 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:29:03 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,25 @@ int	on_key_press(int keycode, t_data *data)
 int	on_key_released(int keycode, t_data *data)
 {
 	key_released_player(keycode, data);
+	if (keycode == XK_Tab)
+		data->show_minimap = !data->show_minimap;
 	return (0);
 }
 
 int	on_loop(t_data *data)
 {
+	t_uint_img	*minimap;
+
 	rewrite_img(data->img);
 	update_player(data);
 	render(data);
+	if (data->show_minimap)
+	{
+		printf("show minimap\n");
+		minimap = cut_minimap(data);
+		put_img_in_img(data->img, minimap, 0, 0);
+		clear_img(minimap);
+	}
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
 	return (0);

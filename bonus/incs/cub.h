@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/13 17:08:24 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:14:48 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@
 # include "player.h"
 # include "parsing.h"
 # include "draw.h"
+# include "minimap.h"
 
 #endif

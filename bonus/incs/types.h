@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/14 16:02:52 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:22:11 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_ray			rays[WIN_WIDTH];
+	int 			show_minimap;
+	t_uint_img		*map_img;
+	t_vec_2i		minimap_size;
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 17:25:19 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:49:24 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ int	on_key_released(int keycode, t_data *data)
 
 int	on_loop(t_data *data)
 {
-	rewrite_img(data->img);
+	t_vec_2i mouse_pos;
+
+	if (data->mouse_listen)
+	{
+		mlx_mouse_get_pos(data->mlx, data->win, &mouse_pos.x, &mouse_pos.y);
+		data->player.angle += mouse_pos.x - WIN_WIDTH / 2;
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	update_player(data);
 	render(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
@@ -67,9 +74,8 @@ int	on_mouse(int button, int x, int y, t_data *data)
 	if (button == 1)
 	{
 		data->mouse_listen = true;
-		mlx_mouse_hide(data->mlx, data->win);
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-		printf("Mouse listen\n");
+		mlx_mouse_hide(data->mlx, data->win);
 	}
 	(void)x;
 	(void)y;

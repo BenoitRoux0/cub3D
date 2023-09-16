@@ -54,7 +54,7 @@ int	on_key_released(int keycode, t_data *data)
 
 int	on_loop(t_data *data)
 {
-	fill_color(data->map.colors[FLOOR], data->map.colors[CEILING]);
+	fill_color(data->img, data->map.colors[FLOOR], data->map.colors[CEILING]);
 	update_player(data);
 	render(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);

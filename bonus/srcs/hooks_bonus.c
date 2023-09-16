@@ -35,11 +35,11 @@ int	on_destroy(t_data *data)
 int	on_key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_r)
-		{
-			data->mouse_listen = false;
-			mlx_mouse_show(data->mlx, data->win);
-			mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-		}
+	{
+		data->mouse_listen = false;
+		mlx_mouse_show(data->mlx, data->win);
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	key_press_player(keycode, data);
@@ -54,7 +54,7 @@ int	on_key_released(int keycode, t_data *data)
 
 int	on_loop(t_data *data)
 {
-	t_vec_2i mouse_pos;
+	t_vec_2i	mouse_pos;
 
 	if (data->mouse_listen)
 	{

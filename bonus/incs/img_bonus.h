@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMG_H
-# define IMG_H
+#ifndef IMG_BONUS_H
+# define IMG_BONUS_H
 
 # include <stdint.h>
 //-----------------STRUCT-----------------//

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#ifndef HOOKS_BONUS_H
+# define HOOKS_BONUS_H
 
 # include "cub_bonus.h"
 

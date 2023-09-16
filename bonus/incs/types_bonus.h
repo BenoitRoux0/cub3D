@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#ifndef TYPES_BONUS_H
+# define TYPES_BONUS_H
 
 # include "cub_bonus.h"
 

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef RENDER_BONUS_H
+# define RENDER_BONUS_H
 
 # include "cub_bonus.h"
 
@@ -20,6 +20,5 @@ int	render(t_data *data);
 int	raycast(t_data *data);
 int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map);
 int	ray_collide_vert(double vector[2], t_ray *ray, t_map map);
-
 
 #endif

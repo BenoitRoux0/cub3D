@@ -6,14 +6,13 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/16 15:59:42 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:04:28 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 static void	draw_wall_slice(t_data *data, int p, t_ray r, t_uint_img *tex);
-int			fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling);
 
 int	render(t_data *data)
 {
@@ -21,7 +20,6 @@ int	render(t_data *data)
 	t_ray	ray;
 
 	raycast(data);
-	fill_color(data->img, data->map.colors[FLOOR], data->map.colors[CEILING]);
 	i = 0;
 	while (i < WIN_WIDTH)
 	{

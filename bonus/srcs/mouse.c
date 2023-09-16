@@ -16,7 +16,6 @@ int	mouse_motion(int x, int y, t_data *data)
 {
 	if (data->mouse_listen)
 	{
-		printf("VINCENT CONNARD\n");
 		data->player.angle_mov += x - WIN_WIDTH / 2;
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	}

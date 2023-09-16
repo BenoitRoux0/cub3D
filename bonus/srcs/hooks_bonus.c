@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 17:49:24 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/16 20:14:52 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ int	on_key_released(int keycode, t_data *data)
 
 int	on_loop(t_data *data)
 {
-	t_vec_2i	mouse_pos;
-
-	if (data->mouse_listen)
-	{
-		mlx_mouse_get_pos(data->mlx, data->win, &mouse_pos.x, &mouse_pos.y);
-		data->player.angle += mouse_pos.x - WIN_WIDTH / 2;
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	}
 	update_player(data);
 	render(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
@@ -79,5 +71,22 @@ int	on_mouse(int button, int x, int y, t_data *data)
 	}
 	(void)x;
 	(void)y;
+	return (0);
+}
+
+//Currently doesn't update player rotation even tho print the info when going into th fuctnion
+int	mouse_mouvement(int x, int y, t_data *data)
+{
+	t_vec_2i	mouse_pos;
+
+	printf("x: %d, y: %d\n", x, y);
+	if (data->mouse_listen)
+	{
+		mlx_mouse_get_pos(data->mlx, data->win, &mouse_pos.x, &mouse_pos.y);
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		data->player.angle += mouse_pos.x - WIN_WIDTH / 2;
+	}
+	(void)y;
+	(void)x;
 	return (0);
 }

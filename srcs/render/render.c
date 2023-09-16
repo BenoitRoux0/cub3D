@@ -6,14 +6,13 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/13 00:35:27 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/16 16:04:28 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void		draw_wall_slice(t_data *data,int p, t_ray r, t_uint_img *tex);
-static void		draw_color_column(t_uint_img *dst, int pos, int start, int end, uint32_t color);
+static void	draw_wall_slice(t_data *data, int p, t_ray r, t_uint_img *tex);
 
 int	render(t_data *data)
 {
@@ -52,7 +51,7 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
 		src_x = ((int) r.inter[1] % CELL_SIZE) % tex->width;
 	if (src_x < 0 || !r.hit)
-		return (draw_color_column(data->img, pos, 0, WIN_HEIGHT / 2, data->map.colors[CEILING]), draw_color_column(data->img, pos, WIN_HEIGHT / 2, WIN_HEIGHT, data->map.colors[FLOOR]));
+		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
 	i = WIN_HEIGHT / 2 - slice_height / 2;
 	src_pos = 0;
@@ -61,29 +60,38 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 		src_pos = -i * (double) tex->height / (double) slice_height;
 		i = 0;
 	}
-	draw_color_column(data->img, pos, 0, i, data->map.colors[CEILING]);
 	while (src_pos < tex->height && i < WIN_HEIGHT)
 	{
 		data->img->content[i][pos] = tex->content[(int) src_pos][src_x];
 		src_pos += (double) tex->height / (double) slice_height;
 		i++;
 	}
-	draw_color_column(data->img, pos, i, WIN_HEIGHT, data->map.colors[FLOOR]);
 }
 
-static void		draw_color_column(t_uint_img *dst, int pos, int start, int end, uint32_t color)
+int	fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling)
 {
-	int	i;
+	t_vec_2i	pos;
 
-	i = start;
-	if (end < start)
+	pos.y = 0;
+	while (pos.y < WIN_HEIGHT / 2)
 	{
-		i = end;
-		end = start;
+		pos.x = 0;
+		while (pos.x < WIN_WIDTH)
+		{
+			dst->content[pos.y][pos.x] = ceiling;
+			pos.x++;
+		}
+		pos.y++;
 	}
-	while (i < end)
+	while (pos.y < WIN_HEIGHT)
 	{
-		dst->content[i][pos] = color;
-		i++;
+		pos.x = 0;
+		while (pos.x < WIN_WIDTH)
+		{
+			dst->content[pos.y][pos.x] = floor;
+			pos.x++;
+		}
+		pos.y++;
 	}
+	return (0);
 }

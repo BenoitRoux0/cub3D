@@ -78,15 +78,12 @@ int	on_mouse(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-//Currently doesn't update player rotation even tho print the info when going into th fuctnion
 int	mouse_mouvement(int x, int y, t_data *data)
 {
-	printf("x: %d, y: %d\n", x, y);
 	if (data->mouse.listen)
 	{
 		mlx_mouse_get_pos(data->mlx, data->win, &data->mouse.x, &data->mouse.y);
-//		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-		data->player.angle += data->mouse.x - WIN_WIDTH / 2;
+		data->player.angle += (data->mouse.x - WIN_WIDTH / 2) * 0.05;
 	}
 	(void)y;
 	(void)x;

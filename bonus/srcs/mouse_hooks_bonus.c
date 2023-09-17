@@ -20,7 +20,7 @@ int	on_mouse_clic(int button, int x, int y, t_data *data)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 		mlx_mouse_hide(data->mlx, data->win);
 	}
-	if (button == 2)
+	if (button == 3)
 	{
 		data->mouse.listen = false;
 		mlx_mouse_show(data->mlx, data->win);

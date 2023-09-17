@@ -86,6 +86,13 @@ struct s_master_img
 	int		endian;
 };
 
+typedef struct s_mouse_info
+{
+	int		x;
+	int		y;
+	bool	listen;
+}	t_mouse_info;
+
 typedef struct s_ray
 {
 	double	inter[2];
@@ -97,7 +104,7 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
-	bool			mouse_listen;
+	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
 	t_map			map;

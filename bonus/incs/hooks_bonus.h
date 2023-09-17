@@ -20,7 +20,7 @@ int	on_destroy(t_data *data);
 int	on_key_press(int keycode, t_data *data);
 int	on_key_released(int keycode, t_data *data);
 int	on_loop(t_data *data);
-int	on_mouse(int button, int x, int y, t_data *data);
-int	mouse_mouvement(int x, int y, t_data *data);
+int	on_mouse_clic(int button, int x, int y, t_data *data);
+int	on_mouvement(int x, int y, t_data *data);
 
 #endif

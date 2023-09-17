@@ -34,12 +34,6 @@ int	on_destroy(t_data *data)
 
 int	on_key_press(int keycode, t_data *data)
 {
-	if (keycode == XK_r)
-	{
-		data->mouse.listen = false;
-		mlx_mouse_show(data->mlx, data->win);
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	}
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	key_press_player(keycode, data);
@@ -62,30 +56,5 @@ int	on_loop(t_data *data)
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx,
 		data->win, data->master_img->content, 0, 0);
-	return (0);
-}
-
-int	on_mouse(int button, int x, int y, t_data *data)
-{
-	if (button == 1)
-	{
-		data->mouse.listen = true;
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-		mlx_mouse_hide(data->mlx, data->win);
-	}
-	(void)x;
-	(void)y;
-	return (0);
-}
-
-int	mouse_mouvement(int x, int y, t_data *data)
-{
-	if (data->mouse.listen)
-	{
-		mlx_mouse_get_pos(data->mlx, data->win, &data->mouse.x, &data->mouse.y);
-		data->player.angle += (data->mouse.x - WIN_WIDTH / 2) * 0.05;
-	}
-	(void)y;
-	(void)x;
 	return (0);
 }

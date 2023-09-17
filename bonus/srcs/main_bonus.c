@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 	if (!data.img)
 		return (3);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
-	mlx_mouse_hook(data.win, on_mouse, &data);
-	mlx_hook(data.win, MotionNotify, PointerMotionMask, mouse_mouvement, &data);
+	mlx_mouse_hook(data.win, on_mouse_clic, &data);
+	mlx_hook(data.win, MotionNotify, PointerMotionMask, on_mouvement, &data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, on_key_press, &data);
 	mlx_hook(data.win, KeyRelease, KeyReleaseMask, on_key_released, &data);
 	mlx_loop_hook(data.mlx, on_loop, &data);

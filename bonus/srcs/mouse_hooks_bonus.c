@@ -34,10 +34,9 @@ int	on_mouvement(int x, int y, t_data *data)
 {
 	if (data->mouse.listen)
 	{
-		mlx_mouse_get_pos(data->mlx, data->win, &data->mouse.x, &data->mouse.y);
-		data->player.angle += (data->mouse.x - WIN_WIDTH / 2) * 0.05;
+		data->mouse.x = x;
+		data->mouse.y = y;
+		data->player.angle += (data->mouse.x - WIN_WIDTH / 2) * 0.010;
 	}
-	(void)y;
-	(void)x;
 	return (0);
 }

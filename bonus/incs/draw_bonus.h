@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
+#ifndef DRAW_BONUS_H
+# define DRAW_BONUS_H
 
 # include "cub_bonus.h"
 

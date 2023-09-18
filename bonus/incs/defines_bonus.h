@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef DEFINES_BONUS_H
+# define DEFINES_BONUS_H
 
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 720

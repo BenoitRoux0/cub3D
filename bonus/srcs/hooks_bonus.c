@@ -45,15 +45,11 @@ int	on_key_press(int keycode, t_data *data)
 int	on_key_released(int keycode, t_data *data)
 {
 	key_released_player(keycode, data);
-	if (keycode == XK_Tab)
-		data->show_minimap = !data->show_minimap;
 	return (0);
 }
 
 int	on_loop(t_data *data)
 {
-	t_uint_img	*minimap;
-
 	if (data->player.mov[0] == 0 && data->player.mov[1] == 0 && \
 		data->player.angle_mov == 0)
 		return (0);

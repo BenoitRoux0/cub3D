@@ -111,6 +111,9 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_ray			rays[WIN_WIDTH];
+	int 			show_minimap;
+	t_uint_img		*map_img;
+	t_vec_2i		minimap_size;
 }	t_data;
 
 #endif

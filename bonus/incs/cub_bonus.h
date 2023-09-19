@@ -41,5 +41,6 @@
 # include "player_bonus.h"
 # include "parsing_bonus.h"
 # include "draw_bonus.h"
+# include "minimap.h"
 
 #endif

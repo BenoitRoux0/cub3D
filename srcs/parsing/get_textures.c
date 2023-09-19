@@ -6,16 +6,17 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/13 16:49:07 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/19 22:38:01 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int		get_textures_infos(int fd, char *textures_line[4], uint32_t color[2]);
-int		open_texture(t_data *data, char *textures_line[4]);
-int		get_line_info(char *buff, int *data_got,
-			char *textures_line[4], uint32_t color[2]);
+int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2]);
+int	open_texture(t_data *data, char *textures_line[4]);
+int	get_line_info(char *buff, int *data_got,
+		char *textures_line[4], uint32_t color[2]);
+int	get_info(int fd, int *data_got, char *textures_line[4], uint32_t color[2]);
 
 int	get_textures_and_colors(int fd, t_data *data)
 {
@@ -40,28 +41,11 @@ int	get_textures_and_colors(int fd, t_data *data)
 
 int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 {
-	char	*buff;
 	int		data_got;
 
 	data_got = 0;
 	while (data_got < 6)
-	{
-		buff = get_next_line(fd);
-		if (!buff)
-			break ;
-		if (ft_isalpha(buff[0]))
-		{
-			get_line_info(buff, &data_got, textures_line, color);
-			if (data_got > 100)
-				return (data_got);
-		}
-		else if (buff[0] != '\n')
-		{
-			free(buff);
-			break ;
-		}
-		free(buff);
-	}
+		get_info(fd, &data_got, textures_line, color);
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);
@@ -108,4 +92,24 @@ int	get_line_info(char *buff, int *data_got,
 			return (free(buff), *data_got = code, code);
 	}
 	return (EXIT_SUCCESS);
+}
+
+int	get_info(int fd, int *data_got, char *textures_line[4], uint32_t color[2])
+{
+	char	*buff;
+	char	*pre_buff;
+
+	pre_buff = get_next_line(fd);
+	if (!pre_buff)
+		return (EXIT_FAILURE);
+	if (pre_buff[0] == '\n')
+		return (free(pre_buff), EXIT_SUCCESS);
+	buff = ft_strtrim(pre_buff, " ");
+	if (ft_isalpha(buff[0]))
+	{
+		get_line_info(buff, data_got, textures_line, color);
+		if (*data_got > 100)
+			return (*data_got);
+	}
+	return (free(buff), free(pre_buff), EXIT_SUCCESS);
 }

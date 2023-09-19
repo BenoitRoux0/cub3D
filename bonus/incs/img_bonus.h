@@ -6,13 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:59:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/08 17:53:21 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:47:42 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMG_H
-# define IMG_H
+#ifndef IMG_BONUS_H
+# define IMG_BONUS_H
 
+# include <stdint.h>
 //-----------------STRUCT-----------------//
 typedef struct s_master_img	t_master_img;
 

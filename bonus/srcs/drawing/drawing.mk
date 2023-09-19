@@ -1,3 +1,3 @@
-SRCS +=	drawing/line_creation.c drawing/draw.c drawing/draw_util.c
+SRCS +=	drawing/line_creation_bonus.c drawing/draw_bonus.c drawing/draw_util_bonus.c
 
-INCS +=	incs/draw.h
+INCS +=	incs/draw_bonus.h

@@ -1,5 +1,5 @@
-SRCS += player/init_player.c \
-		player/update_player.c \
-		player/input_player.c
+SRCS += player/init_player_bonus.c \
+		player/update_player_bonus.c \
+		player/input_player_bonus.c
 
-INCS += incs/player.h
+INCS += incs/player_bonus.h

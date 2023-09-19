@@ -6,14 +6,14 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:21:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/08/15 20:21:38 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:47:42 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
+#ifndef DRAW_BONUS_H
+# define DRAW_BONUS_H
 
-# include "cub.h"
+# include "cub_bonus.h"
 
 //-----------------FUNCTION-----------------//
 t_line	create_line(int start[2], int end[2]);

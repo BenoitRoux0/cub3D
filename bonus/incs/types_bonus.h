@@ -6,14 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/14 19:22:11 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/18 14:13:25 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#ifndef TYPES_BONUS_H
+# define TYPES_BONUS_H
 
-# include "cub.h"
+# include "cub_bonus.h"
 
 //-----------------ENUM-----------------//
 enum e_dir
@@ -86,6 +86,13 @@ struct s_master_img
 	int		endian;
 };
 
+typedef struct s_mouse_info
+{
+	int		x;
+	int		y;
+	bool	listen;
+}	t_mouse_info;
+
 typedef struct s_ray
 {
 	double	inter[2];
@@ -97,6 +104,8 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
+	bool			win_focused;
+	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
 	t_map			map;

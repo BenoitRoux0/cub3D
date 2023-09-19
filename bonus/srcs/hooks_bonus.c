@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/14 19:29:03 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/19 17:01:46 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ int	on_loop(t_data *data)
 		&& data->win_focused)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_player(data);
-	fill_color(data->img, data->map.colors[FLOOR], data->map.colors[CEILING]);
-	render(data);
-	if (data->show_minimap)
-		minimap_draw(data);
-	img_to_mlx_img(data->mlx, &data->master_img, data->img);
-	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	render_to_window(data);
 	return (0);
 }

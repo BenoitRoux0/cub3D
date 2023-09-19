@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:15:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/18 14:17:26 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:47:31 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	on_mouvement(int x, int y, t_data *data)
 	{
 		data->mouse.x = x;
 		data->mouse.y = y;
-		data->player.angle += (data->mouse.x - WIN_WIDTH / 2) * 0.010;
+		data->player.angle_mov = (data->mouse.x - WIN_WIDTH / 2) * 0.025;
 	}
 	return (0);
 }

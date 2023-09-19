@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 17:36:48 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:01:58 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	on_destroy(t_data *data)
 
 int	on_key_press(int keycode, t_data *data)
 {
+	if (keycode == XK_Tab)
+		data->show_minimap = !data->show_minimap;
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	key_press_player(keycode, data);
@@ -43,25 +45,19 @@ int	on_key_press(int keycode, t_data *data)
 int	on_key_released(int keycode, t_data *data)
 {
 	key_released_player(keycode, data);
-	if (keycode == XK_Tab)
-		data->show_minimap = !data->show_minimap;
 	return (0);
 }
 
 int	on_loop(t_data *data)
 {
-	if (data->player.angle_mov)
-	{
-		printf("update\n");
-		rewrite_img(data->img);
-		update_player(data);
-		render(data);
-		if (data->show_minimap) {
-			minimap_draw(data);
-			minimap_draw_player(data);
-		}
-		img_to_mlx_img(data->mlx, &data->master_img, data->img);
-		mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
-	}
+	if (data->player.mov[0] == 0 && data->player.mov[1] == 0 && data->player.angle_mov == 0)
+		return (0);
+	rewrite_img(data->img);
+	update_player(data);
+	render(data);
+	if (data->show_minimap)
+		minimap_draw(data);
+	img_to_mlx_img(data->mlx, &data->master_img, data->img);
+	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
 	return (0);
 }

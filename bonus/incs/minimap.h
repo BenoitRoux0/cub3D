@@ -6,16 +6,25 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:13:42 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/14 19:15:15 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/18 15:54:12 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
 
-# include "types.h"
+# include "types_bonus.h"
+
+typedef	struct s_angle_data
+{
+	double	deg;
+	double	rad;
+	double	angle_cos;
+	double	angle_sin;
+}	t_angle_data;
 
 t_uint_img	*create_map(t_map map);
 t_uint_img	*cut_minimap(t_data *data);
+void		minimap_draw(t_data *data);
 
 #endif

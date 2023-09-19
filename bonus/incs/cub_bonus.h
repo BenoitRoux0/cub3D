@@ -32,15 +32,15 @@
 
 //########### PROJECT SPECIFICS HEADERS ##########//
 
-# include "defines.h"
-# include "img.h"
-# include "types.h"
-# include "types.h"
-# include "render.h"
-# include "hooks.h"
-# include "player.h"
-# include "parsing.h"
-# include "draw.h"
+# include "defines_bonus.h"
+# include "img_bonus.h"
+# include "types_bonus.h"
+# include "types_bonus.h"
+# include "render_bonus.h"
+# include "hooks_bonus.h"
+# include "player_bonus.h"
+# include "parsing_bonus.h"
+# include "draw_bonus.h"
 # include "minimap.h"
 
 #endif

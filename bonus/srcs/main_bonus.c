@@ -30,10 +30,7 @@ int	main(int argc, char **argv)
 	data.map_img = create_map(data.map);
 	data.minimap_size = (t_vec_2i){200, 200};
 	data.win_focused = true;
-	fill_color(data.img, data.map.colors[FLOOR], data.map.colors[CEILING]);
-	render(&data);
-	img_to_mlx_img(data.mlx, &data.master_img, data.img);
-	mlx_put_image_to_window(data.mlx, data.win, data.master_img->content, 0, 0);
+	render_to_window(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
 	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);
 	mlx_hook(data.win, FocusIn, FocusChangeMask, on_focus_in, &data);

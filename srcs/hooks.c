@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/16 16:08:48 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:58:13 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	on_destroy(t_data *data)
 	i = -1;
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
+	if (data->master_img && data->mlx)
+	{
+		mlx_destroy_image(data->mlx, data->master_img->content);
+		free(data->master_img);
+	}
 	data->win = NULL;
 	if (data->mlx)
 	{
@@ -29,6 +34,8 @@ int	on_destroy(t_data *data)
 	while (++i < 4)
 		clear_img(data->map.walls_text[i]);
 	data->mlx = NULL;
+	if (data->img)
+		clear_img(data->img);
 	exit (0);
 }
 

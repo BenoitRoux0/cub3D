@@ -15,14 +15,19 @@
 void	flush_newline(char **array, int array_length)
 {
 	int	i;
+	int	j;
 
 	i = -1;
 	if (!array_length)
 		array_length = ft_array_length((void **)array);
 	while (++i < array_length)
 	{
-		if (array[i][ft_strlen(array[i]) - 1] == '\n')
-			array[i][ft_strlen(array[i]) - 1] = '\0';
+		j = ft_strlen(array[i]) - 1;
+		if (array[i][j] == '\n')
+			array[i][j] = ' ';
+		while (array[i][j] == ' ')
+			j--;
+		array[i][j + 1] = '\0';
 	}
 }
 

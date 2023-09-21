@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:22:11 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/14 10:54:51 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/21 17:54:47 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,29 @@ int	color_atoi(uint32_t *color, char **value_split);
 
 int	get_color(char *buff, uint32_t color[2], int *data_got)
 {
-	char	**first_split;
-	char	**value_split;
-	int		color_code;
+	int			color_code;
+	uint32_t	*dest;
+	char		**split;
+	char		*tmp;
 
-	first_split = ft_split(buff, ' ');
-	if (ft_array_length((void **)first_split) != 2)
-		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER,
-				first_split[0]), ft_free_split(first_split), ERC_ARRAY_BIGGER);
-	value_split = ft_split(first_split[1], ',');
-	if (ft_array_length((void **)value_split) != 3)
-		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER,
-				first_split[0]), ft_free_split(first_split),
-			ft_free_split(value_split), ERC_ARRAY_BIGGER);
-	if (first_split[0][0] == 'C')
-		color_code = color_atoi(&color[CEILING], value_split);
+	if (buff[0] == 'C')
+		dest = &color[CEILING];
 	else
-		color_code = color_atoi(&color[FLOOR], value_split);
-	ft_free_split(first_split);
+		dest = &color[FLOOR];
+	tmp = &buff[1];
+	tmp = ft_strtrim(tmp, " ");
+	if (!tmp)
+		return (ft_dprintf(STDERR_FILENO, STRANGE), STRANGE_CODE);
+	split = ft_split(tmp, ',');
+	if (ft_array_length((void **)split) != 3)
+		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER,
+				split[0]), ft_free_split(split), *data_got = STRANGE_CODE);
+	color_code = color_atoi(dest, split);
+	(*data_got)++;
+	ft_free_split(split);
+	free(tmp);
 	if (color_code != EXIT_SUCCESS)
 		return (color_code);
-	ft_free_split(value_split);
-	(*data_got)++;
 	return (EXIT_SUCCESS);
 }
 

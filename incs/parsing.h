@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/14 17:56:01 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:46:08 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ in provided file\033[0m\n"
 # define ERM_NO_PLAYER "\033[1;31mcub3D: \
 Error: Player position not found\033[0m"
 # define ERC_NO_PLAYER 112
+# define STRANGE "\033[1;31mcub3D: Strange situation\033[0m\n"
+# define STRANGE_CODE 4242
 #endif

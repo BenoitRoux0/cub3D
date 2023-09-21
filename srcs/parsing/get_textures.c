@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/19 22:38:01 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:52:30 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 	data_got = 0;
 	while (data_got < 6)
 		get_info(fd, &data_got, textures_line, color);
+	if (data_got == STRANGE_CODE)
+		return (STRANGE_CODE);
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);
@@ -109,7 +111,7 @@ int	get_info(int fd, int *data_got, char *textures_line[4], uint32_t color[2])
 	{
 		get_line_info(buff, data_got, textures_line, color);
 		if (*data_got > 100)
-			return (*data_got);
+			return (free(pre_buff), *data_got);
 	}
 	return (free(buff), free(pre_buff), EXIT_SUCCESS);
 }

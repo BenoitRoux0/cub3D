@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/21 17:46:08 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:14:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,44 @@ int		check_player(t_map *map, t_player *player);
 //-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"
 # define ERC_ARGC 101
-# define ERM_EXTENSION "\033[1;31mcub3D: Error: wrong map file extension,\
+# define ERM_EXTENSION "\033[1;31mError\nWrong map file extension,\
 	expected <.cub>\033[0m\n"
 # define ERC_EXTENSION 102
-# define ERM_ACCESS "\033[1;31mcub3D: Error: can't access map file: %s\033[0m\n"
+# define ERM_ACCESS "\033[1;31mError\nCan't access map file: %s\033[0m\n"
 # define ERC_ACCESS 103
-# define ERM_TEXTURE_NORTH "\033[1;31mcub3D: Error: can't access \
+# define ERM_TEXTURE_NORTH "\033[1;31mError\nCan't access \
 texture for north\033[0m\n"
-# define ERM_TEXTURE_SOUTH "\033[1;31mcub3D: Error: can't access \
+# define ERM_TEXTURE_SOUTH "\033[1;31mError\nCan't access \
 texture for south\033[0m\n"
-# define ERM_TEXTURE_EAST "\033[1;31mcub3D: Error: can't access \
+# define ERM_TEXTURE_EAST "\033[1;31mError\nCan't access \
 texture for east\033[0m\n"
-# define ERM_TEXTURE_WEST "\033[1;31mcub3D: Error: can't access \
+# define ERM_TEXTURE_WEST "\033[1;31mError\nCan't access \
 texture for west\033[0m\n"
 # define ERC_TEXTURE 104
-# define ERM_NB_INFO "\033[1;31mcub3D: Error: wrong number \
+# define ERM_NB_INFO "\033[1;31mError\nWrong number \
 of info in provided file\033[0m\n"
 # define ERC_NB_INFO 105
-# define ERM_ARRAY_BIGGER "\033[1;31mcub3D: Error: \
-to many info on line %c\033[0m\n"
+# define ERM_ARRAY_BIGGER "\033[1;31mError\n\
+Too many info on line %c\033[0m\n"
 # define ERC_ARRAY_BIGGER 106
-# define ERM_OOR_VALUE "\033[1;31mcub3D: Error: \
-color value out of range\033[0m\n"
+# define ERM_OOR_VALUE "\033[1;31mError\n\
+Color value out of range\033[0m\n"
 # define ERC_OOR_VALUE 107
-# define ERM_NO_MAP  "\033[1;31mcub3D: Error: No map found \
+# define ERM_NO_MAP  "\033[1;31mError\nNo map found \
 in provided file\033[0m\n"
 # define ERC_NO_MAP 108
-# define ERM_UNCLOSED "\033[1;31mcub3D: Error: Unclosed map\033[0m\n"
+# define ERM_UNCLOSED "\033[1;31mError\nUnclosed map\033[0m\n"
 # define ERC_UNCLOSED 109
-# define ERM_UNEXPECTED "\033[1;31mcub3D: \
-Error: Unexpected character \"%c\" at [%d][%d]\033[0m\n"
+# define ERM_UNEXPECTED "\033[1;31mError\n\
+Unexpected character \"%c\" at [%d][%d]\033[0m\n"
 # define ERC_UNEXPECTED 110
-# define ERM_PLAYER "\033[1;31mcub3D: Error: Multiple player \
+# define ERM_PLAYER "\033[1;31mError\nMultiple player \
 in provided file\033[0m\n"
 # define ERC_PLAYER 111
-# define ERM_NO_PLAYER "\033[1;31mcub3D: \
-Error: Player position not found\033[0m"
+# define ERM_NO_PLAYER "\033[1;31mError\nPlayer position not found\033[0m"
 # define ERC_NO_PLAYER 112
 # define STRANGE "\033[1;31mcub3D: Strange situation\033[0m\n"
 # define STRANGE_CODE 4242
+# define ERM_DUPLI "\033[1;31mError\nDuplicate info for texture %s\033[0m\n"
+# define ERC_DUPLI 113
 #endif

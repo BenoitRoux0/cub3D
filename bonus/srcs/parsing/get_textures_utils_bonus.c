@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:11:36 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/08 16:39:41 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:19:27 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_textures_line(char *textures_line[4])
 	}
 }
 
-void	get_line_no_whitespace(char *buff, char **line, int *data_got)
+int	get_line_no_whitespace(char *buff, char **line, int *data_got)
 {
 	int	i;
 
@@ -54,10 +54,13 @@ void	get_line_no_whitespace(char *buff, char **line, int *data_got)
 	if (buff[i])
 	{
 		*line = ft_strdup(&buff[i]);
+		if (!(*line))
+			return (ft_dprintf(2, STRANGE), STRANGE_CODE);
 		(*data_got)++;
 	}
 	else
 		line = NULL;
+	return (0);
 }
 
 void	get_textures_line(char *buff, char *line_array[4], int *data_got)

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 18:23:42 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/14 17:55:36 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:01:28 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	check_enclosed_map(t_map *map, t_player player)
 	pos.x = (int)player.pos[0] / CELL_SIZE;
 	pos.y = (int)player.pos[1] / CELL_SIZE;
 	map_copy = (char **)ft_array_dup((void **)map->content, false, true);
+	if (!map_copy)
+		return (ft_dprintf(2, STRANGE), STRANGE_CODE);
 	map_copy[pos.y][pos.x] = '0';
 	flood_algo(map_copy, pos, map->size, &ret);
 	if (ret)

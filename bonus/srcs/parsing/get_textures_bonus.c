@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/21 17:58:46 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:18:30 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	get_info(int fd, int *data_got, char *textures_line[4], uint32_t color[2])
 	if (pre_buff[0] == '\n')
 		return (free(pre_buff), EXIT_SUCCESS);
 	buff = ft_strtrim(pre_buff, " ");
+	if (!buff)
+		return (free(pre_buff), ft_dprintf(2, STRANGE), STRANGE_CODE);
 	if (ft_isalpha(buff[0]))
 	{
 		get_line_info(buff, data_got, textures_line, color);

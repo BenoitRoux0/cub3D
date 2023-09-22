@@ -22,7 +22,7 @@ int		parse_error_quit(t_data *data, int r);
 
 void	flush_newline(char **array, int array_length);
 void	free_textures_line(char *textures_line[4]);
-void	get_line_no_whitespace(char *buff, char **line, int *data_got);
+int		get_line_no_whitespace(char *buff, char **line, int *data_got);
 void	get_textures_line(char *buff, char *line_array[4], int *data_got);
 
 int		get_color(char *buff, uint32_t color[2], int *data_got);

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:22:11 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/22 12:17:51 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:44:02 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	get_color(char *buff, uint32_t color[2], int *data_got)
 		return (ft_dprintf(STDERR_FILENO, ERM_ARRAY_BIGGER,
 				split[0]), ft_free_split(split), *data_got = STRANGE_CODE);
 	color_code = color_atoi(dest, split);
+	if (color_code != EXIT_SUCCESS)
+		return (ft_free_split(split), free(tmp), *data_got = color_code);
 	(*data_got)++;
 	return (ft_free_split(split), free(tmp), color_code);
 }
@@ -52,8 +54,7 @@ int	color_atoi(uint32_t *color, char **value_split)
 	while (i < 3)
 	{
 		if (color_comps[i] < 0 || color_comps[i] > 255)
-			return (ft_free_split(value_split),
-				ft_dprintf(STDERR_FILENO, ERM_OOR_VALUE), ERC_OOR_VALUE);
+			return (ft_dprintf(STDERR_FILENO, ERM_OOR_VALUE), ERC_OOR_VALUE);
 		i++;
 	}
 	*color = (color_comps[0] << 16) + (color_comps[1] << 8) + color_comps[2];

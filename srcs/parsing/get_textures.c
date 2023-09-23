@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/23 17:57:27 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:32:25 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 		return (ERC_OOR_VALUE);
 	if (data_got == ERC_MISSING_C)
 		return (ERC_MISSING_C);
+	if (data_got == ERC_ARRAY_BIGGER)
+		return (ERC_ARRAY_BIGGER);
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);

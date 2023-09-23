@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/23 13:18:58 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:57:27 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ texture for west\033[0m\n"
 of info in provided file\033[0m\n"
 # define ERC_NB_INFO 105
 # define ERM_ARRAY_BIGGER "\033[1;31mError\n\
-Too many info on line %c\033[0m\n"
+Wrong number of info on line %c\033[0m\n"
 # define ERC_ARRAY_BIGGER 106
 # define ERM_OOR_VALUE "\033[1;31mError\n\
 Color value out of range\033[0m\n"
@@ -77,4 +77,6 @@ in provided file\033[0m\n"
 # define ERM_DUPLI "\033[1;31mError\nDuplicate textures \
 info detected for %s\033[0m\n"
 # define ERC_DUPLI 113
+# define ERM_MISSING_C "\033[1;31mError\nMissing color value detected\033[0m\n"
+# define ERC_MISSING_C 114
 #endif

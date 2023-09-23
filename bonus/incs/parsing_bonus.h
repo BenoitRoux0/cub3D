@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/21 17:59:03 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:18:35 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		parse_error_quit(t_data *data, int r);
 void	flush_newline(char **array, int array_length);
 void	free_textures_line(char *textures_line[4]);
 int		get_line_no_whitespace(char *buff, char **line, int *data_got);
-void	get_textures_line(char *buff, char *line_array[4], int *data_got);
-
+int		get_textures_line(char *buff, char *line_array[4],
+			int *data_got, t_tracker *tracker);
 int		get_color(char *buff, uint32_t color[2], int *data_got);
 
 int		get_map(int fd, t_data *data);
@@ -74,4 +74,7 @@ Player position not found\033[0m"
 # define ERC_NO_PLAYER 112
 # define STRANGE "\033[1;31mcub3D: Strange situation\033[0m\n"
 # define STRANGE_CODE 4242
+# define ERM_DUPLI "\033[1;31mError\nDuplicate textures \
+info detected for %s\033[0m\n"
+# define ERC_DUPLI 113
 #endif

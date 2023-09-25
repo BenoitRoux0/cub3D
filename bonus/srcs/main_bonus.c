@@ -6,17 +6,19 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 16:52:05 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/25 07:41:48 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <termios.h>
 #include "cub_bonus.h"
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
+	data.gamepad = init_gamepads(1);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -39,6 +41,9 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win, KeyPress, KeyPressMask, on_key_press, &data);
 	mlx_hook(data.win, KeyRelease, KeyReleaseMask, on_key_released, &data);
 	mlx_loop_hook(data.mlx, on_loop, &data);
+	button_pressed_hook(data.gamepad, js_button_press_player, 0, &data);
+	button_released_hook(data.gamepad, js_button_released_player, 0, &data);
+	axis_hook(data.gamepad, js_joystick_moved_player, 0, &data);
 	mlx_loop(data.mlx);
 	return (1);
 }

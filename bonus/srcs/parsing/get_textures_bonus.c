@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/25 10:55:35 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:11:38 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 
 int	open_texture(t_data *data, char *textures_line[4])
 {
+	if (check_texture_format(textures_line))
+		return (ERC_NOT_XPM);
 	data->map.walls_text[NORTH]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[NORTH]);

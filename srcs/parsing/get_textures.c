@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/23 22:32:25 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:52:06 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ int	get_textures_and_colors(int fd, t_data *data)
 
 int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 {
-	int		data_got;
+	int	data_got;
+	int	r;
 
 	data_got = 0;
-	while (data_got < 6)
-		get_info(fd, &data_got, textures_line, color);
+	r = 0;
+	while (data_got < 6 && r != EXIT_EOF)
+		r = get_info(fd, &data_got, textures_line, color);
 	if (data_got == STRANGE_CODE)
 		return (STRANGE_CODE);
 	if (data_got == ERC_DUPLI)
@@ -116,7 +118,7 @@ int	get_info(int fd, int *data_got, char *textures_line[4], uint32_t color[2])
 
 	pre_buff = get_next_line(fd);
 	if (!pre_buff)
-		return (EXIT_FAILURE);
+		return (EXIT_EOF);
 	if (pre_buff[0] == '\n')
 		return (free(pre_buff), EXIT_SUCCESS);
 	buff = ft_strtrim(pre_buff, " ");

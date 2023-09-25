@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/23 17:57:27 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:50:58 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ info detected for %s\033[0m\n"
 # define ERC_DUPLI 113
 # define ERM_MISSING_C "\033[1;31mError\nMissing color value detected\033[0m\n"
 # define ERC_MISSING_C 114
+# define EXIT_EOF 255
 #endif

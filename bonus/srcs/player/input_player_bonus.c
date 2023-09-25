@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:06:05 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/05 14:37:04 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/21 16:42:19 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	key_press_player(int key_code, t_data *data)
 {
+	if (data->input_mode != keyboard && data->input_mode != keyboard_mouse)
+		return (0);
 	if (key_code == XK_w)
 		data->player.mov[1] += 1;
 	if (key_code == XK_s)
@@ -22,6 +24,8 @@ int	key_press_player(int key_code, t_data *data)
 		data->player.mov[0] += 1;
 	if (key_code == XK_d)
 		data->player.mov[0] -= 1;
+	if (data->input_mode != keyboard)
+		return (0);
 	if (key_code == XK_Left)
 		data->player.angle_mov -= 1;
 	if (key_code == XK_Right)
@@ -31,6 +35,8 @@ int	key_press_player(int key_code, t_data *data)
 
 int	key_released_player(int key_code, t_data *data)
 {
+	if (data->input_mode != keyboard && data->input_mode != keyboard_mouse)
+		return (0);
 	if (key_code == XK_w)
 		data->player.mov[1] -= 1;
 	if (key_code == XK_s)
@@ -39,6 +45,8 @@ int	key_released_player(int key_code, t_data *data)
 		data->player.mov[0] -= 1;
 	if (key_code == XK_d)
 		data->player.mov[0] += 1;
+	if (data->input_mode != keyboard && data->input_mode != keyboard_mouse)
+		return (0);
 	if (key_code == XK_Left)
 		data->player.angle_mov += 1;
 	if (key_code == XK_Right)

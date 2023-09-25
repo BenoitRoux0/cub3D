@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/18 14:13:25 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:37:59 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "cub_bonus.h"
 
+typedef struct s_gamepad	t_gamepad;
+
 //-----------------ENUM-----------------//
 enum e_dir
 {
@@ -22,6 +24,14 @@ enum e_dir
 	SOUTH,
 	WEST,
 	NORTH,
+};
+
+enum e_input_modes
+{
+	keyboard,
+	keyboard_mouse,
+	controller,
+	guitar,
 };
 
 enum e_color
@@ -114,6 +124,8 @@ typedef struct s_data
 	int 			show_minimap;
 	t_uint_img		*map_img;
 	t_vec_2i		minimap_size;
+	t_gamepad		*gamepad;
+	int				input_mode;
 }	t_data;
 
 #endif

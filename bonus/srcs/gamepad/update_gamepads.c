@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 03:50:44 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/25 16:04:40 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/25 16:57:57 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	update_gamepads(t_gamepad *gamepads)
 	tmp = gamepads;
 	check_disconnections(gamepads);
 	events_dir = opendir("/dev/input/");
+	if (!events_dir)
+		return (0);
 	next = get_next_controller("/dev/input/", events_dir);
 	while (tmp && tmp->connected)
 		tmp = tmp->next;

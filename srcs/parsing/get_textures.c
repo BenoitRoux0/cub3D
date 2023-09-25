@@ -65,6 +65,8 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 
 int	open_texture(t_data *data, char *textures_line[4])
 {
+	if (check_texture_format(textures_line))
+		return (ERC_NOT_XPM);
 	data->map.walls_text[NORTH]
 		= ft_xpm_to_img(data->mlx,
 			textures_line[NORTH]);

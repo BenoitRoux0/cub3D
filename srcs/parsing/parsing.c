@@ -13,7 +13,6 @@
 #include "cub.h"
 
 bool	unvalid_extension(char *map);
-int		get_textures_and_colors(int fd, t_data *data);
 
 int	parsing(int argc, char **argv, t_data *data)
 {

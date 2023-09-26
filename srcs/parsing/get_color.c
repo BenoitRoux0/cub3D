@@ -53,6 +53,8 @@ int	color_atoi(uint32_t *color, char **value_split)
 	color_comps[0] = ft_atoi(value_split[0]);
 	color_comps[1] = ft_atoi(value_split[1]);
 	color_comps[2] = ft_atoi(value_split[2]);
+	if (errno == 20)
+		return (ft_dprintf(STDERR_FILENO, ERM_WRONG_C), ERC_WRONG_C);
 	i = 0;
 	while (i < 3)
 	{

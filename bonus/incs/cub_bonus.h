@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 15:33:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:39:32 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@
 # include "parsing_bonus.h"
 # include "draw_bonus.h"
 # include "minimap.h"
+# include "gamepad.h"
 
 #endif

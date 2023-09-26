@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 17:11:25 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:54:50 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	on_destroy(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	if (data->gamepad)
+		clear_gamepads(&data->gamepad);
 	ft_free_array((void **)data->map.content);
 	while (++i < 4)
 		clear_img(data->map.walls_text[i]);
@@ -41,6 +43,9 @@ int	on_key_press(int keycode, t_data *data)
 	}
 	if (keycode == XK_Escape)
 		on_destroy(data);
+	if (keycode == XK_m)
+		data->input_mode++;
+	data->input_mode %= 4;
 	key_press_player(keycode, data);
 	return (0);
 }
@@ -53,6 +58,15 @@ int	on_key_released(int keycode, t_data *data)
 
 int	on_loop(t_data *data)
 {
+	t_gamepad	*tmp;
+
+	update_gamepads(data->gamepad);
+	tmp = data->gamepad;
+	while (tmp)
+	{
+		update_inputs(tmp);
+		tmp = tmp->next;
+	}
 	if (data->player.mov[0] == 0 && data->player.mov[1] == 0 && \
 		data->player.angle_mov == 0)
 		return (0);

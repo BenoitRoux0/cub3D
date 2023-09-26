@@ -37,6 +37,8 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		s++;
 	}
+	if (!ft_isdigit(*s))
+		return (errno = 20, 0);
 	while (ft_isdigit(*s))
 	{
 		if (result != (result * 10 + *s - '0') / 10)

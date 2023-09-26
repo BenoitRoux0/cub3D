@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:15:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/19 16:47:31 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:39:49 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ int	on_focus_in(t_data *data)
 int	on_focus_out(t_data *data)
 {
 	data->win_focused = false;
+	mlx_mouse_move(data->mlx, data->win,
+		WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	data->player.angle_mov = 0;
 	return (0);
 }

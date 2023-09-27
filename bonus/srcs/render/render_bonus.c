@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 17:01:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/27 17:58:21 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,14 @@ int	render_to_window(t_data *data)
 		minimap_draw(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	mlx_string_put(data->mlx, data->win, 10, 10, FPS_COLOR_GREEN, data->fps_data.fps_str);
+	data->fps_data.frame_count++;
+	if ((clock() - data->fps_data.start) / (double)CLOCKS_PER_SEC >= 1)
+	{
+		data->fps_data.start = clock(); // reset start time
+		free(data->fps_data.fps_str);
+		data->fps_data.fps_str = ft_itoa(data->fps_data.frame_count); // set fps to counter
+		data->fps_data.frame_count = 0; // reset counter
+	}
 	return (0);
 }

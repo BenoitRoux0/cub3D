@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	ft_memset(&data, 0, sizeof(t_data));
 	data.gamepad = init_gamepads(1);
+	set_fps(&data.fps_data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 	data.map_img = create_map(data.map);
 	data.minimap_size = (t_vec_2i){200, 200};
 	data.win_focused = true;
+	data.fps_data.start = clock();
 	render_to_window(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
 	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);

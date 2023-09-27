@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:41:46 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/11/09 16:22:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 16:58:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,27 @@ int	ft_atoi(const char *str)
 {
 	long	result;
 	int		sign;
-	char	*s;
 
 	result = 0;
 	sign = 1;
-	s = (char *)str;
-	while (*s == ' ' || (*s >= 9 && *s <= 13))
-		s++;
-	if (*s == '+' || *s == '-')
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (*s == '-')
+		if (*str == '-')
 			sign = -1;
-		s++;
+		str++;
 	}
-	if (!ft_isdigit(*s))
+	if (!ft_isdigit(*str))
 		return (errno = 20, 0);
-	while (ft_isdigit(*s))
+	while (ft_isdigit(*str))
 	{
-		if (result != (result * 10 + *s - '0') / 10)
-			return (ft_overflow(sign));
-		result = (result * 10) + (*s - '0');
-		s++;
+		if (result != (result * 10 + *str - '0') / 10)
+			return (errno = 21, ft_overflow(sign));
+		result = (result * 10) + (*str - '0');
+		str++;
 	}
+	if (*str != '\0')
+		return (errno = 20, 0);
 	return ((int)result * sign);
 }

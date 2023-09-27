@@ -6,14 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:05:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 14:46:00 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/27 23:12:53 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static void	put_rotated_point(t_data *data, int dst_pos[2], \
-								int plr_pos[2], int color);
+											int pos[2], int color);
 static void	put_row(t_data *data, int row, int pos[2]);
 
 t_uint_img	*create_map(t_map map)
@@ -79,22 +79,18 @@ static void	put_row(t_data *data, int row, int pos[2])
 }
 
 static void	put_rotated_point(t_data *data, int dst_pos[2], \
-								int pos[2], int color)
+											int pos[2], int color)
 {
 	int				x;
 	int				y;
-	t_angle_data	angle_data;
 	int				src_pos[2];
 
 	src_pos[0] = pos[0] + dst_pos[0] - data->minimap_size.x / 2;
 	src_pos[1] = pos[1] + dst_pos[1] - data->minimap_size.y / 2;
-	angle_data.rad = ((data->player.angle + 90) * M_PI_4 / 45);
-	angle_data.angle_cos = cos(angle_data.rad);
-	angle_data.angle_sin = sin(angle_data.rad);
-	x = (src_pos[0] - pos[0]) * angle_data.angle_cos - \
-		(src_pos[1] - pos[1]) * angle_data.angle_sin + pos[0];
-	y = (src_pos[0] - pos[0]) * angle_data.angle_sin + \
-		(src_pos[1] - pos[1]) * angle_data.angle_cos + pos[1];
+	x = (src_pos[0] - pos[0]) * data->player.angle.angle_cos - \
+		(src_pos[1] - pos[1]) * data->player.angle.angle_sin + pos[0];
+	y = (src_pos[0] - pos[0]) * data->player.angle.angle_sin + \
+		(src_pos[1] - pos[1]) * data->player.angle.angle_cos + pos[1];
 	if (x >= 0 && x < data->map_img->width && \
 		y >= 0 && y < data->map_img->height && data->map_img->content[y][x])
 		data->img->content[dst_pos[1]][dst_pos[0]] = color;

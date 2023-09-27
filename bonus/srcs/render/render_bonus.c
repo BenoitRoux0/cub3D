@@ -103,6 +103,8 @@ int	render_to_window(t_data *data)
 	if (data->show_minimap)
 		minimap_draw(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
-	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	mlx_put_image_to_window(data->mlx, \
+							data->win, \
+							data->master_img->content, 0, 0);
 	return (0);
 }

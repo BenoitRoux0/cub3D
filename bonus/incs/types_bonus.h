@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/21 15:37:59 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/27 23:08:33 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct s_vec_2i
 	int	y;
 }	t_vec_2i;
 
+typedef struct s_angle_data
+{
+	double	deg;
+	double	rad;
+	double	angle_cos;
+	double	angle_sin;
+}	t_angle_data;
+
 typedef struct s_map
 {
 	char		**content;
@@ -64,11 +72,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double	pos[2];
-	double	mov[2];
-	double	angle_mov;
-	double	angle;
-	float	fov;
+	double			pos[2];
+	double			mov[2];
+	double			angle_mov;
+	t_angle_data	angle;
+	float			fov;
 }	t_player;
 
 typedef struct s_line
@@ -121,7 +129,7 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_ray			rays[WIN_WIDTH];
-	int 			show_minimap;
+	int				show_minimap;
 	t_uint_img		*map_img;
 	t_vec_2i		minimap_size;
 	t_gamepad		*gamepad;

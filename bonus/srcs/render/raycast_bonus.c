@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/12 17:24:08 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/27 23:50:39 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	raycast(t_data *data)
 	t_ray	ray_vert;
 
 	i = 0;
-	current_angle = data->player.angle - (data->player.fov / 2);
+	current_angle = data->player.angle.deg - (data->player.fov / 2);
 	current_angle = fmod((fmod(current_angle, 360) + 360), 360);
 	while (i < WIN_WIDTH)
 	{
@@ -35,7 +35,7 @@ int	raycast(t_data *data)
 		cast_horiz(data->player.pos, current_angle, &ray_horiz, data->map);
 		data->rays[i] = select_ray(ray_horiz, ray_vert);
 		data->rays[i].dist *= \
-						cos((data->player.angle - current_angle) * M_PI_4 / 45);
+					cos((data->player.angle.deg - current_angle) * M_PI_4 / 45);
 		current_angle += data->player.fov / WIN_WIDTH;
 		current_angle = fmod((fmod(current_angle, 360) + 360), 360);
 		i++;

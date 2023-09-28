@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 17:01:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/28 05:06:41 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	if (src_x < 0 || !r.hit)
 		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
-	i = WIN_HEIGHT / 2 - slice_height / 2;
+	i = (WIN_HEIGHT >> 1) - (slice_height >> 1);
 	src_pos = 0;
 	if (i < 0)
 	{
@@ -73,7 +73,7 @@ int	fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling)
 	t_vec_2i	pos;
 
 	pos.y = 0;
-	while (pos.y < WIN_HEIGHT / 2)
+	while (pos.y < (WIN_HEIGHT >> 1))
 	{
 		pos.x = 0;
 		while (pos.x < WIN_WIDTH)

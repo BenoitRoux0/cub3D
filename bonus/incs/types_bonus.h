@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/27 23:08:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/28 04:08:34 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_ray			rays[WIN_WIDTH];
+	t_angle_data	offset_raycast;
+	t_angle_data	offset_start;
 	int				show_minimap;
 	t_uint_img		*map_img;
 	t_vec_2i		minimap_size;

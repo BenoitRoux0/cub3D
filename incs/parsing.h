@@ -31,7 +31,7 @@ int		get_map(int fd, t_data *data);
 
 int		check_map_and_player(t_data *data);
 
-int	check_texture_format(char *textures_line[4]);
+int		check_texture_format(char *textures_line[4]);
 
 int		check_player(t_map *map, t_player *player);
 

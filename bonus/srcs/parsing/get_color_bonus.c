@@ -30,12 +30,12 @@ int	get_color(char *buff, uint32_t color[2], int *data_got)
 		return (ft_dprintf(2, STRANGE), STRANGE_CODE);
 	if (!ft_isdigit(tmp[0]))
 		return (ft_dprintf(2, ERM_WRONG_C), free(tmp),
-				*data_got = ERC_WRONG_C);
+			*data_got = ERC_WRONG_C);
 	split = ft_split(tmp, ',');
 	if (!split || ft_array_length((void **)split) != 3)
 		return (ft_dprintf(2, ERM_ARRAY_BIGGER,
 				buff[0]), ft_free_split(split), free(tmp),
-				*data_got = ERC_ARRAY_BIGGER);
+			*data_got = ERC_ARRAY_BIGGER);
 	color_code = color_atoi(dest, split);
 	if (color_code != EXIT_SUCCESS)
 		return (ft_free_split(split), free(tmp), *data_got = color_code);

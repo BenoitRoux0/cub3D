@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:11:36 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/23 13:10:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:11:56 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	flush_newline(char **array, int array_length)
 		j = ft_strlen(array[i]) - 1;
 		if (array[i][j] == '\n')
 			array[i][j] = ' ';
-		while (array[i][j] == ' ')
+		while (ft_isspace(array[i][j]))
 			j--;
 		array[i][j + 1] = '\0';
 	}

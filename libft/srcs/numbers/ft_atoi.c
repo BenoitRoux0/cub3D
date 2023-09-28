@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:41:46 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/27 16:58:22 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:07:38 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	ft_atoi(const char *str)
 		result = (result * 10) + (*str - '0');
 		str++;
 	}
-	if (*str != '\0')
-		return (errno = 20, 0);
+	while (*str != '\0')
+	{
+		if (!ft_isspace(*str))
+			return (errno = 20, 0);
+		str++;
+	}
 	return ((int)result * sign);
 }

@@ -38,7 +38,7 @@ static void	rev_arr(uint32_t *arr, int size)
 	uint32_t	tmp;
 
 	i = 0;
-	while (i < size / 2)
+	while (i < (size >> 1))
 	{
 		tmp = arr[i];
 		arr[i] = arr[size - i - 1];
@@ -53,7 +53,7 @@ static void	rev_ptr_arr(uint32_t **arr, int size)
 	uint32_t	*tmp;
 
 	i = 0;
-	while (i < size / 2)
+	while (i < (size >> 2))
 	{
 		tmp = arr[i];
 		arr[i] = arr[size - i - 1];

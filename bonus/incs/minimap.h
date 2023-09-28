@@ -15,14 +15,6 @@
 
 # include "types_bonus.h"
 
-typedef	struct s_angle_data
-{
-	double	deg;
-	double	rad;
-	double	angle_cos;
-	double	angle_sin;
-}	t_angle_data;
-
 t_uint_img	*create_map(t_map map);
 t_uint_img	*cut_minimap(t_data *data);
 void		minimap_draw(t_data *data);

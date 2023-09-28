@@ -1,6 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   img_to_mlx_img_bonus.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/28 03:28:03 by beroux            #+#    #+#             */
+/*   Updated: 2023/09/28 03:28:03 by beroux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   img_to_mlx_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
@@ -12,7 +24,8 @@
 
 #include "cub_bonus.h"
 
-static void			my_mlx_pixel_put(t_master_img *data, int x, int y, uint32_t c);
+static void			my_mlx_pixel_put(t_master_img *data, \
+									int x, int y, uint32_t c);
 static t_master_img	*new_mlx_img(void *mlx, int width, int heigth);
 
 void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img *src)
@@ -45,7 +58,7 @@ static void	my_mlx_pixel_put(t_master_img *img, int x, int y, uint32_t c)
 {
 	char	*addr;
 
-	addr = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
+	addr = img->addr + (y * img->line_len + x * (img->bits_per_pixel >> 3));
 	*(uint32_t *) addr = c;
 }
 

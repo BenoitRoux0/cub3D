@@ -18,11 +18,11 @@ int	main(int argc, char **argv)
 	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
-	data.gamepad = init_gamepads(1);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
 	parsing(argc, argv, &data);
+	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
 		return (2);

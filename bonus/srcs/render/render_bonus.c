@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 17:01:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/28 05:47:47 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
-	src_x = ((int) r.inter[0] % CELL_SIZE) % tex->width;
+	src_x = ((int) r.inter[0] % CELL_SIZE) * tex->width / CELL_SIZE;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
-		src_x = ((int) r.inter[1] % CELL_SIZE) % tex->width;
+		src_x = ((int) r.inter[1] % CELL_SIZE) * tex->width / CELL_SIZE;
 	if (src_x < 0 || !r.hit)
 		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
-	i = WIN_HEIGHT / 2 - slice_height / 2;
+	i = (WIN_HEIGHT >> 1) - (slice_height >> 1);
 	src_pos = 0;
 	if (i < 0)
 	{
@@ -73,7 +73,7 @@ int	fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling)
 	t_vec_2i	pos;
 
 	pos.y = 0;
-	while (pos.y < WIN_HEIGHT / 2)
+	while (pos.y < (WIN_HEIGHT >> 1))
 	{
 		pos.x = 0;
 		while (pos.x < WIN_WIDTH)
@@ -103,6 +103,8 @@ int	render_to_window(t_data *data)
 	if (data->show_minimap)
 		minimap_draw(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
-	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	mlx_put_image_to_window(data->mlx, \
+							data->win, \
+							data->master_img->content, 0, 0);
 	return (0);
 }

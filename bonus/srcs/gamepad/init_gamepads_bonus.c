@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gamepad.h"
+#include "gamepad_bonus.h"
 
 static int	add_gamepad(t_gamepad **list);
 

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAMEPAD_H
-# define GAMEPAD_H
+#ifndef GAMEPAD_BONUS_H
+# define GAMEPAD_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>

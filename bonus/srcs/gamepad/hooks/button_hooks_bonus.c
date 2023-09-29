@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gamepad.h"
+#include "gamepad_bonus.h"
 
 void	button_pressed_hook(t_gamepad *gamepad, t_button_func func, \
 									int js_number, void *data)

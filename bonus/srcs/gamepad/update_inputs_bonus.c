@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gamepad.h"
+#include "gamepad_bonus.h"
 
 #define MAX_EVENTS 0xff
 

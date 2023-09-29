@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   axis_hook.c                                        :+:      :+:    :+:   */
+/*   clear_gamepads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 07:24:00 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/25 07:24:00 by beroux           ###   ########.fr       */
+/*   Created: 2023/09/25 05:31:29 by beroux            #+#    #+#             */
+/*   Updated: 2023/09/25 16:03:30 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gamepad.h"
+#include "gamepad_bonus.h"
 
-void	axis_hook(t_gamepad *gamepad, t_axis_func func, \
-						int js_number, void *data)
+void	clear_gamepads(t_gamepad **list)
 {
-	int	i;
-
-	i = 0;
-	while (i < js_number && gamepad)
-		gamepad = gamepad->next;
-	if (!gamepad)
+	if (!list || !*list)
 		return ;
-	gamepad->axis_hook = func;
-	gamepad->axis_param = data;
+	if ((*list)->next)
+		clear_gamepads(&(*list)->next);
+	if ((*list)->name)
+		free((*list)->name);
+	if ((*list)->fd != -1)
+		close((*list)->fd);
+	free(*list);
+	*list = NULL;
 }

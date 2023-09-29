@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 17:33:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:56:23 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,21 @@ typedef struct s_angle_data
 	double	angle_sin;
 }	t_angle_data;
 
+typedef struct s_sprite
+{
+	t_uint_img	*src;
+	double		height;
+	int			cell[2];
+	double		pos[2];
+}	t_sprite;
+
 typedef struct s_map
 {
 	char		**content;
 	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
+	t_sprite	sprites[88];
 }	t_map;
 
 typedef struct s_player
@@ -118,6 +127,19 @@ typedef struct s_ray
 	bool	hit;
 }	t_ray;
 
+typedef struct s_sprite_col
+{
+	t_uint_img	*src;
+	int			pos;
+	int			height;
+}	t_sprite_col;
+
+typedef struct s_col_buffer
+{
+	t_ray			ray;
+	t_sprite_col	sprites[0xf];
+}	t_col_buffer;
+
 typedef struct s_data
 {
 	void			*mlx;
@@ -128,10 +150,11 @@ typedef struct s_data
 	t_uint_img		*img;
 	t_map			map;
 	t_player		player;
-	t_ray			rays[WIN_WIDTH];
+	t_col_buffer	buffers[WIN_WIDTH];
 	t_angle_data	offset_raycast;
 	t_angle_data	offset_start;
 	bool			show_minimap;
+	t_col_buffer	col_buffer[WIN_WIDTH];
 	t_uint_img		*map_img;
 	t_vec_2i		minimap_size;
 	t_gamepad		*gamepad;

@@ -23,7 +23,7 @@ int	render(t_data *data)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		ray = data->rays[i];
+		ray = data->buffers[i].ray;
 		if (fmod(ray.inter[0], CELL_SIZE) == 0 && \
 			data->player.pos[0] - ray.inter[0] > 0)
 			draw_wall_slice(data, i, ray, data->map.walls_text[WEST]);

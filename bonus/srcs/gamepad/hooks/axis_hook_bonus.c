@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   axis_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 19:13:42 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/18 15:54:12 by beroux           ###   ########.fr       */
+/*   Created: 2023/09/25 07:24:00 by beroux            #+#    #+#             */
+/*   Updated: 2023/09/25 07:24:00 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "gamepad_bonus.h"
 
-# include "types_bonus.h"
+void	axis_hook(t_gamepad *gamepad, t_axis_func func, \
+						int js_number, void *data)
+{
+	int	i;
 
-t_uint_img	*create_map(t_map map);
-t_uint_img	*cut_minimap(t_data *data);
-void		minimap_draw(t_data *data);
-
-#endif
+	i = 0;
+	while (i < js_number && gamepad)
+		gamepad = gamepad->next;
+	if (!gamepad)
+		return ;
+	gamepad->axis_hook = func;
+	gamepad->axis_param = data;
+}

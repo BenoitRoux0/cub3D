@@ -5,6 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/28 03:26:31 by beroux            #+#    #+#             */
+/*   Updated: 2023/09/28 03:26:31 by beroux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   img_to_mlx_img.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:33:43 by beroux            #+#    #+#             */
 /*   Updated: 2023/05/24 11:38:13 by beroux           ###   ########lyon.fr   */
 /*                                                                            */
@@ -12,7 +24,8 @@
 
 #include "cub.h"
 
-static void			my_mlx_pixel_put(t_master_img *data, int x, int y, uint32_t c);
+static void			my_mlx_pixel_put(t_master_img *data, \
+									int x, int y, uint32_t c);
 static t_master_img	*new_mlx_img(void *mlx, int width, int heigth);
 
 void	img_to_mlx_img(void *mlx, t_master_img **dst, t_uint_img *src)

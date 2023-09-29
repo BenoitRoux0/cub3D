@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gamepad.h"
+#include "gamepad_bonus.h"
 
 static void				check_disconnections(t_gamepad *gamepads);
 static struct dirent	*get_next_controller(char *dir_path, DIR *dir);

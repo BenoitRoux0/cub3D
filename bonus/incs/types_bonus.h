@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 17:33:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/23 13:19:36 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ typedef struct s_vec_2i
 	int	x;
 	int	y;
 }	t_vec_2i;
+
+typedef struct s_tex_tracker
+{
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+}		t_tracker;
 
 typedef struct s_angle_data
 {

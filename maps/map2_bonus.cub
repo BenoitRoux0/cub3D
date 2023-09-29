@@ -1,10 +1,10 @@
 C 17,17,130
 F 35,13,62
 
-EA ./assets/textures/wall/M1.xpm
-NO ./assets/textures/wall/M3.xpm
-SO ./assets/textures/wall/M5.xpm
-WE ./assets/textures/wall/M2.xpm
+EA ./textures/wall/M1.xpm
+NO ./textures/wall/M3.xpm
+SO ./textures/wall/M5.xpm
+WE ./textures/wall/M2.xpm
 
  1111111111111
 100100100000001

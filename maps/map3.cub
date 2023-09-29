@@ -1,9 +1,9 @@
 C		  42, 			231,227
 F	123,55,42
-EA ./assets/textures/wall_1.xpm
-NO ./assets/textures/wall_2.xpm
-SO ./assets/textures/wall_3.xpm 
-WE ./assets/textures/wall_4.xpm 
+EA ./textures/wall_1.xpm
+NO ./textures/wall_2.xpm
+SO ./textures/wall_3.xpm
+WE ./textures/wall_4.xpm
 
       1
      111

@@ -1,8 +1,8 @@
 
-   EA             ./assets/textures/wall_1.xpm  
-NO          ./assets/textures/wall_2.xpm  
-       SO             ./assets/textures/wall_3.xpm                    
-WE            ./assets/textures/wall_4.xpm       
+   EA             ./textures/wall_1.xpm
+NO          ./textures/wall_2.xpm
+       SO             ./textures/wall_3.xpm
+WE            ./textures/wall_4.xpm
 F 120,000,0
 C 100,30,0
 

@@ -60,10 +60,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)result * sign);
 }
-
-#include <stdio.h>
-int main(void)
-{
-	int i = ft_atoi("-256");
-	printf("%d\n", i);
-}

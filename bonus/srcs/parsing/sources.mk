@@ -4,6 +4,6 @@ SRCS +=	parsing/parsing_bonus.c				\
 		parsing/get_color_bonus.c				\
 		parsing/read_map_bonus.c				\
 		parsing/check_map_bonus.c				\
-		parsing/parse_player_bonus.c
-
+		parsing/parse_player_bonus.c			\
+		parsing/texture_error_check_bonus.c
 INCS +=	incs/parsing_bonus.h

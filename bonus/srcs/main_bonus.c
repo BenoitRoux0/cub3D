@@ -18,11 +18,11 @@ int	main(int argc, char **argv)
 	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
-	data.gamepad = init_gamepads(1);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
 	parsing(argc, argv, &data);
+	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
 		return (2);
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	data.map_img = create_map(data.map);
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
+	init_angles(&data);
 	render_to_window(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
 	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);

@@ -83,6 +83,6 @@ int	on_loop(t_data *data)
 		&& data->win_focused)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 	update_player(data);
-	render_to_window(data);
+	render_locked_fps(data);
 	return (0);
 }

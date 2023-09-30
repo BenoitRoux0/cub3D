@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 14:40:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 17:25:38 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	data.map_img = create_map(data.map);
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
-	data.fps_data.start = clock();
 	init_angles(&data);
-	render_to_window(&data);
+	data.fps_data.second_check = clock();
+	render_locked_fps(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
 	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);
 	mlx_hook(data.win, FocusIn, FocusChangeMask, on_focus_in, &data);

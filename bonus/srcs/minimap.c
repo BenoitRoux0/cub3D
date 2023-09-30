@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:05:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 14:46:00 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 14:37:33 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	minimap_draw(t_data *data)
 	pos[0] = ((data->player.pos[0])) / ratio;
 	pos[1] = ((data->player.pos[1])) / ratio;
 	i = 0;
-	while (i < data->minimap_size.y)
+	while (i < data->minimap_size)
 	{
 		put_row(data, i, pos);
 		i++;
@@ -60,18 +60,24 @@ static void	put_row(t_data *data, int row, int pos[2])
 	int	i;
 
 	i = 0;
-	while (i < data->minimap_size.x)
+	while (i < data->minimap_size)
 	{
-		if (pow(i - 100, 2) + pow(row - 100, 2) < 100 * 100)
+		if (pow(i - (data->minimap_size >> 1), 2) + \
+			pow(row - (data->minimap_size >> 1), 2) < \
+			(data->minimap_size >> 1) * (data->minimap_size >> 1))
 		{
-			if (pow(i - 100, 2) + pow(row - 100, 2) < 95 * 95)
+			if (pow(i - (data->minimap_size >> 1), 2) + \
+				pow(row - (data->minimap_size >> 1), 2) < \
+				((data->minimap_size >> 1) - 5) * \
+				((data->minimap_size >> 1) - 5))
 				put_rotated_point(data, (int [2]){i, row}, pos, \
 						~data->map.colors[CEILING]);
 			else
 				data->img->content[row][i] = \
 										data->map.colors[CEILING] + 0XF0F0F0;
 		}
-		if (pow(i - 100, 2) + pow(row - 100, 2) < 25 && \
+		if (pow(i - (data->minimap_size >> 1), 2) + \
+			pow(row - (data->minimap_size >> 1), 2) < 25 && \
 			row < data->img->height && i < data->img->width)
 			data->img->content[row][i] = 0XFF0000;
 		i++;
@@ -86,8 +92,8 @@ static void	put_rotated_point(t_data *data, int dst_pos[2], \
 	t_angle_data	angle_data;
 	int				src_pos[2];
 
-	src_pos[0] = pos[0] + dst_pos[0] - data->minimap_size.x / 2;
-	src_pos[1] = pos[1] + dst_pos[1] - data->minimap_size.y / 2;
+	src_pos[0] = pos[0] + dst_pos[0] - (data->minimap_size >> 1);
+	src_pos[1] = pos[1] + dst_pos[1] - (data->minimap_size >> 1);
 	angle_data.rad = ((data->player.angle + 90) * M_PI_4 / 45);
 	angle_data.angle_cos = cos(angle_data.rad);
 	angle_data.angle_sin = sin(angle_data.rad);

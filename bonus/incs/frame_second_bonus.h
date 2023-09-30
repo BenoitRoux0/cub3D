@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAME_SECOND_H
-# define FRAME_SECOND_H
+#ifndef FRAME_SECOND_BONUS_H
+# define FRAME_SECOND_BONUS_H
 
 # include "cub_bonus.h"
 

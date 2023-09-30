@@ -126,6 +126,15 @@ typedef struct s_ray
 	bool	hit;
 }	t_ray;
 
+typedef struct s_fps_data
+{
+	int		fps;
+	int		max_fps;
+	int		frame_count;
+	char	*fps_str;
+	clock_t	start;
+}			t_fps_data;
+
 typedef struct s_data
 {
 	void			*mlx;
@@ -144,6 +153,7 @@ typedef struct s_data
 	int				minimap_size;
 	t_gamepad		*gamepad;
 	int				input_mode;
+	t_fps_data		fps_data;
 }	t_data;
 
 #endif

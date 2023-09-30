@@ -106,5 +106,14 @@ int	render_to_window(t_data *data)
 	mlx_put_image_to_window(data->mlx, \
 							data->win, \
 							data->master_img->content, 0, 0);
+	mlx_string_put(data->mlx, data->win, 10, 10, FPS_COLOR_GREEN, data->fps_data.fps_str);
+	data->fps_data.frame_count++;
+	if ((clock() - data->fps_data.start) / (double)CLOCKS_PER_SEC >= 1)
+	{
+		data->fps_data.start = clock(); // reset start time
+		free(data->fps_data.fps_str);
+		data->fps_data.fps_str = ft_itoa(data->fps_data.frame_count); // set fps to counter
+		data->fps_data.frame_count = 0; // reset counter
+	}
 	return (0);
 }

@@ -16,7 +16,7 @@ IS_BONUS =	0
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
-	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c
+	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c frame_second.c
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
@@ -36,7 +36,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -O2 #-g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

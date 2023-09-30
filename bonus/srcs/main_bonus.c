@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
+	set_fps(&data.fps_data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 	data.map_img = create_map(data.map);
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
+	data.fps_data.start = clock();
 	init_angles(&data);
 	render_to_window(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);

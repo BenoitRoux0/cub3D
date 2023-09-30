@@ -92,9 +92,9 @@ static void	put_rotated_point(t_data *data, int dst_pos[2], \
 	t_angle_data	angle_data;
 	int				src_pos[2];
 
-	src_pos[0] = pos[0] + dst_pos[0] - data->minimap_size.x / 2;
-	src_pos[1] = pos[1] + dst_pos[1] - data->minimap_size.y / 2;
-	angle_data.rad = ((data->player.angle + 90) * M_PI_4 / 45);
+	src_pos[0] = pos[0] + dst_pos[0] - data->minimap_size / 2;
+	src_pos[1] = pos[1] + dst_pos[1] - data->minimap_size / 2;
+	angle_data.rad = ((data->player.angle.deg + 90) * M_PI_4 / 45);
 	angle_data.angle_cos = cos(angle_data.rad);
 	angle_data.angle_sin = sin(angle_data.rad);
 	x = (src_pos[0] - pos[0]) * angle_data.angle_cos - \

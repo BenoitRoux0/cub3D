@@ -14,10 +14,10 @@
 # define DEFINES_BONUS_H
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 720
+#  define WIN_WIDTH 600
 # endif
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 480
+#  define WIN_HEIGHT 600
 # endif
 
 # define CELL_SIZE 64
@@ -26,8 +26,8 @@
 # define PLAYER_SPEED 3
 # define PLAYER_FOV 60
 
-# ifndef FPS_TARGET
-#  define FPS_TARGET 60
+# ifndef FPS
+#  define FPS 120
 # endif
 
 #endif

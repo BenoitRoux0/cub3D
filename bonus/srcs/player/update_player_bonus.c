@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 15:36:02 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 15:50:15 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	update_player(t_data *data)
 
 	if (data->player.angle_mov != 0.0)
 	{
-		data->player.angle.deg += data->player.angle_mov * PLAYER_SPEED;
+		data->player.angle.deg += data->player.angle_mov * PLAYER_ROT_SPEED;
 		data->player.angle.deg = fmod(data->player.angle.deg, 360);
 		if (data->player.angle.deg < 0)
 			data->player.angle.deg = 360 + data->player.angle.deg;

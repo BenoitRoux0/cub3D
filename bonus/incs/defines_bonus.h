@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 15:44:51 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 15:52:30 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define CELL_SH 9
 # define INTER_LIM 512
 
-# define PLAYER_SPEED 3
+# define PLAYER_SPEED 25
+# define PLAYER_ROT_SPEED 2
 # define PLAYER_FOV 60
 
 #endif

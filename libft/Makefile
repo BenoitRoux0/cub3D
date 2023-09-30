@@ -28,7 +28,7 @@ SRCS			=	${addprefix srcs/, ${C_FILES}}
 C_FILES 		=	char/ft_isalnum.c	char/ft_isalpha.c	\
 					char/ft_isascii.c	char/ft_isdigit.c	\
 					char/ft_isprint.c	char/ft_toupper.c	\
-					char/ft_tolower.c	\
+					char/ft_tolower.c	char/ft_isspace.c	\
 \
 					io/ft_putchar_fd.c					io/ft_putendl_fd.c						\
 					io/ft_putnbr_fd.c					io/ft_putstr_fd.c						\

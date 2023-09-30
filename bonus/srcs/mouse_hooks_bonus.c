@@ -17,7 +17,7 @@ int	on_mouse_clic(int button, int x, int y, t_data *data)
 	if (button == 1)
 	{
 		data->mouse.listen = true;
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 		mlx_mouse_hide(data->mlx, data->win);
 	}
 	if (button == 3)
@@ -36,7 +36,7 @@ int	on_mouvement(int x, int y, t_data *data)
 	{
 		data->mouse.x = x;
 		data->mouse.y = y;
-		data->player.angle_mov = (data->mouse.x - WIN_WIDTH / 2) * 0.025;
+		data->player.angle_mov = (data->mouse.x - (WIN_WIDTH >> 1)) * 0.025;
 	}
 	return (0);
 }

@@ -1,0 +1,14 @@
+C		  42, 			231,227
+F	123,55,42
+EA ./assets/textures/wall_1.xpm
+NO ./assets/textures/wall_2.xpm
+SO ./assets/textures/wall_3.xpm 
+WE ./assets/textures/wall_4.xpm 
+
+      1
+     111
+    10001
+    10E01
+    10001
+     111
+      1

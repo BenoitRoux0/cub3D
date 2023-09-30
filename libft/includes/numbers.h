@@ -14,6 +14,7 @@
 # define NUMBERS_H
 # include <limits.h>
 # include <stdlib.h>
+# include <errno.h>
 # include "char.h"
 
 int		ft_atoi(const char *str);

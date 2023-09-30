@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/23 13:19:36 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/30 14:40:25 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_data
 	t_angle_data	offset_start;
 	bool			show_minimap;
 	t_uint_img		*map_img;
-	t_vec_2i		minimap_size;
+	int				minimap_size;
 	t_gamepad		*gamepad;
 	int				input_mode;
 }	t_data;

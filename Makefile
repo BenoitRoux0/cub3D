@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/09/28 05:07:53 by beroux           ###   ########.fr        #
+#    Updated: 2023/09/30 15:17:06 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,17 +36,17 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -g3
+CFLAGS =	-Wall -Wextra -Werror -O2 #-g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
 
 ifeq ($(shell command -v xrandr 2> /dev/null),)
-    WIN_WIDTH = 600
+    WIN_WIDTH = 800
     WIN_HEIGHT = 600
 else
+    WIN_WIDTH := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f1 | head -n 1}
     WIN_HEIGHT := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
-    WIN_WIDTH := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
 endif
 
 %.o:		%.c

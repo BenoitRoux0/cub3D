@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 15:42:45 by gd-harco          #+#    #+#              #
-#    Updated: 2023/05/16 10:26:14 by gd-harco         ###   ########.fr        #
+#    Updated: 2023/09/29 15:50:02 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ C_FILES 		=	char/ft_isalnum.c	char/ft_isalpha.c	\
 					memory/ft_memset.c	memory/ft_free_array.c	\
 \
 					numbers/ft_atoi.c	numbers/ft_itoa.c	\
+					numbers/ft_atof.c						\
 \
 					str/ft_split.c		str/ft_free_split.c		str/ft_strchr.c		\
 					str/ft_strcmp.c		str/ft_strdup.c			str/ft_strpdup.c	\

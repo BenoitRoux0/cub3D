@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 03:29:46 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 15:28:53 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	raycast(t_data *data)
 	t_ray			ray_vert;
 
 	i = 0;
-	current_angle.deg = data->player.angle.deg - (data->player.fov / 2);
+	current_angle.deg = data->player.angle.deg - ((int) data->player.fov >> 1);
 	current_angle.deg = fmod((fmod(current_angle.deg, 360) + 360), 360);
 	current_angle.rad = current_angle.deg * M_PI_4 / 45;
 	current_angle.angle_cos = cos(current_angle.rad);
@@ -58,7 +58,7 @@ static int	cast_vert(double start[2], t_angle_data *angle, t_ray *ray, t_map map
 
 	if (angle->deg == 90 || angle->deg == 270)
 		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_vert.inter[0] = ((double) CELL_SIZE) * ((int)(start[0] / CELL_SIZE) + \
+	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] >> CELL_SH) + \
 										(angle->deg < 90 || angle->deg > 270));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
 	inter_vert.inter[1] = (inter_vert.dist * angle->angle_sin);
@@ -80,7 +80,7 @@ static int	cast_horiz(double start[2], t_angle_data *angle, t_ray *ray, t_map ma
 
 	if (angle->deg == 0 || angle->deg == 180)
 		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_horiz.inter[1] = (double) CELL_SIZE * ((int)(start[1] / CELL_SIZE) + \
+	inter_horiz.inter[1] = (double) CELL_SIZE * (((int)start[1] >> CELL_SH) + \
 												(angle->deg < 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / angle->angle_sin;
 	inter_horiz.inter[0] = (inter_horiz.dist * angle->angle_cos);

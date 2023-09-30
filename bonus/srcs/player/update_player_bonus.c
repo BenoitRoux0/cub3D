@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/27 23:49:51 by beroux           ###   ########.fr       */
+/*   Updated: 2023/09/30 15:36:02 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 	int	pos_in_map[2];
 	int	next_pos_in_map[2];
 
-	pos_in_map[0] = (int)(pos[0] / CELL_SIZE);
-	pos_in_map[1] = (int)(pos[1] / CELL_SIZE);
-	next_pos_in_map[0] = (int)(next_pos[0] / CELL_SIZE);
-	next_pos_in_map[1] = (int)(next_pos[1] / CELL_SIZE);
+	pos_in_map[0] = ((int)pos[0] >> CELL_SH);
+	pos_in_map[1] = ((int)pos[1] >> CELL_SH);
+	next_pos_in_map[0] = ((int)next_pos[0] >> CELL_SH);
+	next_pos_in_map[1] = ((int)next_pos[1] >> CELL_SH);
 	if (data->map.content[pos_in_map[1]][next_pos_in_map[0]] == '1')
 		next_pos[0] = pos[0];
 	if (data->map.content[next_pos_in_map[1]][pos_in_map[0]] == '1')

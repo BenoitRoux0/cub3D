@@ -51,7 +51,7 @@ int	on_focus_out(t_data *data)
 {
 	data->win_focused = false;
 	mlx_mouse_move(data->mlx, data->win,
-		WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 	data->player.angle_mov = 0;
 	return (0);
 }

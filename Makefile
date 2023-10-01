@@ -83,4 +83,7 @@ $(LIBFT):
 bonus:
 			$(MAKE) all IS_BONUS=1
 
+re_bonus:
+			$(MAKE) re IS_BONUS=1
+
 .PHONY:		all clean fclean re bonus

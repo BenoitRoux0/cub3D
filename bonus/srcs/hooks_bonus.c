@@ -40,6 +40,8 @@ int	on_destroy(t_data *data)
 		clear_gamepads(&data->gamepad);
 	if (data->map_img)
 		clear_img(data->map_img);
+	if (data->fps_data.fps_str)
+		free(data->fps_data.fps_str);
 	exit (0);
 }
 

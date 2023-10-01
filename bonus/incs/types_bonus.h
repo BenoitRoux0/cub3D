@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 16:30:07 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:19:29 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,16 @@ typedef struct s_ray
 
 typedef struct s_fps_data
 {
-	int		fps;
-	int		max_fps;
-	int		frame_time_us;
-	int		frame_count;
-	char	*fps_str;
-	int		time_left_in_frame;
-	clock_t	second_check;
-	clock_t	frame_start;
-	clock_t	frame_end;
-}			t_fps_data;
+	int				fps;
+	int				max_fps;
+	int				frame_time_us;
+	int				frame_count;
+	char			*fps_str;
+	int				time_left_in_frame;
+	struct timeval	second_end;
+	clock_t			frame_start;
+	clock_t			frame_end;
+}					t_fps_data;
 
 typedef struct s_data
 {

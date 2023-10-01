@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/27 17:32:31 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:26:57 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define PLAYER_FOV 60
 
 # ifndef FPS
-#  define FPS 120
+#  define FPS 60
 # endif
 
 #endif

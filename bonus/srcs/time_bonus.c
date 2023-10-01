@@ -5,34 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 15:09:32 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/01 15:09:32 by gd-harco         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 14:43:22 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/07/21 14:43:25 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/10/01 14:43:22 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/10/01 15:28:36 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-int	compare_timeval(struct timeval *t1, struct timeval *t2)
+int	compare_timeval(struct timeval *current_time, struct timeval *goal_time)
 {
-	if (t1->tv_sec < t2->tv_sec)
+	if (current_time->tv_sec < goal_time->tv_sec)
 		return (-1);
-	if (t1->tv_sec > t2->tv_sec)
+	if (current_time->tv_sec > goal_time->tv_sec)
 		return (1);
-	if (t1->tv_usec < t2->tv_usec)
+	if (current_time->tv_usec < goal_time->tv_usec)
 		return (-1);
-	if (t1->tv_usec > t2->tv_usec)
+	if (current_time->tv_usec > goal_time->tv_usec)
 		return (1);
 	return (0);
 }
@@ -49,12 +37,11 @@ void	add_ms_tv(struct timeval *tv, long milliseconds)
 	}
 }
 
-int	msleep(t_ms ms_to_sleep, t_philo *philo)
+int	msleep(int ms_to_sleep)
 {
 	struct timeval	goal_time;
 	struct timeval	current_time;
 
-	(void)philo;
 	gettimeofday(&goal_time, NULL);
 	add_ms_tv(&goal_time, ms_to_sleep);
 	while (42)

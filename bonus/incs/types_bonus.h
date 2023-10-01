@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 15:19:29 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:38:27 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	bool			win_focused;
+	bool			show_fps;
 	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;

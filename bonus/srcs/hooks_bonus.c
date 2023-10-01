@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 03:06:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 15:39:19 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	on_key_press(int keycode, t_data *data)
 		data->show_minimap = !data->show_minimap;
 		render_to_window(data);
 	}
+	if (keycode == XK_F3)
+		data->show_fps = !data->show_fps;
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	if (keycode == XK_m)

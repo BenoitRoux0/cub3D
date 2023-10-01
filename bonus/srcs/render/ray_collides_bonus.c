@@ -16,8 +16,8 @@ int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map)
 {
 	int	to_check[2];
 
-	to_check[1] = (int) ray->inter[1] / CELL_SIZE - (vector[1] < 0);
-	to_check[0] = (int) ray->inter[0] / CELL_SIZE;
+	to_check[1] = ((int) ray->inter[1] >> CELL_SH) - (vector[1] < 0);
+	to_check[0] = ((int) ray->inter[0] >> CELL_SH);
 	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
 		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);
@@ -30,8 +30,8 @@ int	ray_collide_vert(double vector[2], t_ray *ray, t_map map)
 {
 	int	to_check[2];
 
-	to_check[0] = (int) ray->inter[0] / CELL_SIZE - (vector[0] < 0);
-	to_check[1] = (int) ray->inter[1] / CELL_SIZE;
+	to_check[0] = ((int) ray->inter[0] >> CELL_SH) - (vector[0] < 0);
+	to_check[1] = ((int) ray->inter[1] >> CELL_SH);
 	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
 		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);

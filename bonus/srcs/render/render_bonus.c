@@ -47,9 +47,9 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
-	src_x = ((int) r.inter[0] % CELL_SIZE) * tex->width / CELL_SIZE;
+	src_x = ((int) r.inter[0] % CELL_SIZE) * tex->width >> CELL_SH;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
-		src_x = ((int) r.inter[1] % CELL_SIZE) * tex->width / CELL_SIZE;
+		src_x = ((int) r.inter[1] % CELL_SIZE) * tex->width >> CELL_SH;
 	if (src_x < 0 || !r.hit)
 		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));

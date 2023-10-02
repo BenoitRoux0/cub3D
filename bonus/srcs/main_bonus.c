@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 19:11:20 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 04:15:54 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ static void	setup_sprites(t_data *data)
 	sprite_barrel2.height = 0.5;
 	sprite_barrel2.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_2.xpm");
 	data->map.sprites['b' - 'a'] = sprite_barrel2;
-	data->map.content[1][1] = 'a';
+	data->map.content[2][2] = 'a';
 }

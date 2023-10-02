@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 19:07:29 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/02 00:44:23 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ typedef struct s_sprite
 	double		height;
 }	t_sprite;
 
+typedef struct s_sprites_list
+{
+	t_sprite				*sprite;
+	int						pos[2];
+	struct s_sprites_list	*next;
+}	t_sprites_list;
+
 typedef struct s_map
 {
 	char		**content;
@@ -135,9 +142,9 @@ typedef struct s_ray
 
 typedef struct s_sprite_col
 {
-	t_uint_img	*src;
+	t_sprite	*src;
 	int			pos;
-	int			height;
+	double		dist;
 }	t_sprite_col;
 
 typedef struct s_col_buffer
@@ -157,6 +164,7 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_col_buffer	buffers[WIN_WIDTH];
+	t_sprites_list	*sprites_list;
 	t_angle_data	offset_raycast;
 	t_angle_data	offset_start;
 	bool			show_minimap;

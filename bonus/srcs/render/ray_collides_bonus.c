@@ -6,13 +6,13 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 02:17:05 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 19:19:04 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:20:34 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map)
+int	ray_collide_horiz(t_data *data, double vector[2], t_ray *ray, t_map map)
 {
 	int	to_check[2];
 
@@ -23,12 +23,14 @@ int	ray_collide_horiz(double vector[2], t_ray *ray, t_map map)
 		return (ray->hit = 0, 0);
 	if (map.content[to_check[1]][to_check[0]] == '1')
 		return (ray->hit = 1, 1);
-	if (map.content[to_check[1]][to_check[0]] >= 'a' && map.content[to_check[1]][to_check[0]] <= 'z')
-		printf("hit sprite %c at %f %f\n",map.content[to_check[1]][to_check[0]] , ray->inter[0], ray->inter[1]);
+	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
+		map.content[to_check[1]][to_check[0]] <= 'z')
+		hit_sprite(&data->sprites_list, data->map.sprites, \
+					to_check, map.content[to_check[1]][to_check[0]]);
 	return (0);
 }
 
-int	ray_collide_vert(double vector[2], t_ray *ray, t_map map)
+int	ray_collide_vert(t_data *data, double vector[2], t_ray *ray, t_map map)
 {
 	int	to_check[2];
 
@@ -39,7 +41,9 @@ int	ray_collide_vert(double vector[2], t_ray *ray, t_map map)
 		return (ray->hit = 0, 0);
 	if (map.content[to_check[1]][to_check[0]] == '1')
 		return (ray->hit = 1, 1);
-	if (map.content[to_check[1]][to_check[0]] >= 'a' && map.content[to_check[1]][to_check[0]] <= 'z')
-		printf("hit sprite %c at %f %f\n",map.content[to_check[1]][to_check[0]] , ray->inter[0], ray->inter[1]);
+	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
+		map.content[to_check[1]][to_check[0]] <= 'z')
+		hit_sprite(&data->sprites_list, data->map.sprites, \
+					to_check, map.content[to_check[1]][to_check[0]]);
 	return (0);
 }

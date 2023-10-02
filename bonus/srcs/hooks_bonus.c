@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 03:06:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:54:34 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	on_destroy(t_data *data)
 		clear_gamepads(&data->gamepad);
 	if (data->map_img)
 		clear_img(data->map_img);
+	if (data->sprites_list)
+		clear_sprites(&data->sprites_list);
 	exit (0);
 }
 

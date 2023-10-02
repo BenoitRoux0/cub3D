@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/01 00:00:30 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/01 00:54:41 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ifeq ($(IS_BONUS), 1)
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk bonus/srcs/sprites/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else

@@ -6,13 +6,13 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/09/28 05:07:53 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/01 00:54:41 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	0
+IS_BONUS =	1
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
@@ -20,7 +20,7 @@ ifeq ($(IS_BONUS), 1)
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk bonus/srcs/sprites/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else
@@ -36,7 +36,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -g3
+CFLAGS =	-Wall -Wextra -Werror #-O2 #-g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
@@ -46,7 +46,7 @@ ifeq ($(shell command -v xrandr 2> /dev/null),)
     WIN_HEIGHT = 600
 else
     WIN_HEIGHT := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
-    WIN_WIDTH := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
+    WIN_WIDTH := ${WIN_HEIGHT}
 endif
 
 %.o:		%.c

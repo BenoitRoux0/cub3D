@@ -1,7 +1,7 @@
-EA ./assets/textures/wall/M1.xpm
-NO ./assets/textures/wall/M3.xpm
-SO ./assets/textures/wall/M5.xpm
-WE ./assets/textures/wall/M2.xpm
+EA ./textures/wall/M1.xpm
+NO ./textures/wall/M3.xpm
+SO ./textures/wall/M5.xpm
+WE ./textures/wall/M2.xpm
 
 F 220,100,0
 C 225,30,0

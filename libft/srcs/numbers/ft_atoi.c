@@ -48,7 +48,7 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(*str))
 	{
 		if (result != (result * 10 + *str - '0') / 10)
-			return (errno = 21, ft_overflow(sign));
+			return (errno = 20, ft_overflow(sign));
 		result = (result * 10) + (*str - '0');
 		str++;
 	}
@@ -59,11 +59,4 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return ((int)result * sign);
-}
-
-#include <stdio.h>
-int main(void)
-{
-	int i = ft_atoi("-256");
-	printf("%d\n", i);
 }

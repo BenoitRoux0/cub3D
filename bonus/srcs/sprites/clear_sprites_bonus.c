@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   clear_sprites_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 14:59:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/29 15:49:44 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/10/01 01:40:35 by beroux            #+#    #+#             */
+/*   Updated: 2023/10/01 01:56:27 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "char.h"
+#include "cub_bonus.h"
 
-bool	ft_isspace(int c)
+void	clear_sprites(t_sprites_list **lst)
 {
-	return (c == ' ' || c == '\n' || c == '\t'
-		|| c == '\v' || c == '\f' || c == '\r');
+	if (!lst || !(*lst))
+		return ;
+	if ((*lst)->next)
+		clear_sprites(&(*lst)->next);
+	free(*lst);
+	*lst = NULL;
 }

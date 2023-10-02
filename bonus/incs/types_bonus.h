@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/29 13:56:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/02 00:44:23 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct s_vec_2i
 	int	y;
 }	t_vec_2i;
 
+typedef struct s_tex_tracker
+{
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+}		t_tracker;
+
 typedef struct s_angle_data
 {
 	double	deg;
@@ -65,10 +73,17 @@ typedef struct s_angle_data
 typedef struct s_sprite
 {
 	t_uint_img	*src;
-	double		height;
-	int			cell[2];
-	double		pos[2];
+	float		height;
+	float		x_pos;
+	float		y_pos;
 }	t_sprite;
+
+typedef struct s_sprites_list
+{
+	t_sprite				*sprite;
+	int						pos[2];
+	struct s_sprites_list	*next;
+}	t_sprites_list;
 
 typedef struct s_map
 {
@@ -76,7 +91,7 @@ typedef struct s_map
 	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
-	t_sprite	sprites[88];
+	t_sprite	sprites[26];
 }	t_map;
 
 typedef struct s_player
@@ -129,9 +144,9 @@ typedef struct s_ray
 
 typedef struct s_sprite_col
 {
-	t_uint_img	*src;
+	t_sprite	*src;
 	int			pos;
-	int			height;
+	double		dist;
 }	t_sprite_col;
 
 typedef struct s_col_buffer
@@ -151,12 +166,12 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_col_buffer	buffers[WIN_WIDTH];
+	t_sprites_list	*sprites_list;
 	t_angle_data	offset_raycast;
 	t_angle_data	offset_start;
 	bool			show_minimap;
-	t_col_buffer	col_buffer[WIN_WIDTH];
 	t_uint_img		*map_img;
-	t_vec_2i		minimap_size;
+	int				minimap_size;
 	t_gamepad		*gamepad;
 	int				input_mode;
 }	t_data;

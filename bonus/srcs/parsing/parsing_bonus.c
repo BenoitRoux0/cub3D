@@ -31,6 +31,9 @@ int	parsing(int argc, char **argv, t_data *data)
 	(void)data;
 	get_textures_and_colors(fd, data);
 	get_map(fd, data);
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	get_sprites(fd, data);
 	check_map_and_player(data);
 	return (0);
 }

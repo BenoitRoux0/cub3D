@@ -6,23 +6,25 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 04:24:15 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 04:15:54 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termios.h>
 #include "cub_bonus.h"
 
+static void	setup_sprites(t_data *data);
+
 int	main(int argc, char **argv)
 {
 	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
-	data.gamepad = init_gamepads(1);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
 	parsing(argc, argv, &data);
+	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
 		return (2);
@@ -30,7 +32,7 @@ int	main(int argc, char **argv)
 	if (!data.img)
 		return (3);
 	data.map_img = create_map(data.map);
-	data.minimap_size = (t_vec_2i){200, 200};
+	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
 	init_angles(&data);
 	render_to_window(&data);
@@ -45,6 +47,21 @@ int	main(int argc, char **argv)
 	button_pressed_hook(data.gamepad, js_button_press_player, 0, &data);
 	button_released_hook(data.gamepad, js_button_released_player, 0, &data);
 	axis_hook(data.gamepad, js_joystick_moved_player, 0, &data);
+	setup_sprites(&data);
 	mlx_loop(data.mlx);
 	return (1);
+}
+
+static void	setup_sprites(t_data *data)
+{
+	t_sprite	sprite_barrel1;
+	t_sprite	sprite_barrel2;
+
+	sprite_barrel1.height = 0.5;
+	sprite_barrel1.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_0.xpm");
+	data->map.sprites['a' - 'a'] = sprite_barrel1;
+	sprite_barrel2.height = 0.5;
+	sprite_barrel2.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_2.xpm");
+	data->map.sprites['b' - 'a'] = sprite_barrel2;
+	data->map.content[2][2] = 'a';
 }

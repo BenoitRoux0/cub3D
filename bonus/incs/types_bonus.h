@@ -76,6 +76,7 @@ typedef struct s_sprite
 	float		height;
 	float		x_pos;
 	float		y_pos;
+	double		height;
 }	t_sprite;
 
 typedef struct s_sprites_list

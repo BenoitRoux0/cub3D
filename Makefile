@@ -6,15 +6,15 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/02 15:18:25 by gd-harco         ###   ########.fr        #
+#    Updated: 2023/10/01 00:54:41 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	0
+IS_BONUS =	1
 
-ifeq ($(IS_BONUS), 0)
+ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
 	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs

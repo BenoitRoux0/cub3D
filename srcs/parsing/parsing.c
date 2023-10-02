@@ -6,14 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/13 17:08:24 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:50:36 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 bool	unvalid_extension(char *map);
-int		get_textures_and_colors(int fd, t_data *data);
 
 int	parsing(int argc, char **argv, t_data *data)
 {
@@ -22,12 +21,12 @@ int	parsing(int argc, char **argv, t_data *data)
 	if (argc != 2)
 		return (ft_dprintf(2, ERM_ARGC), parse_error_quit(data, ERC_ARGC));
 	if (unvalid_extension(argv[1]))
-		return (ft_dprintf(2, ERM_EXTENSION), parse_error_quit(data, ERC_EXTENSION));
+		return (ft_dprintf(2, ERM_EXTENSION),
+			parse_error_quit(data, ERC_EXTENSION));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_dprintf(2, ERM_ACCESS, argv[1]),
 			parse_error_quit(data, ERC_ACCESS));
-	(void)data;
 	get_textures_and_colors(fd, data);
 	get_map(fd, data);
 	check_map_and_player(data);

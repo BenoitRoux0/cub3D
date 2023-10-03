@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 04:15:54 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/02 16:48:03 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ int	main(int argc, char **argv)
 static void	setup_sprites(t_data *data)
 {
 	t_sprite	sprite_barrel1;
-	t_sprite	sprite_barrel2;
 
 	sprite_barrel1.height = 0.5;
-	sprite_barrel1.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_0.xpm");
+	sprite_barrel1.src = ft_xpm_to_img(data->mlx, "textures/barrel/barrel.xpm");
 	data->map.sprites['a' - 'a'] = sprite_barrel1;
-	sprite_barrel2.height = 0.5;
-	sprite_barrel2.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_2.xpm");
-	data->map.sprites['b' - 'a'] = sprite_barrel2;
-	data->map.content[2][2] = 'a';
+	data->map.content[1][1] = 'a';
 }

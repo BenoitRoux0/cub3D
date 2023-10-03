@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/01 00:54:41 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/02 16:49:05 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ $(MLX):
 
 $(LIBFT):
 			$(MAKE) -C libft
+
 bonus:
 			$(MAKE) all IS_BONUS=1
 

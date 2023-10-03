@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 18:23:42 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/22 12:16:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:40:18 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ int	flood_algo(char **map, t_vec_2i pos, t_vec_2i size, int *ret)
 		return (ft_dprintf(2, ERM_UNCLOSED), ERC_UNCLOSED);
 	if (map[pos.y][pos.x] != '0' && map[pos.y][pos.x]
 			!= '1' && map[pos.y][pos.x] != ' ')
-		return (ft_dprintf(2, ERM_UNEXPECTED, map[pos.y][pos.x],
-			pos.x, pos.y), ERC_UNEXPECTED);
+	{
+		if (map[pos.y][pos.x] < 'a' && map[pos.y][pos.x] > 'z')
+			return (ft_dprintf(2, ERM_UNEXPECTED, map[pos.y][pos.x],
+				pos.x, pos.y), ERC_UNEXPECTED);
+	}
 	if (map[pos.y][pos.x] == '1')
 		return (EXIT_SUCCESS);
 	if (map[pos.y][pos.x] == ' ' && (pos.x == 0 || pos.x == size.x - 1

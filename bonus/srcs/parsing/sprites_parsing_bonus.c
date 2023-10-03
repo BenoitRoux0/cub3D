@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/02 16:23:18 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:33:09 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	get_sprites(int fd, t_data *data)
 		free(buff);
 		pre_buff = get_next_line(fd);
 		if (!pre_buff)
-			parse_error_quit(data, STRANGE_CODE);
-		buff = ft_strtrim(pre_buff, " ");
+			break ;
+		if (pre_buff[0] != '\n')
+			buff = ft_strtrim(pre_buff, " ");
+		else
+			buff = ft_strdup(pre_buff);
 		free(pre_buff);
 	}
 	return ;

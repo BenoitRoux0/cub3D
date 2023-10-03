@@ -7,7 +7,7 @@ SRCS +=	parsing/parsing_bonus.c				\
 		parsing/parse_player_bonus.c			\
 		parsing/texture_error_check_bonus.c		\
 		parsing/sprites_parsing_bonus.c			\
-		parsing/set_sprite_info.c
+		parsing/set_sprite_info.c				\
 		parsing/parse_player_bonus.c			\
 		parsing/texture_error_check_bonus.c
 INCS +=	incs/parsing_bonus.h

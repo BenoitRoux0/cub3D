@@ -16,7 +16,7 @@ int	open_sprite(t_data *data, t_sprite *sprite, char *path);
 
 int	set_sprite(t_data *data, t_sprite *sprite, char **sprite_line)
 {
-	int i;
+	int	i;
 	int	r;
 
 	i = 0;

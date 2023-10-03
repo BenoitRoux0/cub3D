@@ -35,7 +35,7 @@ int		check_texture_format(char *textures_line[4]);
 
 int		check_player(t_map *map, t_player *player);
 void	get_sprites(int fd, t_data *data);
-int		 set_sprite(t_data *data, t_sprite *sprite, char **sprite_line);
+int		set_sprite(t_data *data, t_sprite *sprite, char **sprite_line);
 
 //-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"

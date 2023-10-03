@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/27 23:49:51 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:31:32 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 		next_pos[1] = pos[1];
 	if (data->map.content[pos_in_map[1]][pos_in_map[0]] >= 'a' && \
 		data->map.content[pos_in_map[1]][pos_in_map[0]] <= 'z')
-		hit_sprite(&data->sprites_list, data->map.sprites, \
-					pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
-
+		hit_sprite(&data->sprites_list, data->map.sprites,
+			pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
 }

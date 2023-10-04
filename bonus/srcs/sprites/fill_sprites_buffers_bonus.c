@@ -54,7 +54,6 @@ void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angl
 	vec_magn = sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
 	dot_product = vec[0] * starting_vec[0] + vec[1] * starting_vec[1];
 	angle = (acos(dot_product / vec_magn) * 180.0f) / M_PI;
-	(void) buffer;
 	col = angle / delta_angle;
 	slice_height = (int)(CELL_SIZE / vec_magn * (WIN_HEIGHT));
 	rel_width = (slice_height * sprite->sprite->height) * sprite->sprite->src->width / sprite->sprite->src->height;

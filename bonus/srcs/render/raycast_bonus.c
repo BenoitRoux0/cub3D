@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 01:14:21 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:36:32 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	raycast(t_data *data)
 		cast_vert(data, data->player.pos, &current_angle, &ray_vert);
 		cast_horiz(data, data->player.pos, &current_angle, &ray_horiz);
 		data->buffers[i].ray = select_ray(ray_horiz, ray_vert);
-		data->buffers[i].ray.dist *= \
-				cos((data->player.angle.deg - current_angle.deg) * M_PI_4 / 45);
+		data->buffers[i].ray.angle_diff = data->player.angle.deg - current_angle.deg;
 		current_angle.deg += data->player.fov / WIN_WIDTH;
 		current_angle.deg = fmod((fmod(current_angle.deg, 360) + 360), 360);
 		current_angle.rad += data->offset_raycast.rad;
@@ -62,7 +61,7 @@ static int	cast_vert(t_data *data, double start[2], t_angle_data *angle, \
 	double	vector[2];
 
 	if (angle->deg == 90 || angle->deg == 270)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
+		return (*ray = (t_ray){data->player.angle.deg - angle->deg, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_vert.inter[0] = ((double) CELL_SIZE) * ((int)(start[0] / CELL_SIZE) + \
 										(angle->deg < 90 || angle->deg > 270));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
@@ -85,7 +84,7 @@ static int	cast_horiz(t_data *data, double start[2], t_angle_data *angle, \
 	double	vector[2];
 
 	if (angle->deg == 0 || angle->deg == 180)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
+		return (*ray = (t_ray){data->player.angle.deg - angle->deg, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_horiz.inter[1] = (double) CELL_SIZE * ((int)(start[1] / CELL_SIZE) + \
 												(angle->deg < 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / angle->angle_sin;

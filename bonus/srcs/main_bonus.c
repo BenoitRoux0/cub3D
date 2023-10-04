@@ -57,7 +57,7 @@ static void	setup_sprites(t_data *data)
 	t_sprite	sprite_barrel1;
 
 	sprite_barrel1.height = 0.5;
-	sprite_barrel1.src = ft_xpm_to_img(data->mlx, "textures/barrel/barrel.xpm");
+	sprite_barrel1.src = ft_xpm_to_img(data->mlx, "textures/barrel/frame_0.xpm");
 	data->map.sprites['a' - 'a'] = sprite_barrel1;
-	data->map.content[1][1] = 'a';
+	data->map.content[3][1] = 'a';
 }

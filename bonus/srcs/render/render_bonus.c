@@ -32,9 +32,9 @@ int	render(t_data *data)
 			draw_wall_slice(data, i, ray, data->map.walls_text[EAST]);
 		else if (fmod(ray.inter[1], CELL_SIZE) == 0 && \
 				data->player.pos[1] - ray.inter[1] > 0)
-			draw_wall_slice(data, i, ray, data->map.walls_text[NORTH]);
+			draw_wall_slice(data, i, ray, data->map.walls_text[NO]);
 		else
-			draw_wall_slice(data, i, ray, data->map.walls_text[SOUTH]);
+			draw_wall_slice(data, i, ray, data->map.walls_text[SO]);
 		i++;
 	}
 	fill_sprites_buffers(data);

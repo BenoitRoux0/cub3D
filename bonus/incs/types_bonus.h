@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/02 00:44:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/04 16:17:04 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_gamepad	t_gamepad;
 enum e_dir
 {
 	EAST,
-	SOUTH,
+	SO,
 	WEST,
-	NORTH,
+	NO,
 };
 
 enum e_input_modes
@@ -164,6 +164,8 @@ typedef struct s_data
 	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
+	t_uint_img		*fallback_wall;
+	t_uint_img		*fallback_sprite;
 	t_map			map;
 	t_player		player;
 	t_col_buffer	buffers[WIN_WIDTH];

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 18:58:37 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/04 16:02:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@
 
 # define PLAYER_SPEED 3
 # define PLAYER_FOV 60
+
+# define FALLBACK_WALL "./textures/error_wall.xpm"
+# define FALLBACK_SPRITE "./textures/error_sprite.xpm"
 
 #endif

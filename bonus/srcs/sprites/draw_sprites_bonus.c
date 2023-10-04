@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 02:13:04 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/02 05:47:47 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/03 14:27:40 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ void	draw_sprites(t_data *data)
 				if (k < 0)
 					k = 0;
 				line = 0;
-				printf("get img content at col: %d\n", data->buffers[i].sprites[j].pos);
-				while (k < WIN_HEIGHT &&/* k < (WIN_HEIGHT >> 1) + (slice_height >> 1) && */line < data->buffers[i].sprites[j].src->src->height && data->buffers[i].sprites[j].pos < data->buffers[i].sprites[j].src->src->width)
+				while (k < WIN_HEIGHT && k < (WIN_HEIGHT >> 1) + (slice_height >> 1) && line < data->buffers[i].sprites[j].src->src->height && data->buffers[i].sprites[j].pos < data->buffers[i].sprites[j].src->src->width)
 				{
-					data->img->content[k][i] = data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos];
-					line += (double) data->buffers[i].sprites[j].src->src->height / (double) slice_height;
+					if (uint32_t_to_color(data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos]).a == 0)
+						data->img->content[k][i] = data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos];
+					line += (double) data->buffers[i].sprites[j].src->src->height / \
+							(double) slice_height * 2;
 					k++;
 				}
 			}

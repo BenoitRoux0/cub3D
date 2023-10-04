@@ -137,6 +137,7 @@ typedef struct s_mouse_info
 
 typedef struct s_ray
 {
+	double	angle_diff;
 	double	inter[2];
 	double	dist;
 	bool	hit;

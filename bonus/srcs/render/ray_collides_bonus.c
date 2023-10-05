@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 02:17:05 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 01:20:34 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/04 10:01:28 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ray_collide_horiz(t_data *data, double vector[2], t_ray *ray, t_map map)
 		return (ray->hit = 1, 1);
 	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
 		map.content[to_check[1]][to_check[0]] <= 'z')
-		hit_sprite(&data->sprites_list, data->map.sprites, \
+		hit_sprite(data, &data->sprites_list, \
 					to_check, map.content[to_check[1]][to_check[0]]);
 	return (0);
 }
@@ -43,7 +43,7 @@ int	ray_collide_vert(t_data *data, double vector[2], t_ray *ray, t_map map)
 		return (ray->hit = 1, 1);
 	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
 		map.content[to_check[1]][to_check[0]] <= 'z')
-		hit_sprite(&data->sprites_list, data->map.sprites, \
+		hit_sprite(data, &data->sprites_list, \
 					to_check, map.content[to_check[1]][to_check[0]]);
 	return (0);
 }

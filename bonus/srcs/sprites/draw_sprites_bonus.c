@@ -38,7 +38,7 @@ void	draw_sprites(t_data *data)
 					if (uint32_t_to_color(data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos]).a == 0)
 						data->img->content[k][i] = data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos];
 					line += (double) data->buffers[i].sprites[j].src->src->height / \
-							(double) slice_height * 2;
+							(double) slice_height * (1 / data->buffers[i].sprites[j].src->height);
 					k++;
 				}
 			}

@@ -6,14 +6,15 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 02:28:02 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/02 05:45:47 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/05 03:09:36 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angle, \
+static void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angle, \
 							t_player *player, t_col_buffer buffer[WIN_WIDTH]);
+static bool	neg_angle(t_data *data, double point[2], double angle);
 
 void	fill_sprites_buffers(t_data *data)
 {
@@ -31,7 +32,7 @@ void	fill_sprites_buffers(t_data *data)
 	}
 }
 
-void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angle, \
+static void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angle, \
 							t_player *player, t_col_buffer buffer[WIN_WIDTH])
 {
 	double	vec[2];
@@ -47,13 +48,15 @@ void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angl
 	int		to_fill;
 	double	img_pos;
 
-	vec[0] = (sprite->pos[0] * CELL_SIZE + (CELL_SIZE >> 1) - player->pos[0]);
-	vec[1] = (sprite->pos[1] * CELL_SIZE + (CELL_SIZE >> 1) - player->pos[1]);
+	vec[0] = (sprite->pos[0] * CELL_SIZE + (CELL_SIZE / 2) - player->pos[0]);
+	vec[1] = (sprite->pos[1] * CELL_SIZE + (CELL_SIZE / 2) - player->pos[1]);
 	starting_vec[0] = cos((player->angle.deg - (player->fov / 2)) * M_PI / 180.0f);
 	starting_vec[1] = sin((player->angle.deg - (player->fov / 2)) * M_PI / 180.0f);
 	vec_magn = sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
 	dot_product = vec[0] * starting_vec[0] + vec[1] * starting_vec[1];
 	angle = (acos(dot_product / vec_magn) * 180.0f) / M_PI;
+	if (neg_angle(data, vec, angle))
+		angle *= -1;
 	col = angle / delta_angle;
 	slice_height = (int)(CELL_SIZE / vec_magn * (WIN_HEIGHT));
 	rel_width = (slice_height * sprite->sprite->height) * sprite->sprite->src->width / sprite->sprite->src->height;
@@ -77,4 +80,21 @@ void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, double delta_angl
 		img_pos += (double) sprite->sprite->src->width / (double) rel_width;
 	}
 	(void) data;
+}
+
+static bool	neg_angle(t_data *data, double point[2], double angle)
+{
+	double	vec[2];
+	double	vec_magn;
+	double	dot_product;
+	double	angle_center;
+
+	vec[0] = point[0];
+	vec[1] = point[1];
+	vec_magn = sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
+	dot_product = vec[0] * -data->player.angle.angle_sin + vec[1] * data->player.angle.angle_cos;
+	angle_center = (acos(dot_product / vec_magn) * 180.0f) / M_PI;
+	if (angle < data->player.fov / 2 && angle_center > data->player.fov / 2)
+		return (true);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/02 00:44:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/04 10:19:51 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_sprites_list
 {
 	t_sprite				*sprite;
 	int						pos[2];
+	double					square_dist;
 	struct s_sprites_list	*next;
 }	t_sprites_list;
 

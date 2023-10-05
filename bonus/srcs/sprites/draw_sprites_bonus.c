@@ -6,44 +6,61 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 02:13:04 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/03 14:27:40 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/05 05:48:59 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
+static void	draw_column(t_col_buffer *buffer, int col, t_uint_img *img);
+static void	draw_sprite_column(t_sprite_col *sprite, int col, t_uint_img *img);
+
 void	draw_sprites(t_data *data)
 {
-	int i;
-	int	j;
-	int k;
-	double	line;
-	int slice_height;
+	int	i;
 
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		j = 0;
-		while (data->buffers[i].sprites[j].src)
-		{
-			if (data->buffers[i].sprites[j].dist < data->buffers[i].ray.dist)
-			{
-				slice_height = (int)(CELL_SIZE / data->buffers[i].sprites[j].dist * (WIN_HEIGHT));
-				k = ((WIN_HEIGHT >> 1) - (slice_height >> 1)) + slice_height - (slice_height * data->buffers[i].sprites[j].src->height);
-				if (k < 0)
-					k = 0;
-				line = 0;
-				while (k < WIN_HEIGHT && k < (WIN_HEIGHT >> 1) + (slice_height >> 1) && line < data->buffers[i].sprites[j].src->src->height && data->buffers[i].sprites[j].pos < data->buffers[i].sprites[j].src->src->width)
-				{
-					if (uint32_t_to_color(data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos]).a == 0)
-						data->img->content[k][i] = data->buffers[i].sprites[j].src->src->content[(int) line][data->buffers[i].sprites[j].pos];
-					line += (double) data->buffers[i].sprites[j].src->src->height / \
-							(double) slice_height * (1 / data->buffers[i].sprites[j].src->height);
-					k++;
-				}
-			}
-			j++;
-		}
+		draw_column(&data->buffers[i], i, data->img);
 		i++;
+	}
+}
+
+static void	draw_column(t_col_buffer *buffer, int col, t_uint_img *img)
+{
+	int		i;
+
+	i = 0;
+	while (buffer->sprites[i].src)
+	{
+		if (buffer->sprites[i].dist < buffer->ray.dist)
+			draw_sprite_column(&buffer->sprites[i], col, img);
+		i++;
+	}
+}
+
+static void	draw_sprite_column(t_sprite_col *sprite, int col, t_uint_img *img)
+{
+	int		k;
+	int		slice_height;
+	double	line;
+
+	slice_height = (int)(CELL_SIZE / sprite->dist * (WIN_HEIGHT));
+	k = ((WIN_HEIGHT >> 1) - (slice_height >> 1)) + \
+		slice_height - (slice_height * sprite->src->height);
+	if (k < 0)
+		k = 0;
+	line = 0;
+	while (k < WIN_HEIGHT && k < (WIN_HEIGHT >> 1) + (slice_height >> 1) && \
+			line < sprite->src->src->height && \
+			sprite->pos < sprite->src->src->width)
+	{
+		if (sprite->src->src->content[(int) line][sprite->pos] >> 24 == 0)
+			img->content[k][col] = \
+							sprite->src->src->content[(int) line][sprite->pos];
+		line += (double) sprite->src->src->height / \
+				(double) slice_height * (1 / sprite->src->height);
+		k++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 15:38:27 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:32:16 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,7 @@ typedef struct s_data
 	int				input_mode;
 	t_fps_data		fps_data;
 }	t_data;
+
+typedef int	(*t_collide_check_func)(double[2], t_ray *, t_map);
 
 #endif

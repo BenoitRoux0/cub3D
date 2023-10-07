@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_data		data;
 
 	ft_memset(&data, 0, sizeof(t_data));
+	set_fps(&data.fps_data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -33,7 +34,9 @@ int	main(int argc, char **argv)
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
 	init_angles(&data);
-	render_to_window(&data);
+	gettimeofday(&data.fps_data.second_end, NULL);
+	add_ms_tv(&data.fps_data.second_end, 1000);
+	render_locked_fps(&data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
 	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);
 	mlx_hook(data.win, FocusIn, FocusChangeMask, on_focus_in, &data);

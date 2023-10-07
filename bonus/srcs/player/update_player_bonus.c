@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/03 15:31:32 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/30 15:50:15 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	update_player(t_data *data)
 
 	if (data->player.angle_mov != 0.0)
 	{
-		data->player.angle.deg += data->player.angle_mov * PLAYER_SPEED;
+		data->player.angle.deg += data->player.angle_mov * PLAYER_ROT_SPEED;
 		data->player.angle.deg = fmod(data->player.angle.deg, 360);
 		if (data->player.angle.deg < 0)
 			data->player.angle.deg = 360 + data->player.angle.deg;
@@ -47,16 +47,17 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 	int	pos_in_map[2];
 	int	next_pos_in_map[2];
 
-	pos_in_map[0] = (int)(pos[0] / CELL_SIZE);
-	pos_in_map[1] = (int)(pos[1] / CELL_SIZE);
-	next_pos_in_map[0] = (int)(next_pos[0] / CELL_SIZE);
-	next_pos_in_map[1] = (int)(next_pos[1] / CELL_SIZE);
+	pos_in_map[0] = ((int)pos[0] >> CELL_SH);
+	pos_in_map[1] = ((int)pos[1] >> CELL_SH);
+	next_pos_in_map[0] = ((int)next_pos[0] >> CELL_SH);
+	next_pos_in_map[1] = ((int)next_pos[1] >> CELL_SH);
 	if (data->map.content[pos_in_map[1]][next_pos_in_map[0]] == '1')
 		next_pos[0] = pos[0];
 	if (data->map.content[next_pos_in_map[1]][pos_in_map[0]] == '1')
 		next_pos[1] = pos[1];
 	if (data->map.content[pos_in_map[1]][pos_in_map[0]] >= 'a' && \
 		data->map.content[pos_in_map[1]][pos_in_map[0]] <= 'z')
-		hit_sprite(&data->sprites_list, data->map.sprites,
-			pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
+		hit_sprite(data, &data->sprites_list, \
+				pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
+
 }

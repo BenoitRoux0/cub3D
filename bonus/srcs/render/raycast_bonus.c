@@ -30,7 +30,7 @@ int	raycast(t_data *data)
 	t_ray			ray_vert;
 
 	i = 0;
-	current_angle.deg = data->player.angle.deg - (data->player.fov / 2);
+	current_angle.deg = data->player.angle.deg - ((int) data->player.fov >> 1);
 	current_angle.deg = fmod((fmod(current_angle.deg, 360) + 360), 360);
 	current_angle.rad = current_angle.deg * M_PI_4 / 45;
 	current_angle.angle_cos = cos(current_angle.rad);

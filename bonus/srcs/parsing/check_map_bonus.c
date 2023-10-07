@@ -35,8 +35,8 @@ int	check_enclosed_map(t_map *map, t_player player)
 	int			ret;
 
 	ret = 0;
-	pos.x = (int)player.pos[0] / CELL_SIZE;
-	pos.y = (int)player.pos[1] / CELL_SIZE;
+	pos.x = (int)player.pos[0] >> CELL_SH;
+	pos.y = (int)player.pos[1] >> CELL_SH;
 	map_copy = (char **)ft_array_dup((void **)map->content, false, true);
 	if (!map_copy)
 		return (ft_dprintf(2, STRANGE), STRANGE_CODE);

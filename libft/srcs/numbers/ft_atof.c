@@ -55,6 +55,7 @@ float	ft_atof(const char *str)
 
 	pre_comma = 0;
 	post_comma = 0;
+	result = 0;
 	get_both_commas(str, &pre_comma, &post_comma);
 	if (errno == 20)
 		return (0);

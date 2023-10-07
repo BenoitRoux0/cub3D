@@ -15,7 +15,7 @@
 
 # include "cub_bonus.h"
 
-void	hit_sprite(t_sprites_list **lst, t_sprite sprites[26], \
+void	hit_sprite(t_data *data, t_sprites_list **lst, \
 					int pos[2], char type);
 void	clear_sprites(t_sprites_list **lst);
 void	fill_sprites_buffers(t_data *data);

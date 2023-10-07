@@ -20,10 +20,12 @@
 #  define WIN_HEIGHT 480
 # endif
 
-# define CELL_SIZE 64
+# define CELL_SIZE 512
+# define CELL_SH 9
 # define INTER_LIM 512
 
-# define PLAYER_SPEED 3
+# define PLAYER_SPEED 25
+# define PLAYER_ROT_SPEED 2
 # define PLAYER_FOV 60
 
 # define FALLBACK_WALL "./textures/error_wall.xpm"

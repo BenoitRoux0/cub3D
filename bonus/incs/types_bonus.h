@@ -82,6 +82,7 @@ typedef struct s_sprites_list
 {
 	t_sprite				*sprite;
 	int						pos[2];
+	double					square_dist;
 	struct s_sprites_list	*next;
 }	t_sprites_list;
 

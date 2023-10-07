@@ -73,9 +73,9 @@ typedef struct s_angle_data
 typedef struct s_sprite
 {
 	t_uint_img	*src;
-	double		height;
-	int			cell[2];
-	double		pos[2];
+	float		height;
+	float		x_pos;
+	float		y_pos;
 }	t_sprite;
 
 typedef struct s_sprites_list

@@ -6,12 +6,12 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 00:00:22 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/21 10:54:22 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:32:18 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#ifndef PLAYER_BONUS_H
+# define PLAYER_BONUS_H
 
 // -----------------FUNCTION-----------------//
 t_player	init_player(enum e_dir dir, t_vec_2i pos);

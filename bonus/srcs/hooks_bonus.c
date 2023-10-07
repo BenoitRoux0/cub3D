@@ -40,6 +40,7 @@ int	on_destroy(t_data *data)
 		clear_gamepads(&data->gamepad);
 	if (data->map_img)
 		clear_img(data->map_img);
+	clear_sprites_img(data->map.sprites);
 	if (data->sprites_list)
 		clear_sprites(&data->sprites_list);
 	exit (0);

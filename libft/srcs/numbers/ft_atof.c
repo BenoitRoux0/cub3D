@@ -46,14 +46,12 @@ int	get_both_commas(const char *str, int *pre, int *post)
 	return (0);
 }
 
-
 float	ft_atof(const char *str)
 {
 	float	result;
 	int		sign;
 	int		pre_comma;
 	int		post_comma;
-
 
 	pre_comma = 0;
 	post_comma = 0;

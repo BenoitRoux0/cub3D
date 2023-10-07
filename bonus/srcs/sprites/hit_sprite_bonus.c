@@ -53,8 +53,8 @@ static t_sprites_list	*new_node(int pos[2], t_sprite *sprite, \
 	node = malloc(sizeof (t_sprites_list));
 	if (!node)
 		return (NULL);
-	true_pos[0] = pos[0] * CELL_SIZE + sprite->pos[0] * CELL_SIZE;
-	true_pos[1] = pos[1] * CELL_SIZE + sprite->pos[1] * CELL_SIZE;
+	true_pos[0] = pos[0] * CELL_SIZE + sprite->x_pos * CELL_SIZE;
+	true_pos[1] = pos[1] * CELL_SIZE + sprite->y_pos * CELL_SIZE;
 	ft_bzero(node, sizeof (t_sprites_list));
 	node->pos[0] = pos[0];
 	node->pos[1] = pos[1];

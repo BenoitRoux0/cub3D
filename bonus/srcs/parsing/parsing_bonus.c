@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/25 16:26:41 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/03 13:51:55 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ bool	unvalid_extension(char *map);
 int	parsing(int argc, char **argv, t_data *data)
 {
 	int	fd;
+	int	fd_2;
+	int	fd_3;
 
 	if (argc != 2)
 		return (ft_dprintf(2, ERM_ARGC), parse_error_quit(data, ERC_ARGC));
@@ -29,6 +31,12 @@ int	parsing(int argc, char **argv, t_data *data)
 			parse_error_quit(data, ERC_ACCESS));
 	get_textures_and_colors(fd, data);
 	get_map(fd, data);
+	close(fd);
+	fd_2 = open(argv[1], O_RDONLY);
+	fd_3 = dup(fd_2);
+	close(fd_2);
+	get_sprites(fd_3, data);
+	close(fd_3);
 	check_map_and_player(data);
 	return (0);
 }

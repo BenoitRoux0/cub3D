@@ -18,7 +18,8 @@ static int		cast_vert(t_data *data, double start[2], t_angle_data *angle, \
 						t_ray *ray);
 static int		cast_horiz(t_data *data, double start[2], t_angle_data *angle, \
 						t_ray *ray);
-static t_ray	dda(t_data *data, t_ray s, double vector[2], t_collide_check_func c);
+static t_ray	dda(t_data *data, t_ray s,
+					double vector[2], t_collide_check_func c);
 static t_ray	select_ray(t_ray inter_horiz, t_ray inter_vert);
 
 int	raycast(t_data *data)

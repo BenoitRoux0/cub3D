@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/05 04:23:46 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/07 17:43:01 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror #-O2 #-g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

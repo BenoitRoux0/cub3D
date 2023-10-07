@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:38 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 19:30:56 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/07 21:57:26 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RENDER_BONUS_H
 
 # include "cub_bonus.h"
+
+typedef int	(*t_collide_check_func)(double[2], t_ray *, t_map);
 
 // -----------------FUNCTION-----------------//
 int		render(t_data *data);

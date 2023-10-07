@@ -159,8 +159,6 @@ typedef struct s_data
 	t_gamepad		*gamepad;
 	int				input_mode;
 	t_fps_data		fps_data;
-}	t_data;
-
-typedef int	(*t_collide_check_func)(double[2], t_ray *, t_map);
+}					t_data;
 
 #endif

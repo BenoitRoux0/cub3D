@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#ifndef PLAYER_BONUS_H
+# define PLAYER_BONUS_H
 
 // -----------------FUNCTION-----------------//
 t_player	init_player(enum e_dir dir, t_vec_2i pos);

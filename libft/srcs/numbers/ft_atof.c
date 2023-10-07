@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:38:12 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/29 19:01:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/10/01 15:49:44 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ int	get_both_commas(const char *str, int *pre, int *post)
 	return (0);
 }
 
-
 float	ft_atof(const char *str)
 {
 	float	result;
 	int		sign;
 	int		pre_comma;
 	int		post_comma;
-
 
 	pre_comma = 0;
 	post_comma = 0;

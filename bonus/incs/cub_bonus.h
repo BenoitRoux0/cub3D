@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <X11/X.h>
+# include <time.h>
 
 //########### USER LIB HEADERS ##########//
 
@@ -43,5 +44,6 @@
 # include "draw_bonus.h"
 # include "minimap_bonus.h"
 # include "gamepad_bonus.h"
+# include "frame_second_bonus.h"
 
 #endif

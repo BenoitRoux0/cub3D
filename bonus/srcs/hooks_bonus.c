@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/28 03:06:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 15:39:19 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	on_destroy(t_data *data)
 		clear_gamepads(&data->gamepad);
 	if (data->map_img)
 		clear_img(data->map_img);
+	if (data->fps_data.fps_str)
+		free(data->fps_data.fps_str);
 	exit (0);
 }
 
@@ -50,6 +52,8 @@ int	on_key_press(int keycode, t_data *data)
 		data->show_minimap = !data->show_minimap;
 		render_to_window(data);
 	}
+	if (keycode == XK_F3)
+		data->show_fps = !data->show_fps;
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	if (keycode == XK_m)
@@ -83,6 +87,6 @@ int	on_loop(t_data *data)
 		&& data->win_focused)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 	update_player(data);
-	render_to_window(data);
+	render_locked_fps(data);
 	return (0);
 }

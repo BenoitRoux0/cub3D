@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 14:40:25 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/01 15:38:27 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,25 @@ typedef struct s_ray
 	bool	hit;
 }	t_ray;
 
+typedef struct s_fps_data
+{
+	int				fps;
+	int				max_fps;
+	int				frame_time_us;
+	int				frame_count;
+	char			*fps_str;
+	int				time_left_in_frame;
+	struct timeval	second_end;
+	clock_t			frame_start;
+	clock_t			frame_end;
+}					t_fps_data;
+
 typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
 	bool			win_focused;
+	bool			show_fps;
 	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
@@ -144,6 +158,7 @@ typedef struct s_data
 	int				minimap_size;
 	t_gamepad		*gamepad;
 	int				input_mode;
+	t_fps_data		fps_data;
 }	t_data;
 
 #endif

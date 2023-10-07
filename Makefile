@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/09/30 15:17:06 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/07 22:17:16 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -O2 #-g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror #-O2 #-g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
@@ -55,8 +55,8 @@ all:		$(NAME)
 			@echo "win width:" ${WIN_WIDTH}
 			@echo "win height:" ${WIN_HEIGHT}
 
-$(NAME):	$(OBJS) $(MLX) $(LIBFT)
-			$(CC) $(CFLAGS) -o $@ $^ -I$(INCS_FLAGS) $(LIBS)
+$(NAME):	norminette $(OBJS) $(MLX) $(LIBFT)
+			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) -I$(INCS_FLAGS) $(LIBS)
 
 clean:
 			$(RM) $(OBJS)
@@ -86,4 +86,7 @@ bonus:
 re_bonus:
 			$(MAKE) re IS_BONUS=1
 
-.PHONY:		all clean fclean re bonus
+norminette:
+			@exit ${shell norminette srcs/ incs/ bonus/srcs/ bonus/incs/ | grep -v OK | wc -l}
+
+.PHONY:		all clean fclean re bonus norminette

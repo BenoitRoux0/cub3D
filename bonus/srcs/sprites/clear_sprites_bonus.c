@@ -22,16 +22,14 @@ void	clear_sprites(t_sprites_list **lst)
 	*lst = NULL;
 }
 
-void	clear_sprites_img(t_sprite *sprite)
+void	clear_sprites_img(t_sprite *sprite, t_uint_img *default_sprite)
 {
 	int	i;
 
 	i = 0;
 	while (i < 26)
 	{
-		if (sprite[i].src)
-			printf("clearing %c\n", i + 'a');
-		if (sprite[i].src)
+		if (sprite[i].src != default_sprite)
 			clear_img(sprite[i].src);
 		i++;
 	}

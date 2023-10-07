@@ -20,6 +20,7 @@ int	parsing(int argc, char **argv, t_data *data)
 	int	fd_2;
 	int	fd_3;
 
+	set_fallback_values(data);
 	if (argc != 2)
 		return (ft_dprintf(2, ERM_ARGC), parse_error_quit(data, ERC_ARGC));
 	if (unvalid_extension(argv[1]))

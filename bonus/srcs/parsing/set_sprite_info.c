@@ -17,13 +17,12 @@ int	open_sprite(t_data *data, t_sprite *sprite, char *path);
 int	set_sprite(t_data *data, t_sprite *sprite, char **sprite_line)
 {
 	int	i;
-	int	r;
 
 	i = 0;
 	while (sprite_line[i])
 	{
 		if (sprite_line[i][0] == 'p')
-			r = open_sprite(data, sprite, &sprite_line[i][2]);
+			open_sprite(data, sprite, &sprite_line[i][2]);
 		else if (ft_strlen(sprite_line[i]) > 5)
 			return (ft_dprintf(2, ERM_S_OOR), ERC_S_OOR);
 		else if (sprite_line[i][0] == 'h')
@@ -34,8 +33,6 @@ int	set_sprite(t_data *data, t_sprite *sprite, char **sprite_line)
 			sprite->y_pos = ft_atoi(&sprite_line[i][2]) * 0.01;
 		i++;
 	}
-	if (!sprite->src)
-		return (r);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/03 14:33:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:20:26 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	get_sprites(int fd, t_data *data)
 			buff = ft_strdup(pre_buff);
 		free(pre_buff);
 	}
+	set_fallback_sprite(data);
 	return ;
 }
 

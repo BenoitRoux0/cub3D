@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/02 19:52:22 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:11:46 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int		check_texture_format(char *textures_line[4]);
 int		check_player(t_map *map, t_player *player);
 void	get_sprites(int fd, t_data *data);
 int		set_sprite(t_data *data, t_sprite *sprite, char **sprite_line);
+
+void	set_fallback_values(t_data *data);
+void	set_fallback_sprite(t_data *data);
+void	set_fallback_wall(t_data *data);
 
 //-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"

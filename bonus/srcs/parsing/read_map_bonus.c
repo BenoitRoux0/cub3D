@@ -39,7 +39,6 @@ int	get_map(int fd, t_data *data)
 	flush_newline(data->map.content, 0);
 	if (buff)
 		free(buff);
-	close(fd);
 	return (get_map_size(data->map.content, &data->map.size), EXIT_SUCCESS);
 }
 

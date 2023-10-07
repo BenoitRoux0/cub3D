@@ -21,9 +21,9 @@ typedef struct s_gamepad	t_gamepad;
 enum e_dir
 {
 	EAST,
-	SOUTH,
+	SO,
 	WEST,
-	NORTH,
+	NO,
 };
 
 enum e_input_modes
@@ -70,12 +70,29 @@ typedef struct s_angle_data
 	double	angle_sin;
 }	t_angle_data;
 
+typedef struct s_sprite
+{
+	t_uint_img	*src;
+	float		height;
+	float		x_pos;
+	float		y_pos;
+}	t_sprite;
+
+typedef struct s_sprites_list
+{
+	t_sprite				*sprite;
+	int						pos[2];
+	double					square_dist;
+	struct s_sprites_list	*next;
+}	t_sprites_list;
+
 typedef struct s_map
 {
 	char		**content;
 	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
+	t_sprite	sprites[26];
 }	t_map;
 
 typedef struct s_player
@@ -121,6 +138,7 @@ typedef struct s_mouse_info
 
 typedef struct s_ray
 {
+	double	angle_diff;
 	double	inter[2];
 	double	dist;
 	bool	hit;
@@ -139,6 +157,19 @@ typedef struct s_fps_data
 	clock_t			frame_end;
 }					t_fps_data;
 
+typedef struct s_sprite_col
+{
+	t_sprite	*src;
+	int			pos;
+	double		dist;
+}	t_sprite_col;
+
+typedef struct s_col_buffer
+{
+	t_ray			ray;
+	t_sprite_col	sprites[0xf];
+}	t_col_buffer;
+
 typedef struct s_data
 {
 	void			*mlx;
@@ -148,9 +179,12 @@ typedef struct s_data
 	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
+	t_uint_img		*fallback_wall;
+	t_uint_img		*fallback_sprite;
 	t_map			map;
 	t_player		player;
-	t_ray			rays[WIN_WIDTH];
+	t_col_buffer	buffers[WIN_WIDTH];
+	t_sprites_list	*sprites_list;
 	t_angle_data	offset_raycast;
 	t_angle_data	offset_start;
 	bool			show_minimap;

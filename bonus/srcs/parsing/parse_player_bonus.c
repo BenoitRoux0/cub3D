@@ -70,9 +70,9 @@ void	set_player(bool *found, t_player *player,
 	enum e_dir	dir;
 
 	*found = true;
-	dir = NORTH;
+	dir = NO;
 	if (orientation == 'S')
-		dir = SOUTH;
+		dir = SO;
 	else if (orientation == 'E')
 		dir = EAST;
 	else

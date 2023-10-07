@@ -16,11 +16,11 @@ int	check_texture_format(char *textures_line[4])
 {
 	int	i;
 
-	i = ft_strlen(textures_line[NORTH]) - 4;
-	if (ft_strncmp(&textures_line[NORTH][i], ".xpm", 4) != 0)
+	i = ft_strlen(textures_line[NO]) - 4;
+	if (ft_strncmp(&textures_line[NO][i], ".xpm", 4) != 0)
 		return (ft_dprintf(2, ERM_NOT_XPM, "north"), ERC_NOT_XPM);
-	i = ft_strlen(textures_line[SOUTH]) - 4;
-	if (ft_strncmp(&textures_line[SOUTH][i], ".xpm", 4) != 0)
+	i = ft_strlen(textures_line[SO]) - 4;
+	if (ft_strncmp(&textures_line[SO][i], ".xpm", 4) != 0)
 		return (ft_dprintf(2, ERM_NOT_XPM, "south"), ERC_NOT_XPM);
 	i = ft_strlen(textures_line[EAST]) - 4;
 	if (ft_strncmp(&textures_line[EAST][i], ".xpm", 4) != 0)

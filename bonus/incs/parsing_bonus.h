@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/25 16:11:01 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:11:46 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int		check_map_and_player(t_data *data);
 int		check_texture_format(char *textures_line[4]);
 
 int		check_player(t_map *map, t_player *player);
+void	get_sprites(int fd, t_data *data);
+int		set_sprite(t_data *data, t_sprite *sprite, char **sprite_line);
+
+void	set_fallback_values(t_data *data);
+void	set_fallback_sprite(t_data *data);
+void	set_fallback_wall(t_data *data);
 
 //-----------------ERROR_MESSAGES-----------------//
 # define ERM_ARGC "\033[1;31mcub3D: Usage: ./cub3D <map.cub>\n\033[0m"
@@ -85,5 +91,7 @@ info detected for %s\033[0m\n"
 # define ERC_NOT_XPM 115
 # define ERM_WRONG_C "\033[1;31mError\nUnvalid color value\033[0m\n"
 # define ERC_WRONG_C 116
+# define ERM_S_OOR "\033[1;31mError\nSprite size/position out of range\033[0m\n"
+# define ERC_S_OOR 117
 # define EXIT_EOF 255
 #endif

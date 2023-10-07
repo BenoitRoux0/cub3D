@@ -20,7 +20,7 @@ ifeq ($(IS_BONUS), 1)
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk bonus/srcs/sprites/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else
@@ -80,13 +80,11 @@ $(MLX):
 
 $(LIBFT):
 			$(MAKE) -C libft
+
 bonus:
 			$(MAKE) all IS_BONUS=1
-
-re_bonus:
-			$(MAKE) re IS_BONUS=1
 
 norminette:
 			@exit ${shell norminette srcs/ incs/ bonus/srcs/ bonus/incs/ | grep -v OK | wc -l}
 
-.PHONY:		all clean fclean re bonus norminette
+.PHONY:		all clean fclean re bonus

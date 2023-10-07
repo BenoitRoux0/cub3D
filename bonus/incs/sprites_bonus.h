@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   sprites_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 08:42:19 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/04 16:42:09 by gd-harco         ###   ########.fr       */
+/*   Created: 2023/10/01 01:16:19 by beroux            #+#    #+#             */
+/*   Updated: 2023/10/04 16:47:20 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_BONUS_H
-# define HOOKS_BONUS_H
+#ifndef SPRITES_BONUS_H
+# define SPRITES_BONUS_H
 
 # include "cub_bonus.h"
 
-//-----------------FUNCTION-----------------//
-int	on_destroy(t_data *data);
-int	on_key_press(int keycode, t_data *data);
-int	on_key_released(int keycode, t_data *data);
-int	on_loop(t_data *data);
-int	on_mouse_clic(int button, int x, int y, t_data *data);
-int	on_mouvement(int x, int y, t_data *data);
-int	on_focus_in(t_data *data);
-int	on_focus_out(t_data *data);
+void	hit_sprite(t_data *data, t_sprites_list **lst, \
+					int pos[2], char type);
+void	clear_sprites(t_sprites_list **lst);
+void	fill_sprites_buffers(t_data *data);
+void	draw_sprites(t_data *data);
+void	clear_sprites_img(t_sprite *sprite,
+					t_uint_img *default_sprite);
+void	clear_wall_fallback_safe(t_data *data);
 
 #endif

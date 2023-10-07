@@ -72,12 +72,12 @@ int	get_textures_line(char *buff, char *line_array[4], int *data_got,
 		return (ERC_DUPLI);
 	if (ft_strncmp(buff, "NO", 2) == 0)
 	{
-		get_line_no_whitespace(buff, &line_array[NORTH], data_got);
+		get_line_no_whitespace(buff, &line_array[NO], data_got);
 		tracker->north = true;
 	}
 	else if (ft_strncmp(buff, "SO", 2) == 0)
 	{
-		get_line_no_whitespace(buff, &line_array[SOUTH], data_got);
+		get_line_no_whitespace(buff, &line_array[SO], data_got);
 		tracker->south = true;
 	}
 	else if (ft_strncmp(buff, "WE", 2) == 0)

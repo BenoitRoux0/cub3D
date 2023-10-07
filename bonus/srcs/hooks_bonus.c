@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 15:39:19 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:47:49 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	on_destroy(t_data *data)
 	}
 	ft_free_array((void **)data->map.content);
 	while (++i < 4)
-		clear_img(data->map.walls_text[i]);
+	{
+		if (data->map.walls_text[i] != data->fallback_wall)
+			clear_img(data->map.walls_text[i]);
+	}
 	data->mlx = NULL;
 	if (data->img)
 		clear_img(data->img);
@@ -40,6 +43,11 @@ int	on_destroy(t_data *data)
 		clear_gamepads(&data->gamepad);
 	if (data->map_img)
 		clear_img(data->map_img);
+	clear_sprites_img(data->map.sprites, data->fallback_sprite);
+	clear_img(data->fallback_sprite);
+	clear_img(data->fallback_wall);
+	if (data->sprites_list)
+		clear_sprites(&data->sprites_list);
 	if (data->fps_data.fps_str)
 		free(data->fps_data.fps_str);
 	exit (0);

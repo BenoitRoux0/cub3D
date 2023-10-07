@@ -6,17 +6,20 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 15:28:53 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:36:32 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-typedef int	(*t_collide_check_func)(double[2], t_ray *, t_map);
+typedef int	(*t_collide_check_func)(t_data *, double[2], t_ray *, t_map);
 
-static int		cast_vert(double start[2], t_angle_data *angle, t_ray *ray, t_map map);
-static int		cast_horiz(double start[2], t_angle_data *a, t_ray *ray, t_map map);
-static t_ray	dda(t_ray s, double vector[2], t_map m, t_collide_check_func c);
+static int		cast_vert(t_data *data, double start[2], t_angle_data *angle, \
+						t_ray *ray);
+static int		cast_horiz(t_data *data, double start[2], t_angle_data *angle, \
+						t_ray *ray);
+static t_ray	dda(t_data *data, t_ray s,
+					double vector[2], t_collide_check_func c);
 static t_ray	select_ray(t_ray inter_horiz, t_ray inter_vert);
 
 int	raycast(t_data *data)
@@ -34,31 +37,33 @@ int	raycast(t_data *data)
 	current_angle.angle_sin = sin(current_angle.rad);
 	while (i < WIN_WIDTH)
 	{
-		cast_vert(data->player.pos, &current_angle, &ray_vert, data->map);
-		cast_horiz(data->player.pos, &current_angle, &ray_horiz, data->map);
-		data->rays[i] = select_ray(ray_horiz, ray_vert);
-		data->rays[i].dist *= \
-					cos((data->player.angle.deg - current_angle.deg) * M_PI_4 / 45);
+		cast_vert(data, data->player.pos, &current_angle, &ray_vert);
+		cast_horiz(data, data->player.pos, &current_angle, &ray_horiz);
+		data->buffers[i].ray = select_ray(ray_horiz, ray_vert);
+		data->buffers[i].ray.angle_diff = data->player.angle.deg - current_angle.deg;
 		current_angle.deg += data->player.fov / WIN_WIDTH;
 		current_angle.deg = fmod((fmod(current_angle.deg, 360) + 360), 360);
 		current_angle.rad += data->offset_raycast.rad;
-		current_angle.angle_sin = current_angle.angle_sin * data->offset_raycast.angle_cos + \
-							current_angle.angle_cos * data->offset_raycast.angle_sin;
-		current_angle.angle_cos = current_angle.angle_cos * data->offset_raycast.angle_cos - \
-							current_angle.angle_sin * data->offset_raycast.angle_sin;
+		current_angle.angle_sin = current_angle.angle_sin * \
+					data->offset_raycast.angle_cos + \
+					current_angle.angle_cos * data->offset_raycast.angle_sin;
+		current_angle.angle_cos = current_angle.angle_cos * \
+					data->offset_raycast.angle_cos - \
+					current_angle.angle_sin * data->offset_raycast.angle_sin;
 		i++;
 	}
 	return (0);
 }
 
-static int	cast_vert(double start[2], t_angle_data *angle, t_ray *ray, t_map map)
+static int	cast_vert(t_data *data, double start[2], t_angle_data *angle, \
+						t_ray *ray)
 {
 	t_ray	inter_vert;
 	double	vector[2];
 
 	if (angle->deg == 90 || angle->deg == 270)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] >> CELL_SH) + \
+		return (*ray = (t_ray){data->player.angle.deg - angle->deg, {INFINITY, start[1]}, INFINITY, 0}, 0);
+	inter_vert.inter[0] = ((double) CELL_SIZE) * ((int)(start[0] / CELL_SIZE) + \
 										(angle->deg < 90 || angle->deg > 270));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
 	inter_vert.inter[1] = (inter_vert.dist * angle->angle_sin);
@@ -69,18 +74,19 @@ static int	cast_vert(double start[2], t_angle_data *angle, t_ray *ray, t_map map
 								(inter_vert.inter[1] - start[1]);
 	if (angle->deg < 90 || angle->deg > 270)
 		vector[1] *= -1;
-	*ray = dda(inter_vert, vector, map, ray_collide_vert);
+	*ray = dda(data, inter_vert, vector, ray_collide_vert);
 	return (0);
 }
 
-static int	cast_horiz(double start[2], t_angle_data *angle, t_ray *ray, t_map map)
+static int	cast_horiz(t_data *data, double start[2], t_angle_data *angle, \
+						t_ray *ray)
 {
 	t_ray	inter_horiz;
 	double	vector[2];
 
 	if (angle->deg == 0 || angle->deg == 180)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_horiz.inter[1] = (double) CELL_SIZE * (((int)start[1] >> CELL_SH) + \
+		return (*ray = (t_ray){data->player.angle.deg - angle->deg, {INFINITY, start[1]}, INFINITY, 0}, 0);
+	inter_horiz.inter[1] = (double) CELL_SIZE * ((int)(start[1] / CELL_SIZE) + \
 												(angle->deg < 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / angle->angle_sin;
 	inter_horiz.inter[0] = (inter_horiz.dist * angle->angle_cos);
@@ -90,11 +96,11 @@ static int	cast_horiz(double start[2], t_angle_data *angle, t_ray *ray, t_map ma
 									(inter_horiz.inter[0] - start[0]));
 	if (angle->deg > 90 && angle->deg < 270)
 		vector[0] *= -1;
-	*ray = dda(inter_horiz, vector, map, ray_collide_horiz);
+	*ray = dda(data, inter_horiz, vector, ray_collide_horiz);
 	return (0);
 }
 
-static t_ray	dda(t_ray r, double v[2], t_map m, t_collide_check_func c)
+static t_ray	dda(t_data *data, t_ray r, double v[2], t_collide_check_func c)
 {
 	int		nb_iter;
 	int		hit;
@@ -103,14 +109,14 @@ static t_ray	dda(t_ray r, double v[2], t_map m, t_collide_check_func c)
 	r.hit = 0;
 	nb_iter = 0;
 	r.dist = fabs(r.dist);
-	hit = c(v, &r, m);
+	hit = c(data, v, &r, data->map);
 	vec_magnitude = sqrt(v[0] * v[0] + v[1] * v[1]);
 	while (!hit && nb_iter < INTER_LIM)
 	{
 		r.inter[0] += v[0];
 		r.inter[1] += v[1];
 		r.dist += vec_magnitude;
-		hit = c(v, &r, m);
+		hit = c(data, v, &r, data->map);
 		nb_iter++;
 	}
 	return (r);

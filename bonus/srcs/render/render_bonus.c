@@ -108,8 +108,11 @@ int	render_to_window(t_data *data)
 	if (data->show_minimap)
 		minimap_draw(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
-	mlx_put_image_to_window(data->mlx, \
-							data->win, \
-							data->master_img->content, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win,
+		data->master_img->content, 0, 0);
+	if (data->show_fps)
+		mlx_string_put(data->mlx, data->win, WIN_WIDTH - 20, WIN_HEIGHT >> 1,
+			FPS_COLOR_GREEN, data->fps_data.fps_str);
+	data->fps_data.frame_count++;
 	return (0);
 }

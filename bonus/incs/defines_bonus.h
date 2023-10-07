@@ -14,7 +14,7 @@
 # define DEFINES_BONUS_H
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 720
+#  define WIN_WIDTH 600
 # endif
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 480
@@ -30,5 +30,9 @@
 
 # define FALLBACK_WALL "./textures/error_wall.xpm"
 # define FALLBACK_SPRITE "./textures/error_sprite.xpm"
+
+# ifndef FPS
+#  define FPS 60
+# endif
 
 #endif

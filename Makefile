@@ -16,7 +16,7 @@ IS_BONUS =	1
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
-	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c
+	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c frame_second_bonus.c time_bonus.c
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
@@ -83,5 +83,8 @@ $(LIBFT):
 
 bonus:
 			$(MAKE) all IS_BONUS=1
+
+re_bonus:
+			$(MAKE) re IS_BONUS=1
 
 .PHONY:		all clean fclean re bonus

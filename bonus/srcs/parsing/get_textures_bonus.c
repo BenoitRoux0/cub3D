@@ -67,19 +67,10 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 
 int	open_texture(t_data *data, char *textures_line[4])
 {
-	check_texture_format(textures_line);
 	data->map.walls_text[NO] = ft_xpm_to_img(data->mlx, textures_line[NO]);
-	if (!data->map.walls_text[NO])
-		ft_dprintf(STDERR_FILENO, ERM_TEXTURE_NORTH);
 	data->map.walls_text[SO] = ft_xpm_to_img(data->mlx, textures_line[SO]);
-	if (!data->map.walls_text[SO])
-		ft_dprintf(STDERR_FILENO, ERM_TEXTURE_SOUTH);
 	data->map.walls_text[EAST] = ft_xpm_to_img(data->mlx, textures_line[EAST]);
-	if (!data->map.walls_text[EAST])
-		ft_dprintf(STDERR_FILENO, ERM_TEXTURE_EAST);
 	data->map.walls_text[WEST] = ft_xpm_to_img(data->mlx, textures_line[WEST]);
-	if (!data->map.walls_text[WEST])
-		ft_dprintf(STDERR_FILENO, ERM_TEXTURE_WEST);
 	set_fallback_wall(data);
 	return (EXIT_SUCCESS);
 }

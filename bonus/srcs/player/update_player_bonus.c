@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/30 15:50:15 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 18:03:36 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	update_player(t_data *data)
 	next_pos[0] = data->player.pos[0] + \
 					(data->player.angle.angle_cos * data->player.mov[0] - \
 					data->player.angle.angle_sin * data->player.mov[1]) * \
-																PLAYER_SPEED;
+													PLAYER_SPEED * CELL_SIZE;
 	next_pos[1] = data->player.pos[1] + \
 					(data->player.angle.angle_sin * data->player.mov[0] + \
 					data->player.angle.angle_cos * data->player.mov[1]) * \
-																PLAYER_SPEED;
+													PLAYER_SPEED * CELL_SIZE;
 	collide(data, data->player.pos, next_pos);
 	data->player.pos[0] = next_pos[0];
 	data->player.pos[1] = next_pos[1];

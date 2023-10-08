@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 02:13:04 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 17:54:13 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 17:20:20 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,13 @@ static void	draw_sprite_column(t_sprite_col *sprite, int col, t_uint_img *img)
 	slice_height = (int)(CELL_SIZE / sprite->dist * (WIN_HEIGHT));
 	k = ((WIN_HEIGHT >> 1) - (slice_height >> 1)) + \
 		slice_height - (slice_height * sprite->src->height);
-	if (k < 0)
-		k = 0;
 	line = 0;
+	if (k < 0)
+	{
+		line -= k * (double) sprite->src->src->height / \
+				(double) slice_height * (1 / sprite->src->height);
+		k = 0;
+	}
 	while (k < WIN_HEIGHT && k < (WIN_HEIGHT >> 1) + (slice_height >> 1) && \
 			line < sprite->src->src->height && \
 			sprite->pos < sprite->src->src->width)

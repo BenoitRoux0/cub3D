@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 02:28:02 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 17:48:24 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 17:17:50 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, \
 static bool	neg_angle(t_data *data, double point[2], double angle);
 
 static void	foo(t_sprites_list *sprite, t_col_buffer *buffer, double vec_magn, \
-		int col);
+				int col);
 
 void	fill_sprites_buffers(t_data *data)
 {
@@ -59,7 +59,7 @@ static void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, \
 }
 
 static void	foo(t_sprites_list *sprite, t_col_buffer *buffer, double vec_magn, \
-		int col)
+				int col)
 {
 	int		i;
 	double	img_pos;

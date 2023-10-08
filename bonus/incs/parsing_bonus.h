@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/04 16:11:46 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/08 13:54:26 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int		get_color(char *buff, uint32_t color[2], int *data_got);
 int		get_map(int fd, t_data *data);
 
 int		check_map_and_player(t_data *data);
-
-int		check_texture_format(char *textures_line[4]);
 
 int		check_player(t_map *map, t_player *player);
 void	get_sprites(int fd, t_data *data);
@@ -87,8 +85,6 @@ info detected for %s\033[0m\n"
 # define ERC_DUPLI 113
 # define ERM_MISSING_C "\033[1;31mError\nMissing color value detected\033[0m\n"
 # define ERC_MISSING_C 114
-# define ERM_NOT_XPM "\033[1;31mError\nTexture for %s is not an XPM\033[0m\n"
-# define ERC_NOT_XPM 115
 # define ERM_WRONG_C "\033[1;31mError\nUnvalid color value\033[0m\n"
 # define ERC_WRONG_C 116
 # define ERM_S_OOR "\033[1;31mError\nSprite size/position out of range\033[0m\n"

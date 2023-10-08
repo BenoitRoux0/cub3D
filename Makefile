@@ -36,7 +36,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror #-O2 #-g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -O2 #-fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
@@ -55,7 +55,7 @@ all:		$(NAME)
 			@echo "win width:" ${WIN_WIDTH}
 			@echo "win height:" ${WIN_HEIGHT}
 
-$(NAME):	norminette $(OBJS) $(MLX) $(LIBFT)
+$(NAME):	$(OBJS) $(MLX) $(LIBFT)
 			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) -I$(INCS_FLAGS) $(LIBS)
 
 clean:

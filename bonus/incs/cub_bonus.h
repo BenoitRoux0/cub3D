@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/15 15:33:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:17:10 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <X11/X.h>
+# include <time.h>
 
 //########### USER LIB HEADERS ##########//
 
@@ -41,6 +42,9 @@
 # include "player_bonus.h"
 # include "parsing_bonus.h"
 # include "draw_bonus.h"
-# include "minimap.h"
+# include "minimap_bonus.h"
+# include "gamepad_bonus.h"
+# include "sprites_bonus.h"
+# include "frame_second_bonus.h"
 
 #endif

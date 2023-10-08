@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/11 17:32:15 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:08:36 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,29 @@ void	get_map_size(char **map, t_vec_2i *size);
 int	get_map(int fd, t_data *data)
 {
 	char	*buff;
-	int		r_code;
 
 	buff = get_next_line(fd);
-	r_code = skip_newline(fd, &buff);
-	if (r_code)
-		return (parse_error_quit(data, r_code));
+	if (skip_newline(fd, &buff))
+		return (parse_error_quit(data, ERC_NO_MAP));
 	data->map.content = ft_calloc(2, sizeof (char *));
 	if (!data->map.content)
-		parse_error_quit(data, errno);
+		return (ft_dprintf(2, STRANGE), parse_error_quit(data, STRANGE_CODE));
 	data->map.content[0] = ft_strdup(buff);
+	if (!data->map.content[0])
+		return (ft_dprintf(2, STRANGE), parse_error_quit(data, STRANGE_CODE));
 	free(buff);
 	buff = get_next_line(fd);
 	while (buff && ft_strcmp(buff, "\n"))
 	{
 		data->map.content = (char **)ft_add_array_line
-			((void **)data->map.content, buff);
+			((void **) data->map.content, buff);
 		buff = get_next_line(fd);
 	}
 	flush_newline(data->map.content, 0);
 	if (buff)
 		free(buff);
 	close(fd);
-	get_map_size(data->map.content, &data->map.size);
-	return (EXIT_SUCCESS);
+	return (get_map_size(data->map.content, &data->map.size), EXIT_SUCCESS);
 }
 
 int	skip_newline(int fd, char **buff)

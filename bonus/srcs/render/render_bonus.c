@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/19 17:01:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:37:21 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	render(t_data *data)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		ray = data->rays[i];
+		ray = data->buffers[i].ray;
 		if (fmod(ray.inter[0], CELL_SIZE) == 0 && \
 			data->player.pos[0] - ray.inter[0] > 0)
 			draw_wall_slice(data, i, ray, data->map.walls_text[WEST]);
@@ -32,11 +32,15 @@ int	render(t_data *data)
 			draw_wall_slice(data, i, ray, data->map.walls_text[EAST]);
 		else if (fmod(ray.inter[1], CELL_SIZE) == 0 && \
 				data->player.pos[1] - ray.inter[1] > 0)
-			draw_wall_slice(data, i, ray, data->map.walls_text[NORTH]);
+			draw_wall_slice(data, i, ray, data->map.walls_text[NO]);
 		else
-			draw_wall_slice(data, i, ray, data->map.walls_text[SOUTH]);
+			draw_wall_slice(data, i, ray, data->map.walls_text[SO]);
 		i++;
 	}
+	fill_sprites_buffers(data);
+	draw_sprites(data);
+	clear_sprites(&data->sprites_list);
+	ft_bzero(&data->buffers, sizeof (t_col_buffer) * WIN_WIDTH);
 	return (0);
 }
 
@@ -47,13 +51,14 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
-	src_x = ((int) r.inter[0] % CELL_SIZE) % tex->width;
+	r.dist *= cos(r.angle_diff * M_PI_4 / 45);
+	src_x = ((int) r.inter[0] % CELL_SIZE) * tex->width >> CELL_SH;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
-		src_x = ((int) r.inter[1] % CELL_SIZE) % tex->width;
+		src_x = ((int) r.inter[1] % CELL_SIZE) * tex->width >> CELL_SH;
 	if (src_x < 0 || !r.hit)
 		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
-	i = WIN_HEIGHT / 2 - slice_height / 2;
+	i = (WIN_HEIGHT >> 1) - (slice_height >> 1);
 	src_pos = 0;
 	if (i < 0)
 	{
@@ -73,7 +78,7 @@ int	fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling)
 	t_vec_2i	pos;
 
 	pos.y = 0;
-	while (pos.y < WIN_HEIGHT / 2)
+	while (pos.y < (WIN_HEIGHT >> 1))
 	{
 		pos.x = 0;
 		while (pos.x < WIN_WIDTH)
@@ -103,6 +108,11 @@ int	render_to_window(t_data *data)
 	if (data->show_minimap)
 		minimap_draw(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
-	mlx_put_image_to_window(data->mlx, data->win, data->master_img->content, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win,
+		data->master_img->content, 0, 0);
+	if (data->show_fps)
+		mlx_string_put(data->mlx, data->win, WIN_WIDTH - 20, WIN_HEIGHT >> 1,
+			FPS_COLOR_GREEN, data->fps_data.fps_str);
+	data->fps_data.frame_count++;
 	return (0);
 }

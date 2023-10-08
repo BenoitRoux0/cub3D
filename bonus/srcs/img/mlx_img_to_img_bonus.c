@@ -47,6 +47,6 @@ static uint32_t	my_mlx_get_pixel(void *img, int x, int y)
 	uint32_t	color;
 
 	addr = mlx_get_data_addr(img, &bits_per_pixel, &line_len, &endian);
-	color = *((uint32_t *)(addr + (y * line_len + x * (bits_per_pixel / 8))));
+	color = *((uint32_t *)(addr + (y * line_len + x * (bits_per_pixel >> 3))));
 	return (color);
 }

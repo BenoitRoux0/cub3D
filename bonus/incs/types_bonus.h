@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/18 14:13:25 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:17:04 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,23 @@
 
 # include "cub_bonus.h"
 
+typedef struct s_gamepad	t_gamepad;
+
 //-----------------ENUM-----------------//
 enum e_dir
 {
 	EAST,
-	SOUTH,
+	SO,
 	WEST,
-	NORTH,
+	NO,
+};
+
+enum e_input_modes
+{
+	keyboard,
+	keyboard_mouse,
+	controller,
+	guitar,
 };
 
 enum e_color
@@ -44,21 +54,54 @@ typedef struct s_vec_2i
 	int	y;
 }	t_vec_2i;
 
+typedef struct s_tex_tracker
+{
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+}		t_tracker;
+
+typedef struct s_angle_data
+{
+	double	deg;
+	double	rad;
+	double	angle_cos;
+	double	angle_sin;
+}	t_angle_data;
+
+typedef struct s_sprite
+{
+	t_uint_img	*src;
+	float		height;
+	float		x_pos;
+	float		y_pos;
+}	t_sprite;
+
+typedef struct s_sprites_list
+{
+	t_sprite				*sprite;
+	int						pos[2];
+	double					square_dist;
+	struct s_sprites_list	*next;
+}	t_sprites_list;
+
 typedef struct s_map
 {
 	char		**content;
 	t_vec_2i	size;
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
+	t_sprite	sprites[26];
 }	t_map;
 
 typedef struct s_player
 {
-	double	pos[2];
-	double	mov[2];
-	double	angle_mov;
-	double	angle;
-	float	fov;
+	double			pos[2];
+	double			mov[2];
+	double			angle_mov;
+	t_angle_data	angle;
+	float			fov;
 }	t_player;
 
 typedef struct s_line
@@ -95,25 +138,61 @@ typedef struct s_mouse_info
 
 typedef struct s_ray
 {
+	double	angle_diff;
 	double	inter[2];
 	double	dist;
 	bool	hit;
 }	t_ray;
+
+typedef struct s_fps_data
+{
+	int				fps;
+	int				max_fps;
+	int				frame_time_us;
+	int				frame_count;
+	char			*fps_str;
+	int				time_left_in_frame;
+	struct timeval	second_end;
+	clock_t			frame_start;
+	clock_t			frame_end;
+}					t_fps_data;
+
+typedef struct s_sprite_col
+{
+	t_sprite	*src;
+	int			pos;
+	double		dist;
+}	t_sprite_col;
+
+typedef struct s_col_buffer
+{
+	t_ray			ray;
+	t_sprite_col	sprites[0xf];
+}	t_col_buffer;
 
 typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
 	bool			win_focused;
+	bool			show_fps;
 	t_mouse_info	mouse;
 	t_master_img	*master_img;
 	t_uint_img		*img;
+	t_uint_img		*fallback_wall;
+	t_uint_img		*fallback_sprite;
 	t_map			map;
 	t_player		player;
-	t_ray			rays[WIN_WIDTH];
-	int 			show_minimap;
+	t_col_buffer	buffers[WIN_WIDTH];
+	t_sprites_list	*sprites_list;
+	t_angle_data	offset_raycast;
+	t_angle_data	offset_start;
+	bool			show_minimap;
 	t_uint_img		*map_img;
-	t_vec_2i		minimap_size;
+	int				minimap_size;
+	t_gamepad		*gamepad;
+	int				input_mode;
+	t_fps_data		fps_data;
 }	t_data;
 
 #endif

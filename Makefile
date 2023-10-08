@@ -6,21 +6,21 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/09/19 16:12:23 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/07 19:06:51 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	0
+IS_BONUS =	1
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
-	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap.c
+	SRCS 		=	main_bonus.c hooks_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c frame_second_bonus.c time_bonus.c
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk bonus/srcs/sprites/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else
@@ -42,11 +42,11 @@ MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
 
 ifeq ($(shell command -v xrandr 2> /dev/null),)
-    WIN_WIDTH = 800
+    WIN_WIDTH = 600
     WIN_HEIGHT = 600
 else
-    WIN_WIDTH := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f1 | head -n 1}
     WIN_HEIGHT := ${shell xrandr | grep '*' | awk '{print $$1}' | cut -d 'x' -f2 | head -n 1}
+    WIN_WIDTH := ${WIN_HEIGHT}
 endif
 
 %.o:		%.c
@@ -80,6 +80,7 @@ $(MLX):
 
 $(LIBFT):
 			$(MAKE) -C libft
+
 bonus:
 			$(MAKE) all IS_BONUS=1
 

@@ -55,7 +55,7 @@ all:		$(NAME)
 			@echo "win width:" ${WIN_WIDTH}
 			@echo "win height:" ${WIN_HEIGHT}
 
-$(NAME):	norminette $(OBJS) $(MLX) $(LIBFT)
+$(NAME):	$(OBJS) $(MLX) $(LIBFT)
 			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) -I$(INCS_FLAGS) $(LIBS)
 
 clean:

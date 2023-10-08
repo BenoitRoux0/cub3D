@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:44:05 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/07 17:56:18 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 13:53:43 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,11 @@ int	open_sprite(t_data *data, t_sprite *sprite, char *path)
 	char	*path_trimed;
 
 	path_trimed = ft_strtrim(path, "p:");
-	if (ft_strncmp(&path_trimed[ft_strlen(path_trimed) - 4], ".xpm", 4) != 0)
+	sprite->src = ft_xpm_to_img(data->mlx, path_trimed);
+	if (!sprite->src)
 	{
-		ft_dprintf(2, ERM_NOT_XPM, NULL);
-		errno = ERC_NOT_XPM;
-	}
-	else
-	{
-		sprite->src = ft_xpm_to_img(data->mlx, path_trimed);
-		if (!sprite->src)
-		{
-			ft_dprintf(2, STRANGE);
-			errno = STRANGE_CODE;
-		}
+		ft_dprintf(2, STRANGE);
+		errno = STRANGE_CODE;
 	}
 	free(path_trimed);
 	return (EXIT_SUCCESS);

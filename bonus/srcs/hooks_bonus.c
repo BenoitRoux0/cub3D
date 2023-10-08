@@ -12,24 +12,14 @@
 
 #include "cub_bonus.h"
 
+static void	destroy_mlx_datas(t_data *data);
+
 int	on_destroy(t_data *data)
 {
 	int	i;
 
 	i = -1;
-	if (data->win && data->mlx)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->master_img && data->mlx)
-	{
-		mlx_destroy_image(data->mlx, data->master_img->content);
-		free(data->master_img);
-	}
-	data->win = NULL;
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
+	destroy_mlx_datas(data);
 	ft_free_array((void **)data->map.content);
 	while (++i < 4)
 	{
@@ -51,6 +41,23 @@ int	on_destroy(t_data *data)
 	if (data->fps_data.fps_str)
 		free(data->fps_data.fps_str);
 	exit (0);
+}
+
+static void	destroy_mlx_datas(t_data *data)
+{
+	if (data->win && data->mlx)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->master_img && data->mlx)
+	{
+		mlx_destroy_image(data->mlx, data->master_img->content);
+		free(data->master_img);
+	}
+	data->win = NULL;
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 }
 
 int	on_key_press(int keycode, t_data *data)

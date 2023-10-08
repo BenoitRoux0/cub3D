@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/04 16:17:04 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:32:16 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,6 @@ typedef struct s_data
 	t_gamepad		*gamepad;
 	int				input_mode;
 	t_fps_data		fps_data;
-}	t_data;
+}					t_data;
 
 #endif

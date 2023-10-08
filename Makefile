@@ -6,13 +6,13 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/07 19:06:51 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/07 22:17:16 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	1
+IS_BONUS =	0
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
@@ -55,8 +55,8 @@ all:		$(NAME)
 			@echo "win width:" ${WIN_WIDTH}
 			@echo "win height:" ${WIN_HEIGHT}
 
-$(NAME):	$(OBJS) $(MLX) $(LIBFT)
-			$(CC) $(CFLAGS) -o $@ $^ -I$(INCS_FLAGS) $(LIBS)
+$(NAME):	norminette $(OBJS) $(MLX) $(LIBFT)
+			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) -I$(INCS_FLAGS) $(LIBS)
 
 clean:
 			$(RM) $(OBJS)
@@ -83,5 +83,8 @@ $(LIBFT):
 
 bonus:
 			$(MAKE) all IS_BONUS=1
+
+norminette:
+			@exit ${shell norminette srcs/ incs/ bonus/srcs/ bonus/incs/ | grep -v OK | wc -l}
 
 .PHONY:		all clean fclean re bonus

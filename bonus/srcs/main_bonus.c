@@ -6,12 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/02 16:48:03 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/07 19:19:34 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termios.h>
 #include "cub_bonus.h"
+
+t_data	set_hooks(t_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -37,17 +39,23 @@ int	main(int argc, char **argv)
 	gettimeofday(&data.fps_data.second_end, NULL);
 	add_ms_tv(&data.fps_data.second_end, 1000);
 	render_locked_fps(&data);
-	mlx_hook(data.win, DestroyNotify, NoEventMask, on_destroy, &data);
-	mlx_hook(data.win, FocusOut, FocusChangeMask, on_focus_out, &data);
-	mlx_hook(data.win, FocusIn, FocusChangeMask, on_focus_in, &data);
-	mlx_mouse_hook(data.win, on_mouse_clic, &data);
-	mlx_hook(data.win, MotionNotify, PointerMotionMask, on_mouvement, &data);
-	mlx_hook(data.win, KeyPress, KeyPressMask, on_key_press, &data);
-	mlx_hook(data.win, KeyRelease, KeyReleaseMask, on_key_released, &data);
-	mlx_loop_hook(data.mlx, on_loop, &data);
-	button_pressed_hook(data.gamepad, js_button_press_player, 0, &data);
-	button_released_hook(data.gamepad, js_button_released_player, 0, &data);
-	axis_hook(data.gamepad, js_joystick_moved_player, 0, &data);
+	data = set_hooks(&data);
 	mlx_loop(data.mlx);
 	return (1);
+}
+
+t_data	set_hooks(t_data *data)
+{
+	mlx_hook((*data).win, DestroyNotify, NoEventMask, on_destroy, data);
+	mlx_hook((*data).win, FocusOut, FocusChangeMask, on_focus_out, data);
+	mlx_hook((*data).win, FocusIn, FocusChangeMask, on_focus_in, data);
+	mlx_mouse_hook((*data).win, on_mouse_clic, data);
+	mlx_hook((*data).win, MotionNotify, PointerMotionMask, on_mouvement, data);
+	mlx_hook((*data).win, KeyPress, KeyPressMask, on_key_press, data);
+	mlx_hook((*data).win, KeyRelease, KeyReleaseMask, on_key_released, data);
+	button_pressed_hook((*data).gamepad, js_button_press_player, 0, data);
+	button_released_hook((*data).gamepad, js_button_released_player, 0, data);
+	axis_hook((*data).gamepad, js_joystick_moved_player, 0, data);
+	mlx_loop_hook((*data).mlx, on_loop, data);
+	return (*data);
 }

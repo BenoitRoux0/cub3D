@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:54:32 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/12 16:02:41 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/08 13:43:21 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	set_player(bool *found, t_player *player,
 		dir = SOUTH;
 	else if (orientation == 'E')
 		dir = EAST;
-	else
+	else if (orientation == 'W')
 		dir = WEST;
 	*player = init_player(dir, cur);
 }

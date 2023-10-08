@@ -6,30 +6,11 @@
 /*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:13:18 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/25 16:21:20 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/08 13:52:47 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
-
-int	check_texture_format(char *textures_line[4])
-{
-	int	i;
-
-	i = ft_strlen(textures_line[NO]) - 4;
-	if (ft_strncmp(&textures_line[NO][i], ".xpm", 4) != 0)
-		return (ft_dprintf(2, ERM_NOT_XPM, "north"), ERC_NOT_XPM);
-	i = ft_strlen(textures_line[SO]) - 4;
-	if (ft_strncmp(&textures_line[SO][i], ".xpm", 4) != 0)
-		return (ft_dprintf(2, ERM_NOT_XPM, "south"), ERC_NOT_XPM);
-	i = ft_strlen(textures_line[EAST]) - 4;
-	if (ft_strncmp(&textures_line[EAST][i], ".xpm", 4) != 0)
-		return (ft_dprintf(2, ERM_NOT_XPM, "east"), ERC_NOT_XPM);
-	i = ft_strlen(textures_line[WEST]) - 4;
-	if (ft_strncmp(&textures_line[WEST][i], ".xpm", 4) != 0)
-		return (ft_dprintf(2, ERM_NOT_XPM, "west"), ERC_NOT_XPM);
-	return (EXIT_SUCCESS);
-}
 
 int	check_dup(char *buff, t_tracker *tracker)
 {

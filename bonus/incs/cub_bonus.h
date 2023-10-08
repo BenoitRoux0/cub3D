@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/01 01:17:10 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 16:11:10 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <X11/X.h>
 # include <time.h>
+# include <stdbool.h>
 
 //########### USER LIB HEADERS ##########//
 

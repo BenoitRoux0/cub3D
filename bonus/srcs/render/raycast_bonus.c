@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 19:14:31 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 16:07:32 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static void	cast_ray(t_data *data, int i, t_angle_data *current_angle)
 	t_ray	ray_horiz;
 	t_ray	ray_vert;
 
-	cast_vert(data->player.pos, current_angle, &ray_vert, data->map);
-	cast_horiz(data->player.pos, current_angle, &ray_horiz, data->map);
-	data->rays[i] = select_ray(ray_horiz, ray_vert);
-	data->rays[i].dist *= \
+	cast_vert(data, data->player.pos, current_angle, &ray_vert, data->map);
+	cast_horiz(data, data->player.pos, current_angle, &ray_horiz, data->map);
+	data->buffers[i].ray = select_ray(ray_horiz, ray_vert);
+	data->buffers[i].ray.dist *= \
 		cos((data->player.angle.deg - (*current_angle).deg) * M_PI_4 / 45);
 	(*current_angle).deg += data->player.fov / WIN_WIDTH;
 	(*current_angle).deg = fmod((fmod((*current_angle).deg, 360) + 360), 360);

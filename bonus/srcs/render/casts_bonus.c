@@ -12,16 +12,17 @@
 
 #include "cub_bonus.h"
 
-static t_ray	dda(t_ray s, double vector[2], t_map m, t_collide_check_func c);
+static t_ray	dda(t_data *data, t_ray ray, double vec[2], t_map map, \
+					t_collide_check_func check);
 
-int	cast_vert(double start[2], t_angle_data *angle, \
+int	cast_vert(t_data *data,double start[2], t_angle_data *angle, \
 						t_ray *ray, t_map map)
 {
 	t_ray	inter_vert;
 	double	vector[2];
 
 	if (angle->deg == 90 || angle->deg == 270)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
+		return (*ray = (t_ray){0, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] >> CELL_SH) + \
 										(angle->deg < 90 || angle->deg > 270));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
@@ -33,18 +34,18 @@ int	cast_vert(double start[2], t_angle_data *angle, \
 								(inter_vert.inter[1] - start[1]);
 	if (angle->deg < 90 || angle->deg > 270)
 		vector[1] *= -1;
-	*ray = dda(inter_vert, vector, map, ray_collide_vert);
+	*ray = dda(data, inter_vert, vector, map, ray_collide_vert);
 	return (0);
 }
 
-int	cast_horiz(double start[2], t_angle_data *angle, \
+int	cast_horiz(t_data *data,double start[2], t_angle_data *angle, \
 						t_ray *ray, t_map map)
 {
 	t_ray	inter_horiz;
 	double	vector[2];
 
 	if (angle->deg == 0 || angle->deg == 180)
-		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
+		return (*ray = (t_ray){0, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_horiz.inter[1] = (double) CELL_SIZE * (((int)start[1] >> CELL_SH) + \
 												(angle->deg < 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / angle->angle_sin;
@@ -55,28 +56,28 @@ int	cast_horiz(double start[2], t_angle_data *angle, \
 									(inter_horiz.inter[0] - start[0]));
 	if (angle->deg > 90 && angle->deg < 270)
 		vector[0] *= -1;
-	*ray = dda(inter_horiz, vector, map, ray_collide_horiz);
+	*ray = dda(data, inter_horiz, vector, map, ray_collide_horiz);
 	return (0);
 }
 
-static t_ray	dda(t_ray r, double v[2], t_map m, t_collide_check_func c)
+static t_ray	dda(t_data *data, t_ray ray, double vec[2], t_map map, t_collide_check_func check)
 {
 	int		nb_iter;
 	int		hit;
 	double	vec_magnitude;
 
-	r.hit = 0;
+	ray.hit = 0;
 	nb_iter = 0;
-	r.dist = fabs(r.dist);
-	hit = c(v, &r, m);
-	vec_magnitude = sqrt(v[0] * v[0] + v[1] * v[1]);
+	ray.dist = fabs(ray.dist);
+	hit = check(data, vec, &ray, map);
+	vec_magnitude = sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
 	while (!hit && nb_iter < INTER_LIM)
 	{
-		r.inter[0] += v[0];
-		r.inter[1] += v[1];
-		r.dist += vec_magnitude;
-		hit = c(v, &r, m);
+		ray.inter[0] += vec[0];
+		ray.inter[1] += vec[1];
+		ray.dist += vec_magnitude;
+		hit = check(data, vec, &ray, map);
 		nb_iter++;
 	}
-	return (r);
+	return (ray);
 }

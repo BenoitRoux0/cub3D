@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 19:29:30 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 19:31:38 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 03:01:41 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	cast_vert(t_data *data,double start[2], t_angle_data *angle, \
 	if (angle->deg == 90 || angle->deg == 270)
 		return (*ray = (t_ray){0, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] >> CELL_SH) + \
-										(angle->deg < 90 || angle->deg > 270));
+										(angle->deg < 90 || angle->deg > 270) - \
+	(fabs(fmod(start[0], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+				angle->deg > 90 && angle->deg < (180 + 90)) + \
+	(fabs(fmod(start[0], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+				(angle->deg <= 90 || angle->deg >= (180 + 90))));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
 	inter_vert.inter[1] = (inter_vert.dist * angle->angle_sin);
 	inter_vert.inter[1] += start[1];
@@ -81,3 +85,4 @@ static t_ray	dda(t_data *data, t_ray ray, double vec[2], t_map map, t_collide_ch
 	}
 	return (ray);
 }
+

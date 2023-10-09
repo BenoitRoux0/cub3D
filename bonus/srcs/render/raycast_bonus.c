@@ -39,8 +39,8 @@ static void	cast_ray(t_data *data, int i, t_angle_data *current_angle)
 	t_ray	ray_horiz;
 	t_ray	ray_vert;
 
-	cast_vert(data, data->player.pos, current_angle, &ray_vert, data->map);
-	cast_horiz(data, data->player.pos, current_angle, &ray_horiz, data->map);
+	cast_vert(data, data->player.pos, current_angle, &ray_vert);
+	cast_horiz(data, data->player.pos, current_angle, &ray_horiz);
 	data->buffers[i].ray = select_ray(ray_horiz, ray_vert);
 	data->buffers[i].ray.angle_diff = data->player.angle.deg - \
 										current_angle->deg;

@@ -33,5 +33,5 @@ void	clear_sprites_img(t_sprite *sprite, t_uint_img *default_sprite)
 			clear_img(sprite[i].src);
 		i++;
 	}
-	return;
+	return ;
 }

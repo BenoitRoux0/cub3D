@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 12:53:42 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:17:42 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,18 @@ int	on_key_press(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	if (keycode == XK_m)
+	{
 		data->input_mode++;
-	data->input_mode %= 4;
+		data->input_mode %= 4;
+		if (data->input_mode == keyboard_mouse)
+		{
+			mlx_mouse_hide(data->mlx, data->win);
+			mlx_mouse_move(data->mlx, data->win,
+				WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
+		}
+		else
+			mlx_mouse_show(data->mlx, data->win);
+	}
 	key_press_player(keycode, data);
 	return (0);
 }
@@ -95,7 +105,7 @@ int	on_loop(t_data *data)
 		update_inputs(tmp);
 		tmp = tmp->next;
 	}
-	if (data->mouse.listen && data->mouse.x != (WIN_WIDTH >> 1)
+	if (data->input_mode == keyboard_mouse && data->mouse.x != (WIN_WIDTH >> 1)
 		&& data->win_focused)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 	update_player(data);

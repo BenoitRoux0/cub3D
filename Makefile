@@ -12,7 +12,7 @@
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	0
+IS_BONUS =	1
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
@@ -20,7 +20,9 @@ ifeq ($(IS_BONUS), 1)
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
 	INCS 		=	bonus/incs/cub_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk
+	include	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/weapon/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else
@@ -36,7 +38,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -O2 #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

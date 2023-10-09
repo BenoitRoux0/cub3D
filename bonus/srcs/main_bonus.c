@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 19:19:34 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 11:14:12 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	if (!data.mlx)
 		return (1);
 	parsing(argc, argv, &data);
+	open_weapon_sprites(&data);
 	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)

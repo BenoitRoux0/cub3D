@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/03 15:37:21 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 11:24:03 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	render_to_window(t_data *data)
 	render(data);
 	if (data->show_minimap)
 		minimap_draw(data);
+	render_weapon(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->master_img->content, 0, 0);

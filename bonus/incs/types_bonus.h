@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 12:38:29 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:59:18 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_weapon
 	int			current_frame;
 	int			frame_count;
 	int			frame_time;
+	int			frame_since_start;
 	t_uint_img	*weapon_img[15];
 	bool		animation;
 }				t_weapon;
@@ -203,6 +204,7 @@ typedef struct s_data
 	int				input_mode;
 	t_fps_data		fps_data;
 	t_weapon		weapon;
+	useconds_t		delta_time;
 }					t_data;
 
 #endif

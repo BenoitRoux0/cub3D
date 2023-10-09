@@ -16,7 +16,7 @@ int	render_weapon(t_data *data)
 {
 	put_img_in_img(data->img,
 		data->weapon.weapon_img[data->weapon.current_frame],
-		WIN_WIDTH / 1.5, WIN_HEIGHT / 1.265);
+		WIN_WIDTH / 1.5, WIN_HEIGHT / 1.35);
 	if (data->weapon.animation)
 	{
 		data->weapon.frame_since_start++;

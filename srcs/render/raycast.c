@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:28:49 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/12 17:24:08 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 09:21:08 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ static int	cast_vert(double start[2], double angle, t_ray *ray, t_map map)
 	rad = angle * M_PI_4 / 45;
 	if (angle == 90 || angle == 270)
 		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_vert.inter[0] = ((double) CELL_SIZE) * ((int)(start[0] / CELL_SIZE) + \
-												(angle < 90 || angle > 270));
+	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] / CELL_SIZE) + \
+			(angle < 90 || angle > 270) - \
+			(fabs(fmod(start[0], CELL_SIZE)) <= 0.0001 && \
+						(angle > 90 && angle < 270)) + \
+			(fabs(fmod(start[0], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+						(angle <= 90 || angle >= 270)));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / cos(rad);
 	inter_vert.inter[1] = (inter_vert.dist * sin(rad));
 	inter_vert.inter[1] += start[1];
@@ -75,8 +79,12 @@ static int	cast_horiz(double start[2], double angle, t_ray *ray, t_map map)
 	rad = angle * M_PI_4 / 45;
 	if (angle == 0 || angle == 180)
 		return (*ray = (t_ray){{INFINITY, start[1]}, INFINITY, 0}, 0);
-	inter_horiz.inter[1] = (double) CELL_SIZE * ((int)(start[1] / CELL_SIZE) + \
-												(angle < 180));
+	inter_horiz.inter[1] = (double) CELL_SIZE * (((int)start[1] / CELL_SIZE) + \
+			(angle < 180) + \
+			(fabs(fmod(start[1], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+							angle < 180) - \
+			(fmod(start[1], CELL_SIZE) <= 0.0001 && \
+							angle > 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / sin(rad);
 	inter_horiz.inter[0] = (inter_horiz.dist * cos(rad));
 	inter_horiz.inter[0] += start[0];

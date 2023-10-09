@@ -107,9 +107,7 @@ int	render_to_window(t_data *data)
 	render(data);
 	if (data->show_minimap)
 		minimap_draw(data);
-	put_img_in_img(data->img,
-		data->weapon.weapon_img[data->weapon.current_frame],
-		WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	render_weapon(data);
 	img_to_mlx_img(data->mlx, &data->master_img, data->img);
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->master_img->content, 0, 0);

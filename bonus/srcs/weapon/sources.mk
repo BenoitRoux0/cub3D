@@ -1,4 +1,5 @@
-SRCS +=	weapon/open_weapon.c	\
-		weapon/free_weapon.c
+SRCS +=	weapon/open_weapon_bonus.c		\
+		weapon/free_weapon_bonus.c		\
+		weapon/render_weapon_bonus.c
 
 INCS +=	incs/weapon_bonus.h

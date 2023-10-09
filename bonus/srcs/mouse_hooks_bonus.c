@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:15:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/26 20:39:49 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:50:49 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	on_mouse_clic(int button, int x, int y, t_data *data)
 		data->mouse.listen = true;
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);
 		mlx_mouse_hide(data->mlx, data->win);
+		data->weapon.animation = true;
 	}
 	if (button == 3)
 	{

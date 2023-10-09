@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapons_bonus.h                                    :+:      :+:    :+:   */
+/*   render_weapon_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 10:42:31 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/09 12:49:57 by gd-harco         ###   ########.fr       */
+/*   Created: 2023/10/09 12:39:32 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/10/09 12:49:43 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_BONUS_H
-# define WEAPON_BONUS_H
+#include "cub_bonus.h"
 
-# include "cub_bonus.h"
-
-void	open_weapon_sprites(t_data *data);
-void	clear_weapon(t_uint_img *fallback, t_weapon *weapon);
-int		render_weapon(t_data *data);
-
-# define NB_OF_FRAME 15
-
-#endif
+int	render_weapon(t_data *data)
+{
+	put_img_in_img(data->img,
+		data->weapon.weapon_img[data->weapon.current_frame],
+		WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	if (data->weapon.animation)
+	{
+		data->weapon.current_frame++;
+		if (data->weapon.current_frame == data->weapon.frame_count)
+		{
+			data->weapon.animation = false;
+			data->weapon.current_frame = 0;
+		}
+	}
+	return (0);
+}

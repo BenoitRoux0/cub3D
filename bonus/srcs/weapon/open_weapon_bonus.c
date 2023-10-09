@@ -15,7 +15,7 @@
 static void	fill_table(char *path[15]);
 static void	check_for_null(t_weapon *weapon, t_uint_img *fallback_sprite);
 
-void open_weapon_sprites(t_data *data)
+void	open_weapon_sprites(t_data *data)
 {
 	char	*path[15];
 	int		i;
@@ -26,6 +26,7 @@ void open_weapon_sprites(t_data *data)
 		data->weapon.weapon_img[i] = ft_xpm_to_img(data->mlx, path[i]);
 	check_for_null(&data->weapon, data->fallback_sprite);
 	data->weapon.frame_count = 14;
+	data->weapon.frame_time	 = 5;
 }
 
 void	fill_table(char *path[15])

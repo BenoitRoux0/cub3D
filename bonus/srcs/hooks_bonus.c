@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 11:32:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:53:42 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	on_key_press(int keycode, t_data *data)
 		data->show_minimap = !data->show_minimap;
 	if (keycode == XK_F3)
 		data->show_fps = !data->show_fps;
+	if (keycode == XK_space)
+		data->weapon.animation = true;
 	if (keycode == XK_Escape)
 		on_destroy(data);
 	if (keycode == XK_m)

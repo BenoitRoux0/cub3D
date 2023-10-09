@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 10:22:24 by gd-harco         ###   ########.fr       */
+/*   Created: 2023/10/09 08:16:55 by beroux            #+#    #+#             */
+/*   Updated: 2023/10/09 08:52:36 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "cub_bonus.h"
 
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 720
-# endif
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 480
-# endif
+t_angle_data	angles_sum(t_angle_data a, t_angle_data b)
+{
+	t_angle_data	c;
 
-# define CELL_SIZE 64
-# define INTER_LIM 512
-
-# define PLAYER_SPEED 1
-# define PLAYER_FOV 60
-
-#endif
+	c.deg = fmod((fmod(a.deg + b.deg, 360) + 360), 360);
+	c.rad = c.deg * M_PI_4 / 45;
+	c.angle_sin = \
+				a.angle_sin * b.angle_cos + \
+				a.angle_cos * b.angle_sin;
+	c.angle_cos = \
+				a.angle_cos * b.angle_cos - \
+				a.angle_sin * b.angle_sin;
+	return (c);
+}

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:42:13 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/04 16:02:22 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/08 17:59:15 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 #  define WIN_HEIGHT 480
 # endif
 
-# define CELL_SIZE 512
-# define CELL_SH 9
+# define CELL_SIZE 2048
+# define CELL_SH 11
 # define INTER_LIM 512
 
-# define PLAYER_SPEED 25
+# define PLAYER_SPEED 0.1
 # define PLAYER_ROT_SPEED 2
 # define PLAYER_FOV 60
 

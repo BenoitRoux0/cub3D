@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 19:29:30 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/07 19:31:38 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 08:39:26 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	cast_vert(double start[2], t_angle_data *angle, \
 	if (angle->deg == 90 || angle->deg == 270)
 		return (*ray = (t_ray){0, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_vert.inter[0] = ((double) CELL_SIZE) * (((int)start[0] >> CELL_SH) + \
-										(angle->deg < 90 || angle->deg > 270));
+			(angle->deg < 90 || angle->deg > 270) - \
+			(fabs(fmod(start[0], CELL_SIZE)) <= 0.0001 && \
+						(angle->deg > 90 && angle->deg < 270)) + \
+			(fabs(fmod(start[0], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+						(angle->deg <= 90 || angle->deg >= 270)));
 	inter_vert.dist = (inter_vert.inter[0] - start[0]) / angle->angle_cos;
 	inter_vert.inter[1] = (inter_vert.dist * angle->angle_sin);
 	inter_vert.inter[1] += start[1];
@@ -47,7 +51,11 @@ int	cast_horiz(double start[2], t_angle_data *angle, \
 	if (angle->deg == 0 || angle->deg == 180)
 		return (*ray = (t_ray){0, {INFINITY, start[1]}, INFINITY, 0}, 0);
 	inter_horiz.inter[1] = (double) CELL_SIZE * (((int)start[1] >> CELL_SH) + \
-												(angle->deg < 180));
+			(angle->deg < 180) + \
+			(fabs(fmod(start[1], CELL_SIZE) - CELL_SIZE) <= 0.0001 && \
+							angle->deg < 180) - \
+			(fmod(start[1], CELL_SIZE) <= 0.0001 && \
+							angle->deg > 180));
 	inter_horiz.dist = (inter_horiz.inter[1] - start[1]) / angle->angle_sin;
 	inter_horiz.inter[0] = (inter_horiz.dist * angle->angle_cos);
 	inter_horiz.inter[0] += start[0];
@@ -81,3 +89,4 @@ static t_ray	dda(t_ray ray, double vec[2], t_map map, t_collide_check_func check
 	}
 	return (ray);
 }
+

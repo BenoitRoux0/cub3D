@@ -12,7 +12,7 @@
 
 
 BASE_INCLUDED = libft/includes minilibx-linux
-IS_BONUS =	1
+IS_BONUS =	0
 
 ifeq ($(IS_BONUS), 1)
 	NAME 		=	cub3D_bonus
@@ -38,7 +38,7 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -O2
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:39:32 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/09 13:05:52 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:56:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	render_weapon(t_data *data)
 {
+	put_img_in_img(data->img, data->weapon.reticle,
+		WIN_WIDTH / 2 - data->weapon.reticle->width / 2,
+		WIN_HEIGHT / 2 - data->weapon.reticle->height / 2);
 	put_img_in_img(data->img,
 		data->weapon.weapon_img[data->weapon.current_frame],
-		WIN_WIDTH / 1.5, WIN_HEIGHT / 1.35);
+		WIN_WIDTH / 1.5, WIN_HEIGHT / 1.33);
 	if (data->weapon.animation)
 	{
 		data->weapon.frame_since_start++;

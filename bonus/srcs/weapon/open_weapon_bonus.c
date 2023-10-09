@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:55:14 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/09 11:18:34 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:59:10 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	open_weapon_sprites(t_data *data)
 	while (++i < 15)
 		data->weapon.weapon_img[i] = ft_xpm_to_img(data->mlx, path[i]);
 	check_for_null(&data->weapon, data->fallback_sprite);
+	data->weapon.reticle = ft_xpm_to_img(data->mlx,
+			"./textures/weapon/reticle.xpm");
+	if (!data->weapon.reticle)
+		data->weapon.reticle = data->fallback_sprite;
 	data->weapon.frame_count = 14;
-	data->weapon.frame_time	 = 5;
+	data->weapon.frame_time = 5;
 }
 
 void	fill_table(char *path[15])

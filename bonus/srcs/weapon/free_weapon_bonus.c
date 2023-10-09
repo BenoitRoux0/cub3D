@@ -22,4 +22,6 @@ void	clear_weapon(t_uint_img *fallback, t_weapon *weapon)
 		if (weapon->weapon_img[i] != fallback)
 			clear_img(weapon->weapon_img[i]);
 	}
+	if (weapon->reticle != fallback)
+		clear_img(weapon->reticle);
 }

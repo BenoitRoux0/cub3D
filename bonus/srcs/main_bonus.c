@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
 #include "cub_bonus.h"
 
 t_data	set_hooks(t_data *data);
@@ -42,7 +41,6 @@ int	main(int argc, char **argv)
 	render_locked_fps(&data);
 	data = set_hooks(&data);
 	mlx_loop(data.mlx);
-	return (1);
 }
 
 t_data	set_hooks(t_data *data)

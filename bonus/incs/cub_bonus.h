@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:37:07 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/08 16:11:10 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 10:49:25 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@
 # include "gamepad_bonus.h"
 # include "sprites_bonus.h"
 # include "frame_second_bonus.h"
+# include "weapon_bonus.h"
 
 #endif

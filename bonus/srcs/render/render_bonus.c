@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/03 15:37:21 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 12:42:44 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ int	render(t_data *data)
 			draw_wall_slice(data, i, ray, data->map.walls_text[SO]);
 		i++;
 	}
-	fill_sprites_buffers(data);
-	draw_sprites(data);
-	clear_sprites(&data->sprites_list);
 	ft_bzero(&data->buffers, sizeof (t_col_buffer) * WIN_WIDTH);
 	return (0);
 }

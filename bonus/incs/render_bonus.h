@@ -15,20 +15,20 @@
 
 # include "cub_bonus.h"
 
-typedef int	(*t_collide_check_func)(t_data *, double[2], t_ray *, t_map);
+typedef int	(*t_collide_check_func)(double[2], t_ray *, t_map);
 
 // -----------------FUNCTION-----------------//
 int		render(t_data *data);
 int		raycast(t_data *data);
-int		ray_collide_horiz(t_data *data, double vector[2], \
+int		ray_collide_horiz(double vector[2], \
 							t_ray *ray, t_map map);
-int		ray_collide_vert(t_data *data, double vector[2], \
+int		ray_collide_vert(double vector[2], \
 							t_ray *ray, t_map map);
 int		fill_color(t_uint_img *dst, uint32_t floor, uint32_t ceiling);
 int		render_to_window(t_data *data);
 void	init_angles(t_data *data);
-int		cast_vert(t_data *data,double start[2], t_angle_data *angle, \
+int		cast_vert(double start[2], t_angle_data *angle, \
 						t_ray *ray, t_map map);
-int		cast_horiz(t_data *data,double start[2], t_angle_data *angle, \
+int		cast_horiz(double start[2], t_angle_data *angle, \
 						t_ray *ray, t_map map);
 #endif

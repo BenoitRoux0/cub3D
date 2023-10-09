@@ -45,7 +45,6 @@
 # include "draw_bonus.h"
 # include "minimap_bonus.h"
 # include "gamepad_bonus.h"
-# include "sprites_bonus.h"
 # include "frame_second_bonus.h"
 
 #endif

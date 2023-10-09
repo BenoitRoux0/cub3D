@@ -64,10 +64,7 @@ static void	destroy_mlx_datas(t_data *data)
 int	on_key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Tab)
-	{
 		data->show_minimap = !data->show_minimap;
-		render_to_window(data);
-	}
 	if (keycode == XK_F3)
 		data->show_fps = !data->show_fps;
 	if (keycode == XK_Escape)
@@ -96,9 +93,6 @@ int	on_loop(t_data *data)
 		update_inputs(tmp);
 		tmp = tmp->next;
 	}
-	if (data->player.mov[0] == 0 && data->player.mov[1] == 0 && \
-		data->player.angle_mov == 0)
-		return (0);
 	if (data->mouse.listen && data->mouse.x != (WIN_WIDTH >> 1)
 		&& data->win_focused)
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH >> 1, WIN_HEIGHT >> 1);

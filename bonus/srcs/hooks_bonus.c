@@ -18,7 +18,7 @@ int	on_key_press(int keycode, t_data *data)
 		data->show_minimap = !data->show_minimap;
 	if (keycode == XK_F3)
 		data->show_fps = !data->show_fps;
-	if (keycode == XK_space)
+	if (keycode == XK_space && data->input_mode == keyboard)
 		data->weapon.animation = true;
 	if (keycode == XK_Escape)
 		on_destroy(data);

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:15:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/09 12:50:49 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:38:35 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	on_mouse_clic(int button, int x, int y, t_data *data)
 {
-	if (button == 1)
+	if (button == 1 && data->input_mode == keyboard_mouse)
 		data->weapon.animation = true;
 	(void)x;
 	(void)y;

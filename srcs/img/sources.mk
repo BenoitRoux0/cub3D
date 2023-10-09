@@ -10,3 +10,5 @@ SRCS +=	img/img.c \
 		img/flip_img.c \
 		img/tileset.c \
 		img/img_to_mlx_img.c
+
+INCS +=	incs/img.h

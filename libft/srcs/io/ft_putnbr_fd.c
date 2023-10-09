@@ -16,10 +16,7 @@
 size_t	ft_putnbr_fd(int n, int fd, size_t size)
 {
 	if (n == -2147483647 -1)
-	{
-		write(fd, "-2147483648", 11);
-		return (11);
-	}
+		return (write(fd, "-2147483648", 11));
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);

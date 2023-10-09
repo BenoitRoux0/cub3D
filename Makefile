@@ -19,7 +19,13 @@ ifeq ($(IS_BONUS), 1)
 	SRCS 		=	main_bonus.c hooks_bonus.c on_destroy_bonus.c mouse_hooks_bonus.c minimap_bonus.c init_angles_bonus.c frame_second_bonus.c time_bonus.c
 	INCS_DIR	=	$(BASE_INCLUDED) bonus/incs
 	INCS_FLAGS	=	$(addprefix -I, $(INCS_DIR))
-	INCS 		=	bonus/incs/cub_bonus.h
+	INCS 		=	bonus/incs/cub_bonus.h		bonus/incs/defines_bonus.h		\
+					bonus/incs/draw_bonus.h		bonus/incs/frame_second_bonus.h	\
+					bonus/incs/gamepad_bonus.h	bonus/incs/hooks_bonus.h		\
+					bonus/incs/img_bonus.h		bonus/incs/minimap_bonus.h		\
+					bonus/incs/parsing_bonus.h	bonus/incs/player_bonus.h		\
+					bonus/incs/render_bonus.h	bonus/incs/sprites_bonus.h		\
+					bonus/incs/types_bonus.h	bonus/incs/weapon_bonus.h
 	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk
 	include	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
 	include	bonus/srcs/sprites/sources.mk	bonus/srcs/weapon/sources.mk
@@ -38,7 +44,8 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz
 
-CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CC =		gcc
+CFLAGS =	-Wall -Wextra -Werror -O2
 
 MLX =		minilibx-linux/libmlx.a
 LIBFT =		libft/libft.a
@@ -51,14 +58,15 @@ else
     WIN_WIDTH := ${WIN_HEIGHT}
 endif
 
-%.o:		%.c
-			$(CC) $(CFLAGS) -DWIN_WIDTH=${WIN_WIDTH} -DWIN_HEIGHT=${WIN_HEIGHT} -c $< -o $@ $(INCS_FLAGS)
 all:		$(NAME)
 			@echo "win width:" ${WIN_WIDTH}
 			@echo "win height:" ${WIN_HEIGHT}
 
 $(NAME):	$(OBJS) $(MLX) $(LIBFT)
-			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) -I$(INCS_FLAGS) $(LIBS)
+			$(CC) $(CFLAGS) $(INCS_FLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) $(LIBS)
+
+%.o:		%.c $(INCS)
+			$(CC) $(CFLAGS) $(INCS_FLAGS) -DWIN_WIDTH=${WIN_WIDTH} -DWIN_HEIGHT=${WIN_HEIGHT} -c $< -o $@
 
 clean:
 			$(RM) $(OBJS)

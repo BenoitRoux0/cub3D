@@ -6,13 +6,15 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 11:24:03 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:40:27 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static void	draw_wall_slice(t_data *data, int p, t_ray r, t_uint_img *tex);
+
+static void	update_sprites(t_data *data);
 
 int	render(t_data *data)
 {
@@ -37,11 +39,16 @@ int	render(t_data *data)
 			draw_wall_slice(data, i, ray, data->map.walls_text[SO]);
 		i++;
 	}
+	update_sprites(data);
+	return (0);
+}
+
+static void	update_sprites(t_data *data)
+{
 	fill_sprites_buffers(data);
 	draw_sprites(data);
 	clear_sprites(&data->sprites_list);
 	ft_bzero(&data->buffers, sizeof (t_col_buffer) * WIN_WIDTH);
-	return (0);
 }
 
 static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)

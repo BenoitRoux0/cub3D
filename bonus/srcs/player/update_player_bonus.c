@@ -59,5 +59,4 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 		data->map.content[pos_in_map[1]][pos_in_map[0]] <= 'z')
 		hit_sprite(data, &data->sprites_list, \
 				pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
-
 }

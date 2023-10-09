@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:42:27 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/25 14:21:33 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:03:23 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	js_button_press_player(int key_code, void *data_ptr)
 	t_data	*data;
 
 	data = (t_data *)data_ptr;
+	if (data->input_mode != controller && data->input_mode != guitar)
+		return (0);
+	if (key_code == button_start)
+		data->show_minimap = !data->show_minimap;
 	if (data->input_mode != guitar)
 		return (0);
 	if (key_code == button_B)
@@ -29,6 +33,9 @@ int	js_button_press_player(int key_code, void *data_ptr)
 		data->player.angle_mov -= 1;
 	if (key_code == button_X)
 		data->player.angle_mov += 1;
+	if (key_code == LB)
+		data->weapon.animation = true;
+	printf("keycode: %d %d\n", key_code, LB);
 	return (0);
 }
 
@@ -66,6 +73,8 @@ int	js_joystick_moved_player(int key_code, int16_t value, void *data_ptr)
 	if (data->input_mode != controller)
 		return (0);
 	gamepad_moves(key_code, value, data);
+	if (key_code == RT && value > 32000)
+		data->weapon.animation = true;
 	return (0);
 }
 

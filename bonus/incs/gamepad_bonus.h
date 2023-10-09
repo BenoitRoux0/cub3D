@@ -37,7 +37,7 @@ enum e_buttons
 	LB,
 	RB,
 	back,
-	start,
+	button_start,
 	home,
 	LS,
 	RS,

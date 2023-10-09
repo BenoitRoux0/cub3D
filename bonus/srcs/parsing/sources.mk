@@ -9,4 +9,3 @@ SRCS +=	parsing/parsing_bonus.c				\
 		parsing/set_sprite_info.c				\
 		parsing/parse_player_bonus.c			\
 		parsing/fallback_bonus.c
-INCS +=	incs/parsing_bonus.h

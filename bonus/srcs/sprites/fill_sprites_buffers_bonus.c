@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 02:28:02 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/08 17:17:50 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 18:43:27 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	fill_sprite_buffers(t_data *data, t_sprites_list *sprite, \
 	double	angle;
 	double	dot_product;
 
-	vec[0] = (sprite->pos[0] * CELL_SIZE + (CELL_SIZE / 2) - player->pos[0]);
-	vec[1] = (sprite->pos[1] * CELL_SIZE + (CELL_SIZE / 2) - player->pos[1]);
+	vec[0] = (sprite->pos[0] * CELL_SIZE + (CELL_SIZE * sprite->sprite->x_pos) - player->pos[0]);
+	vec[1] = (sprite->pos[1] * CELL_SIZE + (CELL_SIZE * sprite->sprite->y_pos) - player->pos[1]);
 	starting_vec[0] = cos((player->angle.deg - \
 							(player->fov / 2)) * M_PI / 180.0f);
 	starting_vec[1] = sin((player->angle.deg - \

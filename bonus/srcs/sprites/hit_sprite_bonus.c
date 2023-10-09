@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:52:06 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/05 06:14:57 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/08 18:29:29 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_sprites_list	*new_node(int pos[2], t_sprite *sprite, \
 									double player_pos[2])
 {
 	t_sprites_list	*node;
-	int				true_pos[2];
+	double			true_pos[2];
 
 	node = malloc(sizeof (t_sprites_list));
 	if (!node)

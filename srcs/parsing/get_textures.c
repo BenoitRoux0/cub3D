@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/26 15:14:45 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:46:12 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,8 @@ int	get_textures_infos(int fd, char *textures_line[4], uint32_t color[2])
 	r = 0;
 	while (data_got < 6 && r != EXIT_EOF)
 		r = get_info(fd, &data_got, textures_line, color);
-	if (data_got == STRANGE_CODE)
-		return (STRANGE_CODE);
-	if (data_got == ERC_DUPLI)
-		return (ERC_DUPLI);
-	if (data_got == ERC_OOR_VALUE)
-		return (ERC_OOR_VALUE);
-	if (data_got == ERC_MISSING_C)
-		return (ERC_MISSING_C);
-	if (data_got == ERC_ARRAY_BIGGER)
-		return (ERC_ARRAY_BIGGER);
-	if (data_got == ERC_WRONG_C)
-		return (ERC_WRONG_C);
+	if (r != EXIT_EOF && r != EXIT_SUCCESS)
+		return (r);
 	if (data_got != 6)
 		return (ft_dprintf(STDERR_FILENO, ERM_NB_INFO"\n"), ERC_NB_INFO);
 	return (EXIT_SUCCESS);
@@ -108,6 +98,12 @@ int	get_line_info(char *buff, int *data_got,
 	}
 	else if (buff[0] == 'F' || buff[0] == 'C')
 	{
+		tracker.color++;
+		if (tracker.color > 2)
+		{
+			*data_got = ERC_DUPLI_C;
+			return (ft_dprintf(2, ERM_DUPLI_C, buff[0]), free(buff), *data_got);
+		}
 		code = get_color(buff, color, data_got);
 		if (code != EXIT_SUCCESS)
 			return (free(buff), *data_got = code);

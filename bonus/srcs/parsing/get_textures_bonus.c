@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:16:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/27 17:17:13 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:49:30 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ int	get_line_info(char *buff, int *data_got,
 	}
 	else if (buff[0] == 'F' || buff[0] == 'C')
 	{
+		tracker.color++;
+		if (tracker.color > 2)
+		{
+			*data_got = ERC_DUPLI_C;
+			return (ft_dprintf(2, ERM_DUPLI_C, buff[0]), free(buff), *data_got);
+		}
 		code = get_color(buff, color, data_got);
 		if (code != EXIT_SUCCESS)
 			return (free(buff), *data_got = code);

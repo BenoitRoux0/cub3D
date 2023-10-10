@@ -6,13 +6,13 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:44:28 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/25 07:26:19 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:06:34 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gamepad_bonus.h"
 
-#define MAX_EVENTS 0xff
+static void	register_input(t_gamepad *gamepad, struct js_event event);
 
 int	update_inputs(t_gamepad *gamepad)
 {
@@ -26,18 +26,29 @@ int	update_inputs(t_gamepad *gamepad)
 	readed = read(gamepad->fd, events, sizeof(struct js_event) * MAX_EVENTS);
 	while (i < MAX_EVENTS && i < readed / sizeof(struct js_event) && readed > 0)
 	{
-		if (events[i].type == JS_EVENT_BUTTON && \
-				gamepad->button_hooks[button_pressed] && events[i].value == 1)
-			gamepad->button_hooks[button_pressed](events[i].number, \
-									gamepad->button_params[button_pressed]);
-		else if (events[i].type == JS_EVENT_BUTTON && \
-				gamepad->button_hooks[button_released] && events[i].value == 0)
-			gamepad->button_hooks[button_released](events[i].number, \
-									gamepad->button_params[button_released]);
-		else if (events[i].type == JS_EVENT_AXIS && gamepad->axis_hook)
-			gamepad->axis_hook(events[i].number, \
-										events[i].value, gamepad->axis_param);
+		register_input(gamepad, events[i]);
 		i++;
 	}
 	return (0);
+}
+
+static void	register_input(t_gamepad *gamepad, struct js_event event)
+{
+	int i;
+
+	i = 0;
+	pthread_mutex_lock(gamepad->states[i].mutex);
+	while (i < MAX_EVENTS && gamepad->states[i].updated)
+	{
+		pthread_mutex_unlock(gamepad->states[i].mutex);
+		i++;
+		if (i < MAX_EVENTS)
+			pthread_mutex_lock(gamepad->states[i].mutex);
+	}
+	if (i < MAX_EVENTS)
+	{
+		gamepad->states[i].updated = true;
+		gamepad->states[i].event = event;
+		pthread_mutex_unlock(gamepad->states[i].mutex);
+	}
 }

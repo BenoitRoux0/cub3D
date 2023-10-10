@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/28 14:55:18 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:41:30 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ info detected for %s\033[0m\n"
 # define ERC_NOT_XPM 115
 # define ERM_WRONG_C "\033[1;31mError\nUnvalid color value\033[0m\n"
 # define ERC_WRONG_C 116
+# define ERM_DUPLI_C "\033[1;31mError\nDuplicate line \
+info detected for %c\033[0m\n"
+# define ERC_DUPLI_C 117
 # define EXIT_EOF 255
 #endif

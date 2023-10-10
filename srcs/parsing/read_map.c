@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/09/22 12:08:36 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:31:29 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		skip_newline(int fd, char **buff);
 void	get_map_size(char **map, t_vec_2i *size);
+void	fill_blank_with_space(char **map, t_vec_2i *size);
 
 int	get_map(int fd, t_data *data)
 {
@@ -68,6 +69,30 @@ void	get_map_size(char **map, t_vec_2i *size)
 		last_x_len = ft_strlen(map[y]);
 		if (last_x_len > size->x)
 			size->x = last_x_len;
+		y++;
+	}
+	fill_blank_with_space(map, size);
+}
+
+void	fill_blank_with_space(char **map, t_vec_2i *size)
+{
+	int		y;
+	int		x;
+	char	*buff;
+
+	y = 0;
+	while (y < size->y)
+	{
+		x = ft_strlen(map[y]);
+		if (x < size->x)
+		{
+			buff = ft_strdup(map[y]);
+			free(map[y]);
+			map[y] = ft_calloc((size->x + 1), sizeof(char));
+			ft_memset(map[y], ' ', size->x);
+			ft_memmove(map[y], buff, x);
+			free(buff);
+		}
 		y++;
 	}
 }

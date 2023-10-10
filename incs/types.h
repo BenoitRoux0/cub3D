@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/22 17:02:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:31:41 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_tex_tracker
 	bool	south;
 	bool	west;
 	bool	east;
+	int		color;
 }		t_tracker;
 
 typedef struct s_map

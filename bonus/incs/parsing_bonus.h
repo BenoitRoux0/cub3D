@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/08 13:54:26 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:08:30 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,14 @@ info detected for %s\033[0m\n"
 # define ERC_MISSING_C 114
 # define ERM_WRONG_C "\033[1;31mError\nUnvalid color value\033[0m\n"
 # define ERC_WRONG_C 116
+# define ERM_DUPLI_C "\033[1;31mError\nDuplicate line \
+info detected for %c\033[0m\n"
+# define ERC_DUPLI_C 117
 # define ERM_S_OOR "\033[1;31mError\nSprite size/position out of range\033[0m\n"
-# define ERC_S_OOR 117
+# define ERC_S_OOR 199
+# define ERM_FALLBACK "\033[1;31mError\nCan't access at least one security sprite.\n\
+The program can't ensure a secure launch, aborting...\n\
+Please try to reclone the project, or contact the project authors\033[0m\n"
+# define ERC_FALLBACK 198
 # define EXIT_EOF 255
 #endif

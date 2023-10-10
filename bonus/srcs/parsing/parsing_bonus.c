@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/03 13:51:55 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:06:59 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ int	parse_error_quit(t_data *data, int r)
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
 	data->win = NULL;
+	if (data->fps_data.fps_str)
+		free(data->fps_data.fps_str);
+	if (data->fallback_sprite)
+		clear_img(data->fallback_sprite);
+	if (data->fallback_wall)
+		clear_img(data->fallback_wall);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);

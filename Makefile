@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/09 14:55:30 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/11 17:08:46 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,8 @@ else
 	OBJS		=	$(SRCS:.c=.o)
 endif
 
-LIBS = -lXext -lX11 -lm -lz
+LIBS = -lXext -lX11 -lm -lz -lpthread
 
-CC =		gcc
 CFLAGS =	-Wall -Wextra -Werror -O2
 
 MLX =		minilibx-linux/libmlx.a
@@ -63,7 +62,7 @@ all:		$(NAME)
 			@echo "win height:" ${WIN_HEIGHT}
 
 $(NAME):	$(OBJS) $(MLX) $(LIBFT)
-			$(CC) $(CFLAGS) $(INCS_FLAGS) -o $@ $(OBJS) $(MLX) $(LIBFT) $(LIBS)
+			$(CC) $(CFLAGS) $(INCS_FLAGS) -o $@ $^ $(LIBS)
 
 %.o:		%.c $(INCS)
 			$(CC) $(CFLAGS) $(INCS_FLAGS) -DWIN_WIDTH=${WIN_WIDTH} -DWIN_HEIGHT=${WIN_HEIGHT} -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:20:53 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 14:54:56 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/10 13:38:20 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ int	on_loop(t_data *data)
 {
 	t_gamepad	*tmp;
 
-	update_gamepads(data->gamepad);
 	tmp = data->gamepad;
 	while (tmp)
 	{
-		update_inputs(tmp);
+		read_inputs(tmp);
 		tmp = tmp->next;
 	}
 	if (data->input_mode == keyboard_mouse && data->mouse.x != (WIN_WIDTH >> 1)

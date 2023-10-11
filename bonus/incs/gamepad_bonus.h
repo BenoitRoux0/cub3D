@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 00:37:30 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/25 07:46:58 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:26:19 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 # include <errno.h>
 # include <linux/joystick.h>
 # include <stdbool.h>
+# include <pthread.h>
 # include "libft.h"
 
-# define C_DEV_DIR "/dev/input/"
+# define MAX_EVENTS 0xff
 
 enum e_buttons
 {
@@ -67,8 +68,18 @@ enum e_button_hooks
 typedef int	(*t_button_func)(int, void *);
 typedef int	(*t_axis_func)(int, int16_t, void *);
 
+typedef struct s_input_state
+{
+	pthread_mutex_t	*mutex;
+	bool			updated;
+	struct js_event	event;
+}	t_input_state;
+
 typedef struct s_gamepad
 {
+	pthread_t			thread;
+	pthread_mutex_t		*mutex;
+	bool				end;
 	int					fd;
 	char				*name;
 	ino_t				inode;
@@ -77,13 +88,14 @@ typedef struct s_gamepad
 	void				*button_params[2];
 	t_axis_func			axis_hook;
 	void				*axis_param;
+	t_input_state		states[MAX_EVENTS];
 	struct s_gamepad	*next;
 }	t_gamepad;
 
 t_gamepad	*init_gamepads(int nb_gamepads);
 void		clear_gamepads(t_gamepad **gamepads);
 int			update_gamepads(t_gamepad *gamepads);
-int			input_loop(t_gamepad *gamepad);
+void		*input_loop(t_gamepad *gamepad);
 int			update_inputs(t_gamepad *gamepad);
 
 void		button_pressed_hook(t_gamepad *gamepad, t_button_func func, \
@@ -92,5 +104,6 @@ void		button_released_hook(t_gamepad *gamepad, t_button_func func, \
 								int js_number, void *data);
 void		axis_hook(t_gamepad *gamepad, t_axis_func func, \
 								int js_number, void *data);
+int			read_inputs(t_gamepad *gamepad);
 
 #endif

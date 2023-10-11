@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:42:27 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 17:03:23 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/10 11:03:21 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	js_button_press_player(int key_code, void *data_ptr)
 		data->player.angle_mov += 1;
 	if (key_code == LB)
 		data->weapon.animation = true;
-	printf("keycode: %d %d\n", key_code, LB);
 	return (0);
 }
 

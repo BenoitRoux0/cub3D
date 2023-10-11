@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:59:00 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 15:03:31 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/11 23:31:20 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	destroy_imgs(t_data *data)
 		clear_img(data->map_img);
 	clear_sprites_img(data->map.sprites, data->fallback_sprite);
 	clear_weapon(data->fallback_sprite, &data->weapon);
+	if (data->map.door != data->fallback_sprite)
+		clear_img(data->map.door);
 	clear_img(data->fallback_sprite);
 	clear_img(data->fallback_wall);
 }

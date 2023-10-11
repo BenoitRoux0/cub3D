@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 18:05:23 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:30:00 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	get_sprites(int fd, t_data *data)
 		free(pre_buff);
 	}
 	set_fallback_sprite(data);
-	return ;
 }
 
 void	open_sprite(t_data *data, char *buff)
@@ -74,3 +73,22 @@ void	init_default(t_sprite *sprite)
 }
 
 //TODO Open Door function
+void	open_door(t_data *data, char *buff)
+{
+	char	**tmp;
+
+	tmp = ft_split(buff, ' ');
+	if (ft_array_length((void **)tmp) != 2)
+	{
+		ft_free_split(tmp);
+		free(buff);
+		ft_dprintf(2, ERM_ARRAY_BIGGER, "D");
+		parse_error_quit(data, ERC_ARRAY_BIGGER);
+	}
+	flush_newline(tmp, 2);
+	data->map.door = ft_xpm_to_img(data->mlx, tmp[1]);
+	if (!data->map.door)
+		data->map.door = data->fallback_sprite;
+	ft_free_split(tmp);
+	return ;
+}

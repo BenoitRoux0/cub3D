@@ -59,7 +59,8 @@ int	flood_algo(char **map, t_vec_2i pos, t_vec_2i size, int *ret)
 	if (map[pos.y][pos.x] != '0' && map[pos.y][pos.x]
 			!= '1' && map[pos.y][pos.x] != ' ')
 	{
-		if (map[pos.y][pos.x] != 'D' && (map[pos.y][pos.x] < 'a' && map[pos.y][pos.x] > 'z'))
+		if (map[pos.y][pos.x] != 'D'
+			&& (map[pos.y][pos.x] < 'a' && map[pos.y][pos.x] > 'z'))
 			return (ft_dprintf(2, ERM_UNEXPECTED, map[pos.y][pos.x],
 				pos.x, pos.y), ERC_UNEXPECTED);
 	}

@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/10 16:57:36 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/11 17:08:46 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ endif
 
 LIBS = -lXext -lX11 -lm -lz -lpthread
 
-CC =		gcc
 CFLAGS =	-Wall -Wextra -Werror -O2
 
 MLX =		minilibx-linux/libmlx.a

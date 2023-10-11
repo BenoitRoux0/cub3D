@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 03:50:44 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/10 15:00:28 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/11 17:01:30 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ int	update_gamepads(t_gamepad *gamepads)
 		tmp = tmp->next;
 	while (next && tmp && is_in_gamepads(next->d_ino, gamepads) == false)
 	{
+		pthread_mutex_lock(tmp->mutex);
 		tmp->name = ft_strjoin("/dev/input/", next->d_name);
 		tmp->fd = open(tmp->name, O_RDONLY | O_NONBLOCK);
 		tmp->connected = true;
 		tmp->inode = next->d_ino;
 		next = get_next_controller("/dev/input/", events_dir);
+		pthread_mutex_unlock(tmp->mutex);
 		while (tmp && tmp->connected)
 			tmp = tmp->next;
 	}

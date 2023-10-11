@@ -18,4 +18,4 @@ C 225,30,0
 
 c h:100 p:./textures/column.xpm  y:50 x:50
 b p:./textures/barrel/frame_0 h:100 x:50 y:50
-D p:./textures/barrel/frame_0.xpm h:100
+D p:./textures/barrel/frame_0.xpm

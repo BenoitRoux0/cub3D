@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 23:52:04 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:59:57 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ Please try to reclone the project, or contact the project authors\033[0m\n"
 # define ERC_DOOR 197
 # define ERM_DUPLI_S "\033[1;31mError\nDuplicate sprite info detected\033[0m\n"
 # define ERC_DUPLI_S 196
+# define ERM_DUPLI_D "\033[1;31mError\nDuplicate door info detected\033[0m\n"
+# define ERC_DUPLI_D 195
 # define EXIT_EOF 255
 #endif

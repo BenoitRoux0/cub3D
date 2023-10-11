@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 23:53:35 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/12 00:01:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void	open_door(t_data *data, char *buff)
 {
 	char	**tmp;
 
+	if (data->map.door_set)
+	{
+		ft_dprintf(2, ERM_DUPLI_D);
+		free(buff);
+		parse_error_quit(data, ERC_DUPLI_D);
+	}
 	tmp = ft_split(buff, ' ');
 	if (ft_array_length((void **)tmp) != 2)
 	{
@@ -88,6 +94,6 @@ void	open_door(t_data *data, char *buff)
 	data->map.door = ft_xpm_to_img(data->mlx, tmp[1]);
 	if (!data->map.door)
 		data->map.door = data->fallback_sprite;
+	data->map.door_set = true;
 	ft_free_split(tmp);
-	return ;
 }

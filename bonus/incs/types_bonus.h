@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/11 23:55:48 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:58:10 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_map
 	uint32_t	colors[2];
 	t_sprite	sprites[26];
 	t_uint_img	*door;
+	bool		door_set;
 }	t_map;
 
 typedef struct s_player

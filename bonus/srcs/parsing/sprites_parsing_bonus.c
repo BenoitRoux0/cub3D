@@ -6,13 +6,14 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/04 16:20:26 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:05:23 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static void	open_sprite(t_data *data, char *buff);
+static void	open_door(t_data *data, char *buff);
 static void	init_default(t_sprite *sprite);
 
 void	get_sprites(int fd, t_data *data)
@@ -29,6 +30,8 @@ void	get_sprites(int fd, t_data *data)
 	{
 		if (buff[0] >= 'a' && buff[0] <= 'z')
 			open_sprite(data, buff);
+		else if (buff[0] == 'D')
+			open_door(data, buff);
 		free(buff);
 		pre_buff = get_next_line(fd);
 		if (!pre_buff)
@@ -69,3 +72,5 @@ void	init_default(t_sprite *sprite)
 	sprite->x_pos = 0.5;
 	sprite->y_pos = 0.5;
 }
+
+//TODO Open Door function

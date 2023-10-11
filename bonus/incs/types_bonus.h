@@ -105,6 +105,7 @@ typedef struct s_map
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
 	t_sprite	sprites[26];
+	t_uint_img	*door;
 }	t_map;
 
 typedef struct s_player

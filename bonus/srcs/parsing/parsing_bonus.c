@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/10 17:06:59 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:48:22 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ int	parse_error_quit(t_data *data, int r)
 	data->win = NULL;
 	if (data->fps_data.fps_str)
 		free(data->fps_data.fps_str);
-	if (data->fallback_sprite)
-		clear_img(data->fallback_sprite);
-	if (data->fallback_wall)
-		clear_img(data->fallback_wall);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -73,7 +69,12 @@ int	parse_error_quit(t_data *data, int r)
 	}
 	ft_free_array((void **)data->map.content);
 	while (++i < 4)
-		clear_img(data->map.walls_text[i]);
+		if (data->map.walls_text[i] != data->fallback_wall)
+			clear_img(data->map.walls_text[i]);
+	if (data->fallback_sprite)
+		clear_img(data->fallback_sprite);
+	if (data->fallback_wall)
+		clear_img(data->fallback_wall);
 	data->mlx = NULL;
 	exit (r);
 }

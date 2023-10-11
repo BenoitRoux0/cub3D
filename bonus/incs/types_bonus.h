@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/10 16:48:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:55:48 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_sprite
 	float		height;
 	float		x_pos;
 	float		y_pos;
+	bool		set;
 }	t_sprite;
 
 typedef struct s_sprites_list

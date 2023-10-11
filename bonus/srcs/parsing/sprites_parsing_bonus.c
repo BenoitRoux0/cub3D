@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 23:44:38 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:53:35 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	open_sprite(t_data *data, char *buff)
 	init_default(&data->map.sprites[char_pos]);
 	r = set_sprite(data, &data->map.sprites[char_pos], sprite_line);
 	ft_free_split(sprite_line);
-	if (r == EXIT_FAILURE)
+	if (r != EXIT_SUCCESS)
 	{
 		free(buff);
-		parse_error_quit(data, STRANGE_CODE);
+		parse_error_quit(data, r);
 	}
 }
 
@@ -72,7 +72,6 @@ void	init_default(t_sprite *sprite)
 	sprite->y_pos = 0.5;
 }
 
-//TODO Open Door function
 void	open_door(t_data *data, char *buff)
 {
 	char	**tmp;

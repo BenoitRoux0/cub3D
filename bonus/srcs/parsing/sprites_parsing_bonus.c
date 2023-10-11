@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:16:35 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 23:30:00 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:44:38 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	open_door(t_data *data, char *buff)
 	{
 		ft_free_split(tmp);
 		free(buff);
-		ft_dprintf(2, ERM_ARRAY_BIGGER, "D");
+		ft_dprintf(2, ERM_ARRAY_BIGGER, 'D');
 		parse_error_quit(data, ERC_ARRAY_BIGGER);
 	}
 	flush_newline(tmp, 2);

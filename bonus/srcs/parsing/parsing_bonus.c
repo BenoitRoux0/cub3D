@@ -6,13 +6,14 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:36:45 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/11 17:48:22 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:47:40 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 bool	unvalid_extension(char *map);
+void	free_img(t_data *data, int i);
 
 int	parsing(int argc, char **argv, t_data *data)
 {
@@ -68,13 +69,21 @@ int	parse_error_quit(t_data *data, int r)
 		free(data->mlx);
 	}
 	ft_free_array((void **)data->map.content);
+	free_img(data, i);
+	data->mlx = NULL;
+	exit (r);
+}
+
+void	free_img(t_data *data, int i)
+{
 	while (++i < 4)
 		if (data->map.walls_text[i] != data->fallback_wall)
 			clear_img(data->map.walls_text[i]);
+	if (data->map.door != data->fallback_sprite)
+		clear_img(data->map.door);
+	clear_sprites_img(data->map.sprites, data->fallback_sprite);
 	if (data->fallback_sprite)
 		clear_img(data->fallback_sprite);
 	if (data->fallback_wall)
 		clear_img(data->fallback_wall);
-	data->mlx = NULL;
-	exit (r);
 }

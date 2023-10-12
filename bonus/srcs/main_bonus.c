@@ -6,13 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 11:14:12 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:11:24 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-t_data	set_hooks(t_data *data);
+static t_data	set_hooks(t_data *data);
+static t_data	rend_locked_fps(t_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -22,28 +23,35 @@ int	main(int argc, char **argv)
 	set_fps(&data.fps_data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
-		return (1);
+		return (on_destroy(&data), 1);
 	parsing(argc, argv, &data);
+	data.doors_map = create_doors_map(data.map);
 	open_weapon_sprites(&data);
 	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
-		return (2);
+		return (on_destroy(&data), 2);
 	data.img = init_img(WIN_WIDTH, WIN_HEIGHT);
 	if (!data.img)
-		return (3);
+		return (on_destroy(&data), 3);
 	data.map_img = create_map(data.map);
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;
 	init_angles(&data);
-	gettimeofday(&data.fps_data.second_end, NULL);
-	add_ms_tv(&data.fps_data.second_end, 1000);
-	render_locked_fps(&data);
+	data = rend_locked_fps(&data);
 	data = set_hooks(&data);
 	mlx_loop(data.mlx);
 }
 
-t_data	set_hooks(t_data *data)
+static t_data	rend_locked_fps(t_data *data)
+{
+	gettimeofday(&(*data).fps_data.second_end, NULL);
+	add_ms_tv(&(*data).fps_data.second_end, 1000);
+	render_locked_fps(data);
+	return (*data);
+}
+
+static t_data	set_hooks(t_data *data)
 {
 	mlx_hook((*data).win, DestroyNotify, NoEventMask, on_destroy, data);
 	mlx_hook((*data).win, FocusOut, FocusChangeMask, on_focus_out, data);

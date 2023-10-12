@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 02:17:05 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/04 10:01:28 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:53:26 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	ray_collide_horiz(t_data *data, double vector[2], t_ray *ray, t_map map)
 	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
 		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);
-	if (map.content[to_check[1]][to_check[0]] == '1')
+	if (map.content[to_check[1]][to_check[0]] == '1' || \
+		(map.content[to_check[1]][to_check[0]] == 'D' && \
+		data->doors_map.content[to_check[1]][to_check[0]]))
 		return (ray->hit = 1, 1);
 	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
 		map.content[to_check[1]][to_check[0]] <= 'z')
@@ -39,7 +41,9 @@ int	ray_collide_vert(t_data *data, double vector[2], t_ray *ray, t_map map)
 	if (to_check[0] < 0 || to_check[0] >= map.size.x || \
 		to_check[1] < 0 || to_check[1] >= map.size.y)
 		return (ray->hit = 0, 0);
-	if (map.content[to_check[1]][to_check[0]] == '1')
+	if (map.content[to_check[1]][to_check[0]] == '1' || \
+		(map.content[to_check[1]][to_check[0]] == 'D' && \
+		data->doors_map.content[to_check[1]][to_check[0]]))
 		return (ray->hit = 1, 1);
 	if (map.content[to_check[1]][to_check[0]] >= 'a' && \
 		map.content[to_check[1]][to_check[0]] <= 'z')

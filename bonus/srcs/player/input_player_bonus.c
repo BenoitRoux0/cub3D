@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:06:05 by beroux            #+#    #+#             */
-/*   Updated: 2023/09/21 16:42:19 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/12 18:03:54 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	key_press_player(int key_code, t_data *data)
 {
 	if (data->input_mode != keyboard && data->input_mode != keyboard_mouse)
 		return (0);
+	if (key_code == XK_e)
+		player_interact(data);
 	if (key_code == XK_w)
 		data->player.mov[1] += 1;
 	if (key_code == XK_s)

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/11 23:58:10 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:56:52 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,12 @@ typedef struct s_col_buffer
 	t_sprite_col	sprites[0xf];
 }	t_col_buffer;
 
+typedef struct s_doors_map
+{
+	int	size[2];
+	int	**content;
+}	t_doors_map;
+
 typedef struct s_data
 {
 	void			*mlx;
@@ -197,6 +203,7 @@ typedef struct s_data
 	t_uint_img		*fallback_wall;
 	t_uint_img		*fallback_sprite;
 	t_map			map;
+	t_doors_map		doors_map;
 	t_player		player;
 	t_col_buffer	buffers[WIN_WIDTH];
 	t_sprites_list	*sprites_list;

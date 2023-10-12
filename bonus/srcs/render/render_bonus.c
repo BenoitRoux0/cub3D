@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 14:40:27 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/12 19:04:41 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,7 @@ int	render(t_data *data)
 	while (i < WIN_WIDTH)
 	{
 		ray = data->buffers[i].ray;
-		if (fmod(ray.inter[0], CELL_SIZE) == 0 && \
-			data->player.pos[0] - ray.inter[0] > 0)
-			draw_wall_slice(data, i, ray, data->map.walls_text[WEST]);
-		else if (fmod(ray.inter[0], CELL_SIZE) == 0 && \
-				data->player.pos[0] - ray.inter[0] < 0)
-			draw_wall_slice(data, i, ray, data->map.walls_text[EAST]);
-		else if (fmod(ray.inter[1], CELL_SIZE) == 0 && \
-				data->player.pos[1] - ray.inter[1] > 0)
-			draw_wall_slice(data, i, ray, data->map.walls_text[NO]);
-		else
-			draw_wall_slice(data, i, ray, data->map.walls_text[SO]);
+		draw_wall_slice(data, i, ray, select_tex(&ray, data));
 		i++;
 	}
 	update_sprites(data);
@@ -58,12 +48,12 @@ static void	draw_wall_slice(t_data *data, int pos, t_ray r, t_uint_img *tex)
 	int		slice_height;
 	int		src_x;
 
+	if (!tex || !r.hit)
+		return ;
 	r.dist *= cos(r.angle_diff * M_PI_4 / 45);
 	src_x = ((int) r.inter[0] % CELL_SIZE) * tex->width >> CELL_SH;
 	if (fmod(r.inter[0], CELL_SIZE) == 0)
 		src_x = ((int) r.inter[1] % CELL_SIZE) * tex->width >> CELL_SH;
-	if (src_x < 0 || !r.hit)
-		return ;
 	slice_height = (int)(CELL_SIZE / r.dist * (WIN_HEIGHT));
 	i = (WIN_HEIGHT >> 1) - (slice_height >> 1);
 	src_pos = 0;

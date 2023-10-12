@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:24:38 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/09 08:53:06 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:31:02 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int				cast_vert(t_data *data, double start[2], t_angle_data *angle, \
 int				cast_horiz(t_data *data, double start[2], t_angle_data *angle, \
 						t_ray *ray);
 t_angle_data	angles_sum(t_angle_data a, t_angle_data b);
+t_uint_img		*select_tex(t_ray *ray, t_data *data);
 
 #endif

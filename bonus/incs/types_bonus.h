@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 08:58:20 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/10 16:48:09 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:58:10 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_sprite
 	float		height;
 	float		x_pos;
 	float		y_pos;
+	bool		set;
 }	t_sprite;
 
 typedef struct s_sprites_list
@@ -105,6 +106,8 @@ typedef struct s_map
 	t_uint_img	*walls_text[4];
 	uint32_t	colors[2];
 	t_sprite	sprites[26];
+	t_uint_img	*door;
+	bool		door_set;
 }	t_map;
 
 typedef struct s_player

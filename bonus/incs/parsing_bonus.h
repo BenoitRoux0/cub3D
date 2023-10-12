@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:52:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/10/10 17:08:30 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:59:57 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,11 @@ info detected for %c\033[0m\n"
 The program can't ensure a secure launch, aborting...\n\
 Please try to reclone the project, or contact the project authors\033[0m\n"
 # define ERC_FALLBACK 198
+# define ERM_DOOR "\033[1;31mError\nWrongly placed door at %d %d\033[0m\n"
+# define ERC_DOOR 197
+# define ERM_DUPLI_S "\033[1;31mError\nDuplicate sprite info detected\033[0m\n"
+# define ERC_DUPLI_S 196
+# define ERM_DUPLI_D "\033[1;31mError\nDuplicate door info detected\033[0m\n"
+# define ERC_DUPLI_D 195
 # define EXIT_EOF 255
 #endif

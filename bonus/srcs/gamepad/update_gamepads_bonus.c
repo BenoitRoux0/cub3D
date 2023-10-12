@@ -17,7 +17,7 @@ static struct dirent	*get_next_controller(char *dir_path, DIR *dir);
 static int				check_node(char *dir_path, struct dirent *node);
 static bool				is_in_gamepads(ino_t inode, t_gamepad *gamepads);
 
-int	update_gamepads(t_gamepad *gamepads)
+void	update_gamepads(t_gamepad *gamepads)
 {
 	struct dirent	*next;
 	t_gamepad		*tmp;
@@ -27,7 +27,7 @@ int	update_gamepads(t_gamepad *gamepads)
 	check_disconnections(gamepads);
 	events_dir = opendir("/dev/input/");
 	if (!events_dir)
-		return (0);
+		return ;
 	next = get_next_controller("/dev/input/", events_dir);
 	while (tmp && tmp->connected)
 		tmp = tmp->next;
@@ -44,7 +44,6 @@ int	update_gamepads(t_gamepad *gamepads)
 			tmp = tmp->next;
 	}
 	closedir(events_dir);
-	return (0);
 }
 
 static void	check_disconnections(t_gamepad *gamepads)

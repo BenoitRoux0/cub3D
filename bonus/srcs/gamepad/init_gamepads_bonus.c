@@ -61,7 +61,7 @@ static int	add_gamepad(t_gamepad **list)
 
 static int	init_mutexes(t_gamepad *gamepad)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	gamepad->mutex = malloc(sizeof (pthread_mutex_t));

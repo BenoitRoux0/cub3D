@@ -34,7 +34,7 @@ int	update_inputs(t_gamepad *gamepad)
 
 static void	register_input(t_gamepad *gamepad, struct js_event event)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_lock(gamepad->states[i].mutex);

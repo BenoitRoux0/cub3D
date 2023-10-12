@@ -42,7 +42,7 @@ void	clear_gamepads(t_gamepad **list)
 
 static void	clear_mutexes(t_gamepad *gamepad)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_destroy(gamepad->mutex);

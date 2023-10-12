@@ -94,7 +94,7 @@ typedef struct s_gamepad
 
 t_gamepad	*init_gamepads(int nb_gamepads);
 void		clear_gamepads(t_gamepad **gamepads);
-int			update_gamepads(t_gamepad *gamepads);
+void		update_gamepads(t_gamepad *gamepads);
 void		*input_loop(t_gamepad *gamepad);
 int			update_inputs(t_gamepad *gamepad);
 

@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/13 12:44:39 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/13 20:39:12 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 	vec[1] = pos[1] - next_pos[1];
 	pos_in_map[0] = ((int)pos[0] >> CELL_SH);
 	pos_in_map[1] = ((int)pos[1] >> CELL_SH);
-	next_pos_in_map[0] = ((int)(next_pos[0] - 5 * sign(vec[0])) >> CELL_SH);
-	next_pos_in_map[1] = ((int)(next_pos[1] - 5 * sign(vec[1])) >> CELL_SH);
+	next_pos_in_map[0] = ((int)(next_pos[0] + 5 * sign(vec[0])) >> CELL_SH);
+	next_pos_in_map[1] = ((int)(next_pos[1] + 5 * sign(vec[1])) >> CELL_SH);
 	if (pos_in_map[1] >= 0 && pos_in_map[1] < data->map.size.y && \
 		next_pos_in_map[0] >= 0 && next_pos_in_map[0] < data->map.size.x && \
 		(data->map.content[pos_in_map[1]][next_pos_in_map[0]] == '1' || \

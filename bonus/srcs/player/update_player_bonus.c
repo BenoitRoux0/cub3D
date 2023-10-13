@@ -73,5 +73,5 @@ static void	collide(t_data *data, double pos[2], double next_pos[2])
 
 static int	sign(double a)
 {
-	return (a < 0 - a > 0);
+	return ((a < 0) - (a > 0));
 }

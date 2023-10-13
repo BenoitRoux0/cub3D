@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:59:00 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/11 23:31:20 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:05:55 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	on_destroy(t_data *data)
 		clear_sprites(&data->sprites_list);
 	if (data->fps_data.fps_str)
 		free(data->fps_data.fps_str);
+	if (data->doors_map.content)
+		destroy_doors_map(data->doors_map);
 	exit (0);
 }
 

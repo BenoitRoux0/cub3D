@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 03:40:16 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/12 17:11:24 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/14 07:35:31 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	main(int argc, char **argv)
 	set_fps(&data.fps_data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
-		return (on_destroy(&data), 1);
+		on_destroy(&data);
 	parsing(argc, argv, &data);
 	data.doors_map = create_doors_map(data.map);
 	open_weapon_sprites(&data);
 	data.gamepad = init_gamepads(1);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data.win)
-		return (on_destroy(&data), 2);
+		on_destroy(&data);
 	data.img = init_img(WIN_WIDTH, WIN_HEIGHT);
 	if (!data.img)
-		return (on_destroy(&data), 3);
+		on_destroy(&data);
 	data.map_img = create_map(data.map);
 	data.minimap_size = WIN_HEIGHT / 7;
 	data.win_focused = true;

@@ -6,7 +6,7 @@
 #    By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 03:36:50 by beroux            #+#    #+#              #
-#    Updated: 2023/10/11 17:08:46 by beroux           ###   ########.fr        #
+#    Updated: 2023/10/12 16:46:26 by beroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ ifeq ($(IS_BONUS), 1)
 					bonus/incs/parsing_bonus.h	bonus/incs/player_bonus.h		\
 					bonus/incs/render_bonus.h	bonus/incs/sprites_bonus.h		\
 					bonus/incs/types_bonus.h	bonus/incs/weapon_bonus.h
-	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk	bonus/srcs/player/sources.mk
-	include	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk bonus/srcs/gamepad/sources.mk
-	include	bonus/srcs/sprites/sources.mk	bonus/srcs/weapon/sources.mk
+	include	bonus/srcs/render/sources.mk	bonus/srcs/img/sources.mk		bonus/srcs/player/sources.mk
+	include	bonus/srcs/drawing/drawing.mk	bonus/srcs/parsing/sources.mk	bonus/srcs/gamepad/sources.mk
+	include	bonus/srcs/sprites/sources.mk	bonus/srcs/weapon/sources.mk	bonus/srcs/doors/sources.mk
 	SRCS 		:=	$(addprefix bonus/srcs/, $(SRCS))
 	OBJS 		=	$(SRCS:.c=.o)
 else

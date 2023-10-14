@@ -6,13 +6,14 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:08:12 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/08 18:03:36 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/13 20:39:12 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static void	collide(t_data *data, double pos[2], double next_pos[2]);
+static int	sign(double a);
 
 int	update_player(t_data *data)
 {
@@ -44,19 +45,33 @@ int	update_player(t_data *data)
 
 static void	collide(t_data *data, double pos[2], double next_pos[2])
 {
-	int	pos_in_map[2];
-	int	next_pos_in_map[2];
+	int		pos_in_map[2];
+	int		next_pos_in_map[2];
+	double	vec[2];
 
+	vec[0] = pos[0] - next_pos[0];
+	vec[1] = pos[1] - next_pos[1];
 	pos_in_map[0] = ((int)pos[0] >> CELL_SH);
 	pos_in_map[1] = ((int)pos[1] >> CELL_SH);
-	next_pos_in_map[0] = ((int)next_pos[0] >> CELL_SH);
-	next_pos_in_map[1] = ((int)next_pos[1] >> CELL_SH);
-	if (data->map.content[pos_in_map[1]][next_pos_in_map[0]] == '1')
+	next_pos_in_map[0] = ((int)(next_pos[0] + 5 * sign(vec[0])) >> CELL_SH);
+	next_pos_in_map[1] = ((int)(next_pos[1] + 5 * sign(vec[1])) >> CELL_SH);
+	if (pos_in_map[1] >= 0 && pos_in_map[1] < data->map.size.y && \
+		next_pos_in_map[0] >= 0 && next_pos_in_map[0] < data->map.size.x && \
+		(data->map.content[pos_in_map[1]][next_pos_in_map[0]] == '1' || \
+		data->doors_map.content[pos_in_map[1]][next_pos_in_map[0]] != 0))
 		next_pos[0] = pos[0];
-	if (data->map.content[next_pos_in_map[1]][pos_in_map[0]] == '1')
+	if (next_pos_in_map[1] >= 0 && next_pos_in_map[1] < data->map.size.y && \
+		pos_in_map[0] >= 0 && pos_in_map[0] < data->map.size.x && \
+		(data->map.content[next_pos_in_map[1]][pos_in_map[0]] == '1' || \
+		data->doors_map.content[next_pos_in_map[1]][pos_in_map[0]] != 0))
 		next_pos[1] = pos[1];
 	if (data->map.content[pos_in_map[1]][pos_in_map[0]] >= 'a' && \
 		data->map.content[pos_in_map[1]][pos_in_map[0]] <= 'z')
 		hit_sprite(data, &data->sprites_list, \
 				pos_in_map, data->map.content[pos_in_map[1]][pos_in_map[0]]);
+}
+
+static int	sign(double a)
+{
+	return ((a < 0) - (a > 0));
 }

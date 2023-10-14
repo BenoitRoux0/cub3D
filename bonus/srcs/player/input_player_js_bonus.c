@@ -6,7 +6,7 @@
 /*   By: beroux <beroux@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:42:27 by beroux            #+#    #+#             */
-/*   Updated: 2023/10/10 11:03:21 by beroux           ###   ########.fr       */
+/*   Updated: 2023/10/12 19:12:39 by beroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	js_button_press_player(int key_code, void *data_ptr)
 	data = (t_data *)data_ptr;
 	if (data->input_mode != controller && data->input_mode != guitar)
 		return (0);
+	if (key_code == button_X)
+		player_interact(data);
 	if (key_code == button_start)
 		data->show_minimap = !data->show_minimap;
 	if (data->input_mode != guitar)
